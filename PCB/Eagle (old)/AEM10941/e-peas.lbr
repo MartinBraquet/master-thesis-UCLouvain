@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE eagle SYSTEM "eagle.dtd">
+<eagle version="9.4.2">
+<drawing>
+<settings>
+<setting alwaysvectorfont="no"/>
+<setting verticaltext="up"/>
+</settings>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<layers>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="yes" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
+<layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
+<layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
+<layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+</layers>
+<library>
+<packages>
+<package name="QFN28_5X5_05PITCH" urn="urn:adsk.eagle:footprint:20239/1" locally_modified="yes">
+<description>&lt;b&gt;QFN28-5x5-0.50&lt;/b&gt;&lt;p&gt;</description>
+<wire x1="-2.45" y1="2.45" x2="2.45" y2="2.45" width="0.2032" layer="51"/>
+<wire x1="2.45" y1="2.45" x2="2.45" y2="-2.45" width="0.2032" layer="51"/>
+<wire x1="2.45" y1="-2.45" x2="-2.45" y2="-2.45" width="0.2032" layer="51"/>
+<wire x1="-2.45" y1="-2.45" x2="-2.45" y2="2.45" width="0.2032" layer="51"/>
+<wire x1="-2.45" y1="2.05" x2="-2.45" y2="2.45" width="0.2032" layer="21"/>
+<wire x1="-2.45" y1="2.45" x2="-2.05" y2="2.45" width="0.2032" layer="21"/>
+<wire x1="-2.05" y1="-2.45" x2="-2.45" y2="-2.45" width="0.2032" layer="21"/>
+<wire x1="-2.45" y1="-2.45" x2="-2.45" y2="-2.05" width="0.2032" layer="21"/>
+<wire x1="2.45" y1="-2.05" x2="2.45" y2="-2.45" width="0.2032" layer="21"/>
+<wire x1="2.45" y1="-2.45" x2="2.05" y2="-2.45" width="0.2032" layer="21"/>
+<wire x1="2.05" y1="2.45" x2="2.45" y2="2.45" width="0.2032" layer="21"/>
+<wire x1="2.45" y1="2.45" x2="2.45" y2="2.05" width="0.2032" layer="21"/>
+<circle x="-2.889" y="2.127" radius="0.2263" width="0" layer="21"/>
+<smd name="1" x="-2.3" y="1.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="2" x="-2.3" y="1" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="3" x="-2.3" y="0.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="4" x="-2.3" y="0" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="5" x="-2.3" y="-0.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="6" x="-2.3" y="-1" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="7" x="-2.3" y="-1.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="8" x="-1.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="9" x="-1" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="10" x="-0.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="11" x="0" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="12" x="0.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="13" x="1" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="14" x="1.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="15" x="2.3" y="-1.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="16" x="2.3" y="-1" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="17" x="2.3" y="-0.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="18" x="2.3" y="0" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="19" x="2.3" y="0.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="20" x="2.3" y="1" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="21" x="2.3" y="1.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="22" x="1.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="23" x="1" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="24" x="0.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="25" x="0" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="26" x="-0.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="27" x="-1" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="28" x="-1.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<text x="-2.5428" y="2.9492" size="0.6096" layer="25">&gt;NAME</text>
+<text x="-2.492" y="-3.5682" size="0.6096" layer="27">&gt;VALUE</text>
+<smd name="GND" x="0" y="0" dx="3.25" dy="3.25" layer="1" roundness="10"/>
+<pad name="GND1" x="0" y="0" drill="0.25" stop="no" thermals="no"/>
+<pad name="GND2" x="1.016" y="1.016" drill="0.25" stop="no" thermals="no"/>
+<pad name="GND3" x="1.016" y="-1.016" drill="0.25" stop="no" thermals="no"/>
+<pad name="GND4" x="-1.016" y="-1.016" drill="0.25" stop="no" thermals="no"/>
+<pad name="GND5" x="-1.016" y="1.016" drill="0.25" stop="no" thermals="no"/>
+</package>
+<package name="QFN28_5X5_05P_NO_VIAS">
+<description>&lt;b&gt;QFN28-5x5-0.50 - No Vias in Thermal Pad&lt;/b&gt;&lt;p&gt;</description>
+<wire x1="-2.45" y1="2.45" x2="2.45" y2="2.45" width="0.2032" layer="51"/>
+<wire x1="2.45" y1="2.45" x2="2.45" y2="-2.45" width="0.2032" layer="51"/>
+<wire x1="2.45" y1="-2.45" x2="-2.45" y2="-2.45" width="0.2032" layer="51"/>
+<wire x1="-2.45" y1="-2.45" x2="-2.45" y2="2.45" width="0.2032" layer="51"/>
+<wire x1="-2.45" y1="2.05" x2="-2.45" y2="2.45" width="0.2032" layer="21"/>
+<wire x1="-2.45" y1="2.45" x2="-2.05" y2="2.45" width="0.2032" layer="21"/>
+<wire x1="-2.05" y1="-2.45" x2="-2.45" y2="-2.45" width="0.2032" layer="21"/>
+<wire x1="-2.45" y1="-2.45" x2="-2.45" y2="-2.05" width="0.2032" layer="21"/>
+<wire x1="2.45" y1="-2.05" x2="2.45" y2="-2.45" width="0.2032" layer="21"/>
+<wire x1="2.45" y1="-2.45" x2="2.05" y2="-2.45" width="0.2032" layer="21"/>
+<wire x1="2.05" y1="2.45" x2="2.45" y2="2.45" width="0.2032" layer="21"/>
+<wire x1="2.45" y1="2.45" x2="2.45" y2="2.05" width="0.2032" layer="21"/>
+<circle x="-2.889" y="2.127" radius="0.2263" width="0" layer="21"/>
+<smd name="1" x="-2.3" y="1.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="2" x="-2.3" y="1" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="3" x="-2.3" y="0.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="4" x="-2.3" y="0" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="5" x="-2.3" y="-0.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="6" x="-2.3" y="-1" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="7" x="-2.3" y="-1.5" dx="0.9" dy="0.3" layer="1" roundness="50"/>
+<smd name="8" x="-1.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="9" x="-1" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="10" x="-0.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="11" x="0" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="12" x="0.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="13" x="1" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="14" x="1.5" y="-2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R90"/>
+<smd name="15" x="2.3" y="-1.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="16" x="2.3" y="-1" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="17" x="2.3" y="-0.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="18" x="2.3" y="0" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="19" x="2.3" y="0.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="20" x="2.3" y="1" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="21" x="2.3" y="1.5" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R180"/>
+<smd name="22" x="1.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="23" x="1" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="24" x="0.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="25" x="0" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="26" x="-0.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="27" x="-1" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<smd name="28" x="-1.5" y="2.3" dx="0.9" dy="0.3" layer="1" roundness="50" rot="R270"/>
+<text x="-2.5428" y="2.9492" size="0.6096" layer="25">&gt;NAME</text>
+<text x="-2.492" y="-3.5682" size="0.6096" layer="27">&gt;VALUE</text>
+<smd name="GND" x="0" y="0" dx="3.25" dy="3.25" layer="1" roundness="10"/>
+</package>
+</packages>
+<symbols>
+<symbol name="AEM10941">
+<description>AEM10941 – Energy Harvesting Power Management IC</description>
+<pin name="BOOST" x="25.4" y="2.54" length="middle" rot="R180"/>
+<pin name="SWBUCK" x="25.4" y="-15.24" length="middle" rot="R180"/>
+<pin name="BUCK" x="25.4" y="-20.32" length="middle" rot="R180"/>
+<pin name="CFG2" x="-25.4" y="-2.54" length="middle" direction="in"/>
+<pin name="CFG1" x="-25.4" y="-5.08" length="middle" direction="in"/>
+<pin name="CFG0" x="-25.4" y="-7.62" length="middle" direction="in"/>
+<pin name="SELMPP1" x="-25.4" y="-17.78" length="middle" direction="in"/>
+<pin name="SELMPP0" x="-25.4" y="-20.32" length="middle" direction="in"/>
+<pin name="FBPRIM_D" x="-25.4" y="10.16" length="middle"/>
+<pin name="FBPRIM_U" x="-25.4" y="7.62" length="middle"/>
+<pin name="LVOUT" x="25.4" y="10.16" length="middle" direction="out" rot="R180"/>
+<pin name="ENHV" x="-25.4" y="20.32" length="middle" direction="in"/>
+<pin name="FB_HV" x="25.4" y="17.78" length="middle" direction="in" rot="R180"/>
+<pin name="HVOUT" x="25.4" y="20.32" length="middle" direction="out" rot="R180"/>
+<pin name="BAL" x="25.4" y="27.94" length="middle" rot="R180"/>
+<pin name="BATT" x="25.4" y="30.48" length="middle" rot="R180"/>
+<pin name="PRIM" x="25.4" y="33.02" length="middle" rot="R180"/>
+<pin name="ENLV" x="-25.4" y="17.78" length="middle" direction="in"/>
+<pin name="STATUS2" x="25.4" y="-27.94" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS1" x="25.4" y="-30.48" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS0" x="25.4" y="-33.02" length="middle" direction="out" rot="R180"/>
+<pin name="SET_OVCH" x="-25.4" y="-27.94" length="middle"/>
+<pin name="SET_CHRDY" x="-25.4" y="-30.48" length="middle"/>
+<pin name="SET_OVDIS" x="-25.4" y="-33.02" length="middle"/>
+<pin name="SRC" x="-25.4" y="33.02" length="middle" direction="in"/>
+<pin name="FB_COLD" x="-25.4" y="30.48" length="middle"/>
+<pin name="BUFSRC" x="25.4" y="-7.62" length="middle" rot="R180"/>
+<pin name="SWBOOST" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="GND" x="0" y="-40.64" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<wire x1="-20.32" y1="35.56" x2="-20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-35.56" x2="20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-35.56" x2="20.32" y2="35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="35.56" x2="-20.32" y2="35.56" width="0.254" layer="94"/>
+<text x="-20.32" y="38.1" size="1.27" layer="95">&gt;NAME</text>
+<text x="-20.32" y="-38.1" size="1.27" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="AEM20940">
+<description>AEM20940 – Energy Harvesting Power Management IC</description>
+<pin name="BOOST" x="25.4" y="2.54" length="middle" rot="R180"/>
+<pin name="SWBUCK" x="25.4" y="-15.24" length="middle" rot="R180"/>
+<pin name="BUCK" x="25.4" y="-20.32" length="middle" rot="R180"/>
+<pin name="CFG2" x="-25.4" y="-5.08" length="middle" direction="in"/>
+<pin name="CFG1" x="-25.4" y="-7.62" length="middle" direction="in"/>
+<pin name="CFG0" x="-25.4" y="-10.16" length="middle" direction="in"/>
+<pin name="SELMPP1" x="-25.4" y="-17.78" length="middle" direction="in"/>
+<pin name="SELMPP0" x="-25.4" y="-20.32" length="middle" direction="in"/>
+<pin name="FBPRIM_D" x="-25.4" y="5.08" length="middle"/>
+<pin name="FBPRIM_U" x="-25.4" y="2.54" length="middle"/>
+<pin name="LVOUT" x="25.4" y="10.16" length="middle" direction="out" rot="R180"/>
+<pin name="ENHV" x="-25.4" y="15.24" length="middle" direction="in"/>
+<pin name="STONBATT" x="-25.4" y="20.32" length="middle" direction="in"/>
+<pin name="HVOUT" x="25.4" y="20.32" length="middle" direction="out" rot="R180"/>
+<pin name="BAL" x="25.4" y="27.94" length="middle" rot="R180"/>
+<pin name="BATT" x="25.4" y="30.48" length="middle" rot="R180"/>
+<pin name="PRIM" x="25.4" y="33.02" length="middle" rot="R180"/>
+<pin name="ENLV" x="-25.4" y="12.7" length="middle" direction="in"/>
+<pin name="STATUS2" x="25.4" y="-27.94" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS1" x="25.4" y="-30.48" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS0" x="25.4" y="-33.02" length="middle" direction="out" rot="R180"/>
+<pin name="CSIN" x="-25.4" y="27.94" length="middle"/>
+<pin name="NC" x="-25.4" y="-33.02" length="middle"/>
+<pin name="CSOUT" x="-25.4" y="25.4" length="middle"/>
+<pin name="SRC" x="-25.4" y="33.02" length="middle" direction="in"/>
+<pin name="ZMPP" x="-25.4" y="-27.94" length="middle"/>
+<pin name="BUFSRC" x="25.4" y="-7.62" length="middle" rot="R180"/>
+<pin name="SWBOOST" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="GND" x="0" y="-40.64" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<wire x1="-20.32" y1="35.56" x2="-20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-35.56" x2="20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-35.56" x2="20.32" y2="35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="35.56" x2="-20.32" y2="35.56" width="0.254" layer="94"/>
+<text x="-20.32" y="38.1" size="1.27" layer="95">&gt;NAME</text>
+<text x="-20.32" y="-38.1" size="1.27" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="AEM30940">
+<description>AEM30940 – Energy Harvesting Power Management IC</description>
+<pin name="BOOST" x="25.4" y="2.54" length="middle" rot="R180"/>
+<pin name="SWBUCK" x="25.4" y="-15.24" length="middle" rot="R180"/>
+<pin name="BUCK" x="25.4" y="-20.32" length="middle" rot="R180"/>
+<pin name="CFG2" x="-25.4" y="2.54" length="middle" direction="in"/>
+<pin name="CFG1" x="-25.4" y="0" length="middle" direction="in"/>
+<pin name="CFG0" x="-25.4" y="-2.54" length="middle" direction="in"/>
+<pin name="SELMPP1" x="-25.4" y="-12.7" length="middle" direction="in"/>
+<pin name="SELMPP0" x="-25.4" y="-15.24" length="middle" direction="in"/>
+<pin name="FBPRIM_D" x="-25.4" y="12.7" length="middle"/>
+<pin name="FBPRIM_U" x="-25.4" y="10.16" length="middle"/>
+<pin name="LVOUT" x="25.4" y="10.16" length="middle" direction="out" rot="R180"/>
+<pin name="ENHV" x="-25.4" y="22.86" length="middle" direction="in"/>
+<pin name="FB_HV" x="25.4" y="17.78" length="middle" direction="in" rot="R180"/>
+<pin name="HVOUT" x="25.4" y="20.32" length="middle" direction="out" rot="R180"/>
+<pin name="BAL" x="25.4" y="27.94" length="middle" rot="R180"/>
+<pin name="BATT" x="25.4" y="30.48" length="middle" rot="R180"/>
+<pin name="PRIM" x="25.4" y="33.02" length="middle" rot="R180"/>
+<pin name="ENLV" x="-25.4" y="20.32" length="middle" direction="in"/>
+<pin name="STATUS2" x="25.4" y="-27.94" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS1" x="25.4" y="-30.48" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS0" x="25.4" y="-33.02" length="middle" direction="out" rot="R180"/>
+<pin name="SET_OVCH" x="-25.4" y="-27.94" length="middle"/>
+<pin name="SET_CHRDY" x="-25.4" y="-30.48" length="middle"/>
+<pin name="SET_OVDIS" x="-25.4" y="-33.02" length="middle"/>
+<pin name="SRC" x="-25.4" y="33.02" length="middle" direction="in"/>
+<pin name="ZMPP" x="-25.4" y="-20.32" length="middle"/>
+<pin name="BUFSRC" x="25.4" y="-7.62" length="middle" rot="R180"/>
+<pin name="SWBOOST" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="GND" x="0" y="-40.64" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<wire x1="-20.32" y1="35.56" x2="-20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-35.56" x2="20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-35.56" x2="20.32" y2="35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="35.56" x2="-20.32" y2="35.56" width="0.254" layer="94"/>
+<text x="-20.32" y="38.1" size="1.27" layer="95">&gt;NAME</text>
+<text x="-20.32" y="-38.1" size="1.27" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="AEM40940">
+<description>AEM40940 – Energy Harvesting Power Management IC</description>
+<pin name="BOOST" x="25.4" y="2.54" length="middle" rot="R180"/>
+<pin name="SWBUCK" x="25.4" y="-15.24" length="middle" rot="R180"/>
+<pin name="BUCK" x="25.4" y="-20.32" length="middle" rot="R180"/>
+<pin name="CFG2" x="-25.4" y="-10.16" length="middle" direction="in"/>
+<pin name="CFG1" x="-25.4" y="-12.7" length="middle" direction="in"/>
+<pin name="CFG0" x="-25.4" y="-15.24" length="middle" direction="in"/>
+<pin name="SELMPP1" x="-25.4" y="-22.86" length="middle" direction="in"/>
+<pin name="SELMPP0" x="-25.4" y="-25.4" length="middle" direction="in"/>
+<pin name="FBPRIM_D" x="-25.4" y="0" length="middle"/>
+<pin name="FBPRIM_U" x="-25.4" y="-2.54" length="middle"/>
+<pin name="LVOUT" x="25.4" y="10.16" length="middle" direction="out" rot="R180"/>
+<pin name="ENHV" x="-25.4" y="10.16" length="middle" direction="in"/>
+<pin name="STONBATT" x="-25.4" y="15.24" length="middle" direction="in"/>
+<pin name="HVOUT" x="25.4" y="20.32" length="middle" direction="out" rot="R180"/>
+<pin name="BAL" x="25.4" y="27.94" length="middle" rot="R180"/>
+<pin name="BATT" x="25.4" y="30.48" length="middle" rot="R180"/>
+<pin name="PRIM" x="25.4" y="33.02" length="middle" rot="R180"/>
+<pin name="ENLV" x="-25.4" y="7.62" length="middle" direction="in"/>
+<pin name="STATUS2" x="25.4" y="-27.94" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS1" x="25.4" y="-30.48" length="middle" direction="out" rot="R180"/>
+<pin name="STATUS0" x="25.4" y="-33.02" length="middle" direction="out" rot="R180"/>
+<pin name="REDRM" x="-25.4" y="27.94" length="middle"/>
+<pin name="REDRP" x="-25.4" y="25.4" length="middle"/>
+<pin name="GND" x="-25.4" y="20.32" length="middle"/>
+<pin name="SRC" x="-25.4" y="33.02" length="middle" direction="in"/>
+<pin name="ZMPP" x="-25.4" y="-30.48" length="middle"/>
+<pin name="BUFSRC" x="25.4" y="-7.62" length="middle" rot="R180"/>
+<pin name="SWBOOST" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="GNDP" x="0" y="-40.64" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<wire x1="-20.32" y1="35.56" x2="-20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-35.56" x2="20.32" y2="-35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-35.56" x2="20.32" y2="35.56" width="0.254" layer="94"/>
+<wire x1="20.32" y1="35.56" x2="-20.32" y2="35.56" width="0.254" layer="94"/>
+<text x="-20.32" y="38.1" size="1.27" layer="95">&gt;NAME</text>
+<text x="-20.32" y="-38.1" size="1.27" layer="96">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="AEM10941" prefix="U">
+<description>AEM10941 – Energy Harvesting Power Management IC</description>
+<gates>
+<gate name="G$1" symbol="AEM10941" x="-81.28" y="2.54"/>
+</gates>
+<devices>
+<device name="" package="QFN28_5X5_05PITCH">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="FB_COLD" pad="26"/>
+<connect gate="G$1" pin="FB_HV" pad="13"/>
+<connect gate="G$1" pin="GND" pad="GND GND1 GND2 GND3 GND4 GND5"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SET_CHRDY" pad="23"/>
+<connect gate="G$1" pin="SET_OVCH" pad="22"/>
+<connect gate="G$1" pin="SET_OVDIS" pad="24"/>
+<connect gate="G$1" pin="SRC" pad="25"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="NV" package="QFN28_5X5_05P_NO_VIAS">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="FB_COLD" pad="26"/>
+<connect gate="G$1" pin="FB_HV" pad="13"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SET_CHRDY" pad="23"/>
+<connect gate="G$1" pin="SET_OVCH" pad="22"/>
+<connect gate="G$1" pin="SET_OVDIS" pad="24"/>
+<connect gate="G$1" pin="SRC" pad="25"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="AEM20940" prefix="U">
+<description>AEM20940 – Energy Harvesting Power Management IC</description>
+<gates>
+<gate name="G$1" symbol="AEM20940" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="QFN28_5X5_05PITCH">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="CSIN" pad="24"/>
+<connect gate="G$1" pin="CSOUT" pad="22"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="GND" pad="GND GND1 GND2 GND3 GND4 GND5"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="NC" pad="23"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SRC" pad="26"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="STONBATT" pad="13"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+<connect gate="G$1" pin="ZMPP" pad="25"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="NV" package="QFN28_5X5_05P_NO_VIAS">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="CSIN" pad="24"/>
+<connect gate="G$1" pin="CSOUT" pad="22"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="NC" pad="23"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SRC" pad="26"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="STONBATT" pad="13"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+<connect gate="G$1" pin="ZMPP" pad="25"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="AEM30940" prefix="U">
+<description>AEM30940 – Energy Harvesting Power Management IC</description>
+<gates>
+<gate name="G$1" symbol="AEM30940" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="QFN28_5X5_05PITCH">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="FB_HV" pad="13"/>
+<connect gate="G$1" pin="GND" pad="GND GND1 GND2 GND3 GND4 GND5"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SET_CHRDY" pad="23"/>
+<connect gate="G$1" pin="SET_OVCH" pad="22"/>
+<connect gate="G$1" pin="SET_OVDIS" pad="24"/>
+<connect gate="G$1" pin="SRC" pad="26"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+<connect gate="G$1" pin="ZMPP" pad="25"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="NV" package="QFN28_5X5_05P_NO_VIAS">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="FB_HV" pad="13"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SET_CHRDY" pad="23"/>
+<connect gate="G$1" pin="SET_OVCH" pad="22"/>
+<connect gate="G$1" pin="SET_OVDIS" pad="24"/>
+<connect gate="G$1" pin="SRC" pad="26"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+<connect gate="G$1" pin="ZMPP" pad="25"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="AEM40940">
+<description>AEM40940 – Energy Harvesting Power Management IC</description>
+<gates>
+<gate name="G$1" symbol="AEM40940" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="QFN28_5X5_05PITCH">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="GND" pad="22"/>
+<connect gate="G$1" pin="GNDP" pad="GND GND1 GND2 GND3 GND4 GND5"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="REDRM" pad="24"/>
+<connect gate="G$1" pin="REDRP" pad="23"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SRC" pad="26"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="STONBATT" pad="13"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+<connect gate="G$1" pin="ZMPP" pad="25"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="NV" package="QFN28_5X5_05P_NO_VIAS">
+<connects>
+<connect gate="G$1" pin="BAL" pad="15"/>
+<connect gate="G$1" pin="BATT" pad="16"/>
+<connect gate="G$1" pin="BOOST" pad="1"/>
+<connect gate="G$1" pin="BUCK" pad="3"/>
+<connect gate="G$1" pin="BUFSRC" pad="27"/>
+<connect gate="G$1" pin="CFG0" pad="6"/>
+<connect gate="G$1" pin="CFG1" pad="5"/>
+<connect gate="G$1" pin="CFG2" pad="4"/>
+<connect gate="G$1" pin="ENHV" pad="12"/>
+<connect gate="G$1" pin="ENLV" pad="18"/>
+<connect gate="G$1" pin="FBPRIM_D" pad="9"/>
+<connect gate="G$1" pin="FBPRIM_U" pad="10"/>
+<connect gate="G$1" pin="GND" pad="22"/>
+<connect gate="G$1" pin="GNDP" pad="GND"/>
+<connect gate="G$1" pin="HVOUT" pad="14"/>
+<connect gate="G$1" pin="LVOUT" pad="11"/>
+<connect gate="G$1" pin="PRIM" pad="17"/>
+<connect gate="G$1" pin="REDRM" pad="24"/>
+<connect gate="G$1" pin="REDRP" pad="23"/>
+<connect gate="G$1" pin="SELMPP0" pad="8"/>
+<connect gate="G$1" pin="SELMPP1" pad="7"/>
+<connect gate="G$1" pin="SRC" pad="26"/>
+<connect gate="G$1" pin="STATUS0" pad="21"/>
+<connect gate="G$1" pin="STATUS1" pad="20"/>
+<connect gate="G$1" pin="STATUS2" pad="19"/>
+<connect gate="G$1" pin="STONBATT" pad="13"/>
+<connect gate="G$1" pin="SWBOOST" pad="28"/>
+<connect gate="G$1" pin="SWBUCK" pad="2"/>
+<connect gate="G$1" pin="ZMPP" pad="25"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+</drawing>
+<compatibility>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports URNs for individual library
+assets (packages, symbols, and devices). The URNs of those assets
+will not be understood (or retained) with this version.
+</note>
+</compatibility>
+</eagle>

@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name AOM-5024L-HD-R)(type KiCad)(uri ${KIPRJMOD}/AOM-5024L-HD-R.pretty)(options "")(descr ""))
+  (lib (name Master_Thesis_Tim)(type KiCad)(uri ${KIPRJMOD}/Master_Thesis_Tim)(options "")(descr ""))
+  (lib (name DFEH12060D-100M_P3)(type KiCad)(uri ${KIPRJMOD}/DFEH12060D-100M_P3)(options "")(descr ""))
+)

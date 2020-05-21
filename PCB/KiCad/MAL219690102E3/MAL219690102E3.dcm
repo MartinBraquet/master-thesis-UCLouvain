@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MAL219690102E3
+D Vishay 90F Supercapacitor EDLC -20  +80% Tolerance 196 HVC Series 5.6V dc Through Hole
+K
+F https://www.vishay.com/docs/28409/196hvc.pdf
+$ENDCMP
+#
+#End Doc Library

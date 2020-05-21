@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:\Users\marti\Desktop\KiCad Thesis\sensing_PMU.sch</source>
+    <date>04/08/20 11:29:17</date>
+    <tool>Eeschema (5.1.5)-3</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>sensing_PMU.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>3.3u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>3AA092C6</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>470n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>47DDFE4D</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>2p</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>BA97753D</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>2.37k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>D2E1F5ED</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>3.83M</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>476B8B7C</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>150k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>459BFFE0</tstamp>
+    </comp>
+    <comp ref="CHV1">
+      <value>10u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5765A2B7</tstamp>
+    </comp>
+    <comp ref="CBOOST1">
+      <value>22u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>9AB9D110</tstamp>
+    </comp>
+    <comp ref="CSRC1">
+      <value>10u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>705CDE81</tstamp>
+    </comp>
+    <comp ref="CBUCK1">
+      <value>10u</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>0CD3195E</tstamp>
+    </comp>
+    <comp ref="JP2">
+      <value>MPPT1</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <libsource lib="sensing_PMU-rescue" part="JP2E-microphone_kicad-eagle-import-sensing_PMU-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>FA93C76E</tstamp>
+    </comp>
+    <comp ref="JP1">
+      <value>MPPT0</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <libsource lib="sensing_PMU-rescue" part="JP2E-microphone_kicad-eagle-import-sensing_PMU-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>2F430EF2</tstamp>
+    </comp>
+    <comp ref="RBATT1">
+      <value>475k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E5E035F</tstamp>
+    </comp>
+    <comp ref="RBATT2">
+      <value>475k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E5E0365</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>BATT</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7AE7A4</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>SOLAR</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x02_Male" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E7B6705</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>AEM10941</value>
+      <footprint>AEM10941:QFN28_5X5_05PITCH</footprint>
+      <libsource lib="sensing_PMU-rescue" part="AEM10941-AEM10941" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E67AD74</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>MAL219690102E3</value>
+      <footprint>SamacSys_Parts:MAL219690102E3</footprint>
+      <datasheet>https://www.vishay.com/docs/28409/196hvc.pdf</datasheet>
+      <fields>
+        <field name="Allied Price/Stock">https://www.alliedelec.com/bccomponents-vishay-mal219690102e3/70592241/</field>
+        <field name="Allied_Number">70592241</field>
+        <field name="Description">Vishay 90F Supercapacitor EDLC -20  +80% Tolerance 196 HVC Series 5.6V dc Through Hole</field>
+        <field name="Height">26.5</field>
+        <field name="Manufacturer_Name">Vishay</field>
+        <field name="Manufacturer_Part_Number">MAL219690102E3</field>
+        <field name="Mouser Part Number">594-MAL219690102E3</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=594-MAL219690102E3</field>
+        <field name="RS Part Number">8756748P</field>
+        <field name="RS Price/Stock">http://uk.rs-online.com/web/p/products/8756748P</field>
+      </fields>
+      <libsource lib="MAL219690102E3" part="MAL219690102E3" description="Vishay 90F Supercapacitor EDLC -20  +80% Tolerance 196 HVC Series 5.6V dc Through Hole"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8C0F85</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>150k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <libsource lib="Device" part="R_Small_US" description="Resistor, small US symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>FB45FC39</tstamp>
+    </comp>
+    <comp ref="SC1">
+      <value>SM141K06L</value>
+      <footprint>SM141K06L:SM141K06L</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="SM141K06L" part="SM141K06L" description="Single solar cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E935872</tstamp>
+    </comp>
+    <comp ref="SC2">
+      <value>SM141K06L</value>
+      <footprint>SM141K06L:SM141K06L</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="SM141K06L" part="SM141K06L" description="Single solar cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E93B020</tstamp>
+    </comp>
+    <comp ref="SC3">
+      <value>SM141K06L</value>
+      <footprint>SM141K06L:SM141K06L</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="SM141K06L" part="SM141K06L" description="Single solar cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E93B504</tstamp>
+    </comp>
+    <comp ref="SC4">
+      <value>SM141K06L</value>
+      <footprint>SM141K06L:SM141K06L</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="SM141K06L" part="SM141K06L" description="Single solar cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8F434B</tstamp>
+    </comp>
+    <comp ref="SC5">
+      <value>SM141K06L</value>
+      <footprint>SM141K06L:SM141K06L</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="SM141K06L" part="SM141K06L" description="Single solar cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8F4355</tstamp>
+    </comp>
+    <comp ref="SC6">
+      <value>SM141K06L</value>
+      <footprint>SM141K06L:SM141K06L</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="SM141K06L" part="SM141K06L" description="Single solar cell"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8F435F</tstamp>
+    </comp>
+    <comp ref="MK1">
+      <value>AOM-5024L-HD-R</value>
+      <footprint>AOM-5024L-HD-R:AOM-5024L-HD-R</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="Microphone_Condenser" description="Condenser microphone"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E6A1A7E</tstamp>
+    </comp>
+    <comp ref="IC1">
+      <value>OPA2834IDGKR</value>
+      <footprint>SOP65P490X110-8N</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/opa2834.pdf</datasheet>
+      <fields>
+        <field name="Description">High Speed Operational Amplifiers LOW POWER HIGH SPEED OP AMP</field>
+        <field name="Height">1.1</field>
+        <field name="Manufacturer_Name">Texas Instruments</field>
+        <field name="Manufacturer_Part_Number">OPA2834IDGKR</field>
+        <field name="Mouser Part Number">595-OPA2834IDGKR</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=595-OPA2834IDGKR</field>
+      </fields>
+      <libsource lib="OPA2834IDGKR" part="OPA2834IDGKR" description="High Speed Operational Amplifiers LOW POWER HIGH SPEED OP AMP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8C9045</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>14094E0B</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>Master_Thesis_Tim</value>
+      <footprint>Master_Thesis_Tim:Master_Thesis_Tim</footprint>
+      <libsource lib="master_thesis_tim" part="Master_Thesis_Tim" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E94E65A</tstamp>
+    </comp>
+    <comp ref="JP3">
+      <value>HVOUT_VDD</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <libsource lib="sensing_PMU-rescue" part="JP2E-microphone_kicad-eagle-import-sensing_PMU-rescue" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E832128</tstamp>
+    </comp>
+    <comp ref="L2">
+      <value>DFEH12060D-100M=P3</value>
+      <footprint>IND_DFEH12060D-100M=P3</footprint>
+      <datasheet>N/A</datasheet>
+      <fields>
+        <field name="Field4">6 mm</field>
+        <field name="Field5">Manufacturer Recommendations</field>
+        <field name="Field6">Murata</field>
+      </fields>
+      <libsource lib="DFEH12060D-100M_P3" part="DFEH12060D-100M=P3" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8DBFA9</tstamp>
+    </comp>
+    <comp ref="L1">
+      <value>L</value>
+      <footprint>Inductor_SMD:L_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="L" description="Inductor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8F014A</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="Conn_01x02_Male">
+      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02_Male</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="DFEH12060D-100M_P3" part="DFEH12060D-100M=P3">
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">DFEH12060D-100M=P3</field>
+        <field name="Footprint">IND_DFEH12060D-100M=P3</field>
+        <field name="Datasheet">N/A</field>
+        <field name="Field4">6 mm</field>
+        <field name="Field5">Manufacturer Recommendations</field>
+        <field name="Field6">Murata</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Small">
+      <description>Unpolarized capacitor, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="L">
+      <description>Inductor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Microphone_Condenser">
+      <description>Condenser microphone</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">MK</field>
+        <field name="Value">Microphone_Condenser</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-" type="passive"/>
+        <pin num="2" name="+" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R_Small_US">
+      <description>Resistor, small US symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_Small_US</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="MAL219690102E3" part="MAL219690102E3">
+      <description>Vishay 90F Supercapacitor EDLC -20  +80% Tolerance 196 HVC Series 5.6V dc Through Hole</description>
+      <docs>https://www.vishay.com/docs/28409/196hvc.pdf</docs>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">MAL219690102E3</field>
+        <field name="Footprint">MAL219690102E3</field>
+        <field name="Datasheet">https://www.vishay.com/docs/28409/196hvc.pdf</field>
+        <field name="Description">Vishay 90F Supercapacitor EDLC -20  +80% Tolerance 196 HVC Series 5.6V dc Through Hole</field>
+        <field name="Height">26.5</field>
+        <field name="Manufacturer_Name">Vishay</field>
+        <field name="Manufacturer_Part_Number">MAL219690102E3</field>
+        <field name="Mouser Part Number">594-MAL219690102E3</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=594-MAL219690102E3</field>
+        <field name="RS Part Number">8756748P</field>
+        <field name="RS Price/Stock">http://uk.rs-online.com/web/p/products/8756748P</field>
+        <field name="Allied_Number">70592241</field>
+        <field name="Allied Price/Stock">https://www.alliedelec.com/bccomponents-vishay-mal219690102e3/70592241/</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-_1" type="passive"/>
+        <pin num="2" name="-_2" type="passive"/>
+        <pin num="3" name="+" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OPA2834IDGKR" part="OPA2834IDGKR">
+      <description>High Speed Operational Amplifiers LOW POWER HIGH SPEED OP AMP</description>
+      <docs>http://www.ti.com/lit/ds/symlink/opa2834.pdf</docs>
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">OPA2834IDGKR</field>
+        <field name="Footprint">SOP65P490X110-8N</field>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/opa2834.pdf</field>
+        <field name="Description">High Speed Operational Amplifiers LOW POWER HIGH SPEED OP AMP</field>
+        <field name="Height">1.1</field>
+        <field name="Manufacturer_Name">Texas Instruments</field>
+        <field name="Manufacturer_Part_Number">OPA2834IDGKR</field>
+        <field name="Mouser Part Number">595-OPA2834IDGKR</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=595-OPA2834IDGKR</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VOUT1" type="unspc"/>
+        <pin num="2" name="VIN1-" type="unspc"/>
+        <pin num="3" name="VIN1+" type="unspc"/>
+        <pin num="4" name="VS-" type="unspc"/>
+        <pin num="5" name="VIN2+" type="unspc"/>
+        <pin num="6" name="VIN2-" type="unspc"/>
+        <pin num="7" name="VOUT2" type="unspc"/>
+        <pin num="8" name="VS+" type="unspc"/>
+      </pins>
+    </libpart>
+    <libpart lib="SM141K06L" part="SM141K06L">
+      <description>Single solar cell</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">SC</field>
+        <field name="Value">SM141K06L</field>
+      </fields>
+      <pins>
+        <pin num="1" name="-" type="passive"/>
+        <pin num="2" name="+" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="master_thesis_tim" part="Master_Thesis_Tim">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">Master_Thesis_Tim</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDD_USB" type="passive"/>
+        <pin num="2" name="VDD_MCU" type="passive"/>
+        <pin num="3" name="VDD_RF" type="passive"/>
+        <pin num="4" name="VDD_AT" type="passive"/>
+        <pin num="5" name="PB15" type="passive"/>
+        <pin num="6" name="PB14" type="passive"/>
+        <pin num="7" name="PB13" type="passive"/>
+        <pin num="8" name="PB12" type="passive"/>
+        <pin num="9" name="RX1" type="passive"/>
+        <pin num="10" name="TX1" type="passive"/>
+        <pin num="11" name="GND" type="passive"/>
+        <pin num="12" name="PA4" type="passive"/>
+        <pin num="13" name="PA3" type="passive"/>
+        <pin num="14" name="PA2" type="passive"/>
+        <pin num="15" name="PB8" type="passive"/>
+        <pin num="16" name="PB9" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="sensing_PMU-rescue" part="AEM10941-AEM10941">
+      <footprints>
+        <fp>QFN28_5X5_05PITCH</fp>
+        <fp>QFN28_5X5_05P_NO_VIAS</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">AEM10941-AEM10941</field>
+      </fields>
+      <pins>
+        <pin num="1" name="BOOST" type="BiDi"/>
+        <pin num="2" name="SWBUCK" type="BiDi"/>
+        <pin num="3" name="BUCK" type="BiDi"/>
+        <pin num="4" name="CFG2" type="input"/>
+        <pin num="5" name="CFG1" type="input"/>
+        <pin num="6" name="CFG0" type="input"/>
+        <pin num="7" name="SELMPP1" type="input"/>
+        <pin num="8" name="SELMPP0" type="input"/>
+        <pin num="9" name="FBPRIM_D" type="BiDi"/>
+        <pin num="10" name="FBPRIM_U" type="BiDi"/>
+        <pin num="11" name="LVOUT" type="output"/>
+        <pin num="12" name="ENHV" type="input"/>
+        <pin num="13" name="FB_HV" type="input"/>
+        <pin num="14" name="HVOUT" type="output"/>
+        <pin num="15" name="BAL" type="BiDi"/>
+        <pin num="16" name="BATT" type="BiDi"/>
+        <pin num="17" name="PRIM" type="BiDi"/>
+        <pin num="18" name="ENLV" type="input"/>
+        <pin num="19" name="STATUS2" type="output"/>
+        <pin num="20" name="STATUS1" type="output"/>
+        <pin num="21" name="STATUS0" type="output"/>
+        <pin num="22" name="SET_OVCH" type="BiDi"/>
+        <pin num="23" name="SET_CHRDY" type="BiDi"/>
+        <pin num="24" name="SET_OVDIS" type="BiDi"/>
+        <pin num="25" name="SRC" type="input"/>
+        <pin num="26" name="FB_COLD" type="BiDi"/>
+        <pin num="27" name="BUFSRC" type="BiDi"/>
+        <pin num="28" name="SWBOOST" type="BiDi"/>
+        <pin num="GND" name="GND" type="power_in"/>
+        <pin num="GND1" name="GND" type="power_in"/>
+        <pin num="GND2" name="GND" type="power_in"/>
+        <pin num="GND3" name="GND" type="power_in"/>
+        <pin num="GND4" name="GND" type="power_in"/>
+        <pin num="GND5" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="sensing_PMU-rescue" part="JP2E-microphone_kicad-eagle-import-sensing_PMU-rescue">
+      <fields>
+        <field name="Reference">JP</field>
+        <field name="Value">JP2E-microphone_kicad-eagle-import-sensing_PMU-rescue</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Connector.lib</uri>
+    </library>
+    <library logical="DFEH12060D-100M_P3">
+      <uri>C:\Users\marti\Desktop\KiCad Thesis/DFEH12060D-100M_P3/DFEH12060D-100M_P3.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+    </library>
+    <library logical="MAL219690102E3">
+      <uri>C:\Users\marti\Desktop\KiCad Thesis/MAL219690102E3/MAL219690102E3.lib</uri>
+    </library>
+    <library logical="OPA2834IDGKR">
+      <uri>C:/Users/marti/Desktop/KiCad Thesis/OPA2834/OPA2834IDGKR.lib</uri>
+    </library>
+    <library logical="SM141K06L">
+      <uri>C:\Users\marti\Desktop\KiCad Thesis/SM141K06L.pretty/SM141K06L.lib</uri>
+    </library>
+    <library logical="master_thesis_tim">
+      <uri>C:\Users\marti\Desktop\KiCad Thesis/Master_Thesis_Tim/master_thesis_tim.lib</uri>
+    </library>
+    <library logical="sensing_PMU-rescue">
+      <uri>C:\Users\marti\Desktop\KiCad Thesis/sensing_PMU-rescue.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/VSOLAR">
+      <node ref="SC4" pin="2"/>
+      <node ref="SC3" pin="2"/>
+      <node ref="SC2" pin="2"/>
+      <node ref="SC6" pin="2"/>
+      <node ref="SC5" pin="2"/>
+      <node ref="J3" pin="2"/>
+      <node ref="SC1" pin="2"/>
+    </net>
+    <net code="2" name="GND">
+      <node ref="SC3" pin="1"/>
+      <node ref="SC6" pin="1"/>
+      <node ref="SC1" pin="1"/>
+      <node ref="C4" pin="2"/>
+      <node ref="JP1" pin="1"/>
+      <node ref="CBOOST1" pin="2"/>
+      <node ref="CHV1" pin="2"/>
+      <node ref="MK1" pin="1"/>
+      <node ref="C3" pin="2"/>
+      <node ref="SC4" pin="1"/>
+      <node ref="U1" pin="10"/>
+      <node ref="IC1" pin="4"/>
+      <node ref="R4" pin="2"/>
+      <node ref="U1" pin="4"/>
+      <node ref="RBATT1" pin="2"/>
+      <node ref="U1" pin="9"/>
+      <node ref="U1" pin="GND"/>
+      <node ref="U1" pin="GND1"/>
+      <node ref="SC5" pin="1"/>
+      <node ref="U1" pin="GND3"/>
+      <node ref="U1" pin="GND4"/>
+      <node ref="U1" pin="GND5"/>
+      <node ref="U2" pin="11"/>
+      <node ref="C5" pin="1"/>
+      <node ref="C5" pin="2"/>
+      <node ref="U1" pin="GND2"/>
+      <node ref="U1" pin="17"/>
+      <node ref="U1" pin="18"/>
+      <node ref="CBUCK1" pin="2"/>
+      <node ref="JP2" pin="1"/>
+      <node ref="SC2" pin="1"/>
+      <node ref="CSRC1" pin="2"/>
+    </net>
+    <net code="3" name="/VBATT">
+      <node ref="J4" pin="2"/>
+      <node ref="C5" pin="3"/>
+      <node ref="RBATT2" pin="1"/>
+    </net>
+    <net code="4" name="Net-(L1-Pad1)">
+      <node ref="L1" pin="1"/>
+      <node ref="U1" pin="2"/>
+    </net>
+    <net code="5" name="Net-(L2-Pad1)">
+      <node ref="L2" pin="1"/>
+      <node ref="U1" pin="28"/>
+    </net>
+    <net code="6" name="Net-(U1-Pad24)">
+      <node ref="U1" pin="24"/>
+    </net>
+    <net code="7" name="Net-(U1-Pad23)">
+      <node ref="U1" pin="23"/>
+    </net>
+    <net code="8" name="Net-(U1-Pad22)">
+      <node ref="U1" pin="22"/>
+    </net>
+    <net code="9" name="Net-(U1-Pad21)">
+      <node ref="U1" pin="21"/>
+    </net>
+    <net code="10" name="Net-(U1-Pad20)">
+      <node ref="U1" pin="20"/>
+    </net>
+    <net code="11" name="Net-(U1-Pad19)">
+      <node ref="U1" pin="19"/>
+    </net>
+    <net code="12" name="Net-(U1-Pad15)">
+      <node ref="U1" pin="15"/>
+    </net>
+    <net code="13" name="/FB_HV">
+      <node ref="U1" pin="13"/>
+    </net>
+    <net code="14" name="Net-(U1-Pad11)">
+      <node ref="U1" pin="11"/>
+    </net>
+    <net code="15" name="/VBUCK">
+      <node ref="L1" pin="2"/>
+      <node ref="JP2" pin="3"/>
+      <node ref="U1" pin="5"/>
+      <node ref="U1" pin="6"/>
+      <node ref="U1" pin="12"/>
+      <node ref="CBUCK1" pin="1"/>
+      <node ref="U1" pin="3"/>
+      <node ref="JP1" pin="3"/>
+    </net>
+    <net code="16" name="/VBATT_ADC">
+      <node ref="RBATT2" pin="2"/>
+      <node ref="RBATT1" pin="1"/>
+      <node ref="U2" pin="13"/>
+    </net>
+    <net code="17" name="Net-(U2-Pad7)">
+      <node ref="U2" pin="7"/>
+    </net>
+    <net code="18" name="Net-(U2-Pad6)">
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="19" name="Net-(U2-Pad5)">
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="20" name="Net-(U2-Pad16)">
+      <node ref="U2" pin="16"/>
+    </net>
+    <net code="21" name="Net-(U2-Pad15)">
+      <node ref="U2" pin="15"/>
+    </net>
+    <net code="22" name="/V_mic_ADC">
+      <node ref="U2" pin="14"/>
+      <node ref="IC1" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="C2" pin="2"/>
+    </net>
+    <net code="23" name="Net-(U2-Pad8)">
+      <node ref="U2" pin="8"/>
+    </net>
+    <net code="24" name="Net-(U2-Pad12)">
+      <node ref="U2" pin="12"/>
+    </net>
+    <net code="25" name="Net-(U2-Pad10)">
+      <node ref="U2" pin="10"/>
+    </net>
+    <net code="26" name="/VDD">
+      <node ref="JP3" pin="2"/>
+      <node ref="U2" pin="1"/>
+      <node ref="C4" pin="1"/>
+      <node ref="U2" pin="2"/>
+      <node ref="U2" pin="3"/>
+      <node ref="U2" pin="4"/>
+      <node ref="IC1" pin="8"/>
+      <node ref="R1" pin="1"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="27" name="Net-(CSRC1-Pad1)">
+      <node ref="U1" pin="27"/>
+      <node ref="CSRC1" pin="1"/>
+      <node ref="L2" pin="2"/>
+    </net>
+    <net code="28" name="Net-(JP3-Pad1)">
+      <node ref="JP3" pin="1"/>
+    </net>
+    <net code="29" name="Net-(U2-Pad9)">
+      <node ref="U2" pin="9"/>
+    </net>
+    <net code="30" name="Net-(IC1-Pad5)">
+      <node ref="IC1" pin="5"/>
+    </net>
+    <net code="31" name="Net-(IC1-Pad6)">
+      <node ref="IC1" pin="6"/>
+    </net>
+    <net code="32" name="Net-(IC1-Pad7)">
+      <node ref="IC1" pin="7"/>
+    </net>
+    <net code="33" name="Net-(C1-Pad2)">
+      <node ref="C1" pin="2"/>
+      <node ref="C2" pin="1"/>
+      <node ref="R2" pin="2"/>
+      <node ref="IC1" pin="2"/>
+    </net>
+    <net code="34" name="Net-(C3-Pad1)">
+      <node ref="IC1" pin="3"/>
+      <node ref="C3" pin="1"/>
+      <node ref="R3" pin="2"/>
+      <node ref="R4" pin="1"/>
+    </net>
+    <net code="35" name="/BOOST">
+      <node ref="U1" pin="1"/>
+      <node ref="CBOOST1" pin="1"/>
+    </net>
+    <net code="36" name="Net-(C1-Pad1)">
+      <node ref="R1" pin="2"/>
+      <node ref="C1" pin="1"/>
+      <node ref="MK1" pin="2"/>
+    </net>
+    <net code="37" name="/VSOLAR_MEAS">
+      <node ref="J3" pin="1"/>
+      <node ref="U1" pin="25"/>
+      <node ref="U1" pin="26"/>
+    </net>
+    <net code="38" name="/HVOUT">
+      <node ref="JP3" pin="3"/>
+      <node ref="U1" pin="14"/>
+      <node ref="CHV1" pin="1"/>
+    </net>
+    <net code="39" name="/VBATT_MEAS">
+      <node ref="J4" pin="1"/>
+      <node ref="U1" pin="16"/>
+    </net>
+    <net code="40" name="/SELMPP1">
+      <node ref="U1" pin="7"/>
+      <node ref="JP2" pin="2"/>
+    </net>
+    <net code="41" name="/SELMPP0">
+      <node ref="U1" pin="8"/>
+      <node ref="JP1" pin="2"/>
+    </net>
+  </nets>
+</export>

@@ -11,6 +11,7 @@ Thesis source code/tikz_figures/*
 .settings/
 
 # Executables
+<<<<<<< HEAD
 *.swf
 *.air
 *.ipa

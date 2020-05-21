@@ -1,0 +1,7 @@
+(sym_lib_table
+  (lib (name microphone_kicad-eagle-import)(type Legacy)(uri ${KIPRJMOD}/microphone_kicad-eagle-import.lib)(options "")(descr ""))
+  (lib (name sensing_PMU-rescue)(type Legacy)(uri ${KIPRJMOD}/sensing_PMU-rescue.lib)(options "")(descr ""))
+  (lib (name MAL219690102E3)(type Legacy)(uri ${KIPRJMOD}/MAL219690102E3/MAL219690102E3.lib)(options "")(descr ""))
+  (lib (name master_thesis_tim)(type Legacy)(uri ${KIPRJMOD}/Master_Thesis_Tim/master_thesis_tim.lib)(options "")(descr ""))
+  (lib (name DFEH12060D-100M_P3)(type Legacy)(uri ${KIPRJMOD}/DFEH12060D-100M_P3/DFEH12060D-100M_P3.lib)(options "")(descr ""))
+)
