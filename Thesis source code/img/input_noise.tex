@@ -1,0 +1,93 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+\definecolor{mycolor4}{rgb}{0.49400,0.18400,0.55600}%
+\definecolor{mycolor5}{rgb}{0.46600,0.67400,0.18800}%
+\definecolor{mycolor6}{rgb}{0.00000,1.00000,1.00000}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmode=log,
+xmin=10,
+xmax=10000,
+xminorticks=true,
+xlabel style={font=\color{white!15!black}},
+xlabel={Quiescent current [\si{\micro A}]},
+ymin=14,
+ymax=18,
+ylabel style={font=\color{white!15!black}},
+ylabel={Input-referred noise [\si{dB_{SPL}}]},
+axis background/.style={fill=white},
+xmajorgrids,
+xminorgrids,
+ymajorgrids,
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1, dashed, line width=2.0pt]
+  table[row sep=crcr]{%
+10	16\\
+10000	16\\
+};
+\addlegendentry{Min. signal}
+
+\addplot [color=mycolor2, draw=none, mark size=4.2pt, mark=*, mark options={solid, mycolor2}]
+  table[row sep=crcr]{%
+1001	14.0528160320545\\
+};
+\addlegendentry{OPA838}
+
+\addplot [color=mycolor3, draw=none, mark size=4.2pt, mark=*, mark options={solid, mycolor3}]
+  table[row sep=crcr]{%
+650	14.0706044064729\\
+};
+\addlegendentry{OPA1692}
+
+\addplot [color=mycolor4, draw=none, mark size=4.2pt, mark=*, mark options={solid, mycolor4}]
+  table[row sep=crcr]{%
+385	14.1437057977188\\
+};
+\addlegendentry{OPA2188}
+
+\addplot [color=mycolor5, draw=none, mark size=4.2pt, mark=*, mark options={solid, mycolor5}]
+  table[row sep=crcr]{%
+170	14.2236495465669\\
+};
+\addlegendentry{OPA2834}
+
+\addplot [color=mycolor6, draw=none, mark size=4.2pt, mark=*, mark options={solid, mycolor6}]
+  table[row sep=crcr]{%
+130	14.2850975057981\\
+};
+\addlegendentry{OPA314}
+
+\addplot [color=black, draw=none, mark size=4.2pt, mark=*, mark options={solid, black}]
+  table[row sep=crcr]{%
+110	14.3928725960103\\
+};
+\addlegendentry{LMV651}
+
+\addplot [color=blue, draw=none, mark size=4.2pt, mark=*, mark options={solid, blue}]
+  table[row sep=crcr]{%
+60	15.0413180279693\\
+};
+\addlegendentry{TLV9001}
+
+\addplot [color=green, draw=none, mark size=4.2pt, mark=*, mark options={solid, green}]
+  table[row sep=crcr]{%
+37	17.8471165996574\\
+};
+\addlegendentry{LMV551}
+
+\end{axis}
+\end{tikzpicture}%

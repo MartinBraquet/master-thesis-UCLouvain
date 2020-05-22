@@ -1,0 +1,61 @@
+\begin{tikzpicture}[scale=0.5,line width=.5pt]% default: 0.4
+    \draw (3.5,4.5)to[*short,-] (3.5,4.5);% wire w3_w5 start
+    \draw (1.0,1.5)to[*short,-*] (1.0,1.5);% wire w3_w5 end
+    \draw (3.5,4.5) --  (1.0,4.5) -- (1.0,1.5); % wire w3_w5 polyline 
+    \draw (3.5,1.5)to[*short,-*] (1.0,1.5);% wire w6
+    \draw (8.5,1.5)to[*short,*-] (6.0,1.5);% wire w8
+    \draw (8.5,1.5)to[*short,*-] (8.5,1.5);% wire w4_w7 start
+    \draw (5.5,4.5)to[*short,-] (5.5,4.5);% wire w4_w7 end
+    \draw (8.5,1.5) --  (8.5,4.5) -- (5.5,4.5); % wire w4_w7 polyline 
+    \draw (-7.0,0.5)to[*short,-] (-7.0,1.0);% wire w9
+    \draw (3.5,-3.0)to[*short,-] (3.5,-2.0);% wire w10
+    \draw (-7.0,-3.5)to[*short,*-] (-7.0,-2.0);% wire w11
+    \draw (-7.0,-3.5)to[*short,*-] (-7.0,-3.5);% wire w21_w22 start
+    \draw (-8.5,-6.0)to[*short,-] (-8.5,-6.0);% wire w21_w22 end
+    \draw (-7.0,-3.5) --  (-7.0,-6.0) -- (-8.5,-6.0); % wire w21_w22 polyline 
+    \draw (-3.5,-3.5)to[*short,-*] (-7.0,-3.5);% wire w12
+    \draw (1.0,-3.5)to[*short,*-*] (1.0,1.5);% wire w13
+    \draw (1.0,-3.5)to[*short,*-] (-1.5,-3.5);% wire w14
+    \draw (2.5,-3.5)to[*short,-*] (1.0,-3.5);% wire w15
+    \draw (8.5,-4.0)to[*short,*-*] (8.5,1.5);% wire w16
+    \draw (8.5,-4.0)to[*short,*-] (4.5,-4.0);% wire w17
+    \draw (11.0,-4.0)to[*short,-*] (8.5,-4.0);% wire w18
+    \draw (2.5,-4.5)to[*short,-] (2.5,-4.5);% wire w19_w29 start
+    \draw (1.5,-10.5)to[*short,-*] (1.5,-10.5);% wire w19_w29 end
+    \draw (2.5,-4.5) --  (1.5,-4.5) -- (1.5,-10.5); % wire w19_w29 polyline 
+    \draw (3.5,-5.5)to[*short,-] (3.5,-5.0);% wire w20
+    \draw (-3.0,-7.5)to[*short,-] (-3.0,-7.0);% wire w24
+    \draw (-7.0,-9.0)to[*short,*-] (-8.5,-9.0);% wire w26
+    \draw (-7.0,-9.0)to[*short,*-] (-7.0,-9.0);% wire w23_w25 start
+    \draw (-8.5,-7.5)to[*short,-] (-8.5,-7.5);% wire w23_w25 end
+    \draw (-7.0,-9.0) --  (-7.0,-7.5) -- (-8.5,-7.5); % wire w23_w25 polyline 
+    \draw (-7.0,-10.0)to[*short,-*] (-7.0,-9.0);% wire w27
+    \draw (-3.0,-10.5)to[*short,*-] (-3.0,-10.0);% wire w28
+    \draw (1.5,-10.5)to[*short,*-*] (-3.0,-10.5);% wire w30
+    \draw (-3.0,-11.0)to[*short,-*] (-3.0,-10.5);% wire w31
+    \draw (1.5,-11.5)to[*short,-*] (1.5,-10.5);% wire w32
+    \draw (-3.0,-14.5)to[*short,*-] (-3.0,-13.5);% wire w33
+    \draw (1.5,-13.5)to[*short,-] (1.5,-13.5);% wire w34_w35 start
+    \draw (-3.0,-14.5)to[*short,-*] (-3.0,-14.5);% wire w34_w35 end
+    \draw (1.5,-13.5) --  (1.5,-14.5) -- (-3.0,-14.5); % wire w34_w35 polyline 
+    \draw (-3.0,-15.0)to[*short,-*] (-3.0,-14.5);% wire w36
+    \draw (3.5, -5.5) node[rground, xscale=1, yscale=1, rotate=0, ] (undefined) {};%  (undefined)++(0.0,0.0) node {undefined }; % component "circuiTikz\\gnd" "undefined" 
+    \draw (-3.0, -15.0) node[rground, xscale=1, yscale=1, rotate=0, ] (undefined) {};%  (undefined)++(0.0,0.0) node {undefined }; % component "circuiTikz\\gnd" "undefined" 
+    \draw (-7.0, -10.0) node[rground, xscale=1, yscale=1, rotate=0, ] (undefined) {};%  (undefined)++(0.0,0.0) node {undefined }; % component "circuiTikz\\gnd" "undefined" 
+    \draw (-7.0, 0.5) to[*resistor, l^=R1, a_=4.76k, -, ] (-7.0,-2.0){}; %\node [] at (-7.5,1.0) {x}; % component "res" "R1" 
+    \draw (-1.5, -3.5) to[*capacitor, l^=C1, a_=6.68u, -, ] (-3.5,-3.5){}; % component "cap" "C1" 
+    %\node [] at (-1.5,-3.0) {x}; % component "cap" "C1" 
+    \draw (5.5, 4.5) to[*capacitor, l^=C2, a_=16.7p, -, ] (3.5,4.5){}; % component "cap" "C2" 
+    %\node [] at (5.5,5.0) {x}; % component "cap" "C2" 
+    \draw (6.0, 1.5) to[*resistor, l^=R2, a_=71.4k, -, ] (3.5,1.5){}; %\node [] at (6.5,2.0) {x}; % component "res" "R2" 
+    \draw (-3.0, -7.5) to[*resistor, l^=R3, a_=1Meg, -, ] (-3.0,-10.0){}; %\node [] at (-3.5,-7.0) {x}; % component "res" "R3" 
+    \draw (-3.0, -11.0) to[*resistor, l^=R4, a_=1Meg, -, ] (-3.0,-13.5){}; %\node [] at (-3.5,-10.5) {x}; % component "res" "R4" 
+    \draw (1.5, -13.5) to[*capacitor, l^=C3, a_=64n, -, ] (1.5,-11.5){}; % component "cap" "C3" 
+    %\node [] at (2.0,-13.5) {x}; % component "cap" "C3" 
+    \node (VCC) [] at (-7.0,1.3) {VCC};% label mark % label "" "VCC" lbl37 
+    \node (VCC) [] at (3.5,-2.0+0.3) {VCC};% label mark % label "" "VCC" lbl38 
+    \node (VCC) [] at (-3.0,-7.0+0.3) {VCC};% label mark % label "" "VCC" lbl40 
+    \node (Vout) [] at (11.0,-4.0+0.3) {VCC};% label mark % label "" "Vout" lbl42 
+    \node (lbl88) [lttotitextcolor, scale=0.5*2.0] at (-10.5,-4.75) {Electret microphone\\ model};% text mark % text "" "Electret microphone model lbl88 " 
+    \draw [lttotitextcolor, line width=0.4pt, dashed] (-13.0,-11.5) rectangle (-6.0,-4.0); % sch Rect % schLine "SchRect" (-736, 368)->(-160, 128) style=1
+\end{tikzpicture}
