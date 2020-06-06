@@ -103,7 +103,7 @@
 	  Academic year \@years
 	  \\
       % degree title
-      \@degreetitle      
+      \@degreetitle
     \end{minipage}
   \end{titlepage}
 }

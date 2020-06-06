@@ -129,6 +129,12 @@ V_N_OPA2834 = V_N_OPA2834_f * sqrt(13.5e3); % [V]
 
 %V_NV_max(ind)
 
+%% ADC input noise (from AFE and microphone)
+
+p_IRN_dB = input_noise(12, R1, R2, S_I, p_SN);
+p_IRN = 20e-6 * 10^(p_IRN_dB / 20);
+V_N_ADC = p_IRN * S_I * R2
+
 
 %% Input voltage noise
 % Compute input noise based on op amp voltage noise density (expressed in

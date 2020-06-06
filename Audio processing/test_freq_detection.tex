@@ -1,0 +1,107 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.92900,0.69400,0.12500}%
+\definecolor{mycolor3}{rgb}{0.46600,0.67400,0.18800}%
+\definecolor{mycolor4}{rgb}{0.63500,0.07800,0.18400}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=0,
+xmax=7,
+xlabel style={font=\color{white!15!black}},
+xlabel={Weighted average frequency [kHz]},
+ymin=0,
+ymax=20,
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+legend style={at={(0.942,0.098)}, anchor=south west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1, draw=none, mark size=2.5pt, mark=*, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+0.901579628386122	0\\
+0.598078203756716	0\\
+0.875811228066835	0\\
+1.25038473443573	0\\
+0.98976212228955	0\\
+0.603235617097455	0\\
+};
+\addlegendentry{Pigeon (learning)}
+
+\addplot [color=mycolor1, draw=none, mark size=2.5pt, mark=x, mark options={solid, mycolor1}]
+  table[row sep=crcr]{%
+0.515	1\\
+0.735	1\\
+0.515	1\\
+};
+\addlegendentry{Pigeon (test)}
+
+\addplot [color=mycolor2, draw=none, mark size=2.5pt, mark=*, mark options={solid, mycolor2}]
+  table[row sep=crcr]{%
+2.78870571216995	0\\
+2.9363029875264	0\\
+2.60567527145653	0\\
+2.01841901994883	0\\
+2.07500568984736	0\\
+2.75323681757697	0\\
+};
+\addlegendentry{Blackbird (learning)}
+
+\addplot [color=mycolor2, draw=none, mark size=2.5pt, mark=x, mark options={solid, mycolor2}]
+  table[row sep=crcr]{%
+1.7	2\\
+2	2\\
+1.859	2\\
+};
+\addlegendentry{Blackbird (test)}
+
+\addplot [color=mycolor3, draw=none, mark size=2.5pt, mark=*, mark options={solid, mycolor3}]
+  table[row sep=crcr]{%
+3.29962072005617	0\\
+4.31725108102205	0\\
+4.07551437155708	0\\
+3.84115723468138	0\\
+3.71962555806297	0\\
+4.34443207328584	0\\
+};
+\addlegendentry{Great tit (learning)}
+
+\addplot [color=mycolor3, draw=none, mark size=2.5pt, mark=x, mark options={solid, mycolor3}]
+  table[row sep=crcr]{%
+4.063	3\\
+3.965	3\\
+3.52	3\\
+};
+\addlegendentry{Great tit (test)}
+
+\addplot [color=mycolor4, draw=none, mark size=2.5pt, mark=*, mark options={solid, mycolor4}]
+  table[row sep=crcr]{%
+5.89537174744149	0\\
+5.39086097084435	0\\
+4.64672637489751	0\\
+5.93736994517614	0\\
+5.83043572295634	0\\
+6.26599081337915	0\\
+};
+\addlegendentry{Blue tit (learning)}
+
+\addplot [color=mycolor4, draw=none, mark size=2.5pt, mark=x, mark options={solid, mycolor4}]
+  table[row sep=crcr]{%
+5.237	4\\
+5.741	4\\
+5.294	4\\
+};
+\addlegendentry{Blue tit (test)}
+
+\end{axis}
+\end{tikzpicture}%

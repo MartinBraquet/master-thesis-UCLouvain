@@ -6,12 +6,16 @@
 \usepackage{float}
 \usepackage{textcomp}
 \usepackage{amsmath}
+\usepackage{multirow}
 \usepackage{subcaption}
 \usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{booktabs}
 \pgfplotsset{compat=1.15}
 \usepackage[hidelinks]{hyperref}
 \definecolor{lttotitextcolor}{rgb}{0, 0.4, 0.25}
 \usepackage{natbib}
+\pdfoptionpdfminorversion=7
 
 \graphicspath{{img/}}
 
@@ -20,9 +24,19 @@
 \usepackage[americanresistors, RPvoltages, american voltages]{circuitikz}
 \tikzstyle{sensor}=[draw, fill=blue!20, text width=5em, 
     text centered, minimum height=2.5em, rounded corners]
+\tikzstyle{sensor2}=[draw, fill=green!20, minimum width=20em, 
+    text centered, minimum height=2.5em, rounded corners]
+\tikzstyle{sensor3}=[draw, fill=brown!20, text width=5em, 
+    text centered, minimum height=2.5em, rounded corners]
+\tikzstyle{sensor4}=[draw, fill=orange!20, text width=5em, 
+    text centered, minimum height=2.5em, rounded corners]
+\tikzstyle{empty_block}=[draw, minimum width=30em, 
+    text centered, minimum height=12em, rounded corners]
+\tikzstyle{empty_block2}=[draw, minimum width=10em, 
+    text centered, minimum height=12em, rounded corners]
 \tikzstyle{ann} = [above, text width=5em]
-\tikzstyle{afes} = [sensor, text width=6em, fill=red!20, 
-    minimum height=4em, rounded corners]
+\tikzstyle{afes} = [draw, fill=red!20, text width=5em, 
+    text centered, minimum height=2.5em, rounded corners]
 \def\edgedist{2.5}
 
 \usetikzlibrary{external}
@@ -32,6 +46,16 @@
 
 \newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
 \newcommand{\te}[1]{\textrm{#1}}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcommand\nnfootnote[1]{%
+  \begin{NoHyper}
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \end{NoHyper}
+}
 
 
 % Please fill in the following boxes
@@ -42,7 +66,7 @@
 %\subtitle{Microphone design for biodiversity inventory in forest}
 
 % Name of the student author(s)
-\author{Martin \textsc{Braquet}}
+\author{Martin \textsc{Braquet}\!\nnfootnote{\url{martin.braquet@hotmail.com}}}
 %\secondauthor{Firstname \textsc{Lastname}}		% remove if not applicable
 %\thirdauthor{Firstname \textsc{Lastname}}			% remove if not applicable
 
@@ -91,24 +115,27 @@
 
 \begin{abstract}
 
-On one hand, the Internet-of-Things (IoT) is predicted to lead to the deployment of a very large number (possibly trillions) of connected smart sensors for various applications. Such a massive deployment of smart sensors is not environmentally sustainable if the smart sensors are replaced every 2 years because of the pressure they put on natural resources and the ecotoxicity of the e-waste they generate. Therefore, it is required to fight obsolescence in the IoT domain by enabling a 10+ year lifetime for the smart sensors.
+On one hand, the Internet-of-Things (IoT) is predicted to lead to the deployment of a very large number (possibly trillions) of connected smart sensors for various applications. Such a massive deployment of smart sensors is not environmentally sustainable if the smart sensors are replaced every 2 years because of the pressure they put on natural resources and the ecotoxicity of the e-waste they generate.
 
-On the other hand, the rising climate change due to ecosystem destruction involves monitoring forests in order to analyze and preserve the ecosystem. Such monitoring is typically achieved manually via a person who samples the data less than once a day, which fails to provide strong results and needs human presence during the data acquisition.
+On the other hand, the rising climate change due to ecosystem destruction involves monitoring forests in order to analyze and preserve the ecosystem. Such monitoring is typically achieved manually via a person who samples the data less than once a day, which fails to provide strong results and asks for human presence during data acquisition.
 
-The objective of this master thesis is thus to find a way to continuously analyze the forest ecosystem via an autonomous audio sensor. To fulfill the energy constraints implied by its total autonomy, this sensor requires harvesting energy from the environment through miniaturized photovoltaic cells, using eco-friendly and non-toxic energy storage elements, and having reconfiguration capabilities to keep up with application, security and communication protocol updates.
+To solve these issues, the focus of this master thesis is on the development of an autonomous and efficient audio smart sensor continuously analyzing the forest ecosystem. To fulfil the energy constraints implied by its total autonomy, this sensor harvests energy from the environment through miniaturized photovoltaic cells sized according to the sun illuminance throughout days and seasons, using an environmentally-friendly and non-toxic supercapacitor as energy storage.
+With a 15+ year life time, this fully autonomous device operates at an optimized \SI{2.5}{V} supply voltage reaching \SI{22.1}{mW} of average power harvesting/consumption. An electret condenser microphone collects a signal as low as \SI{16}{dB_{SPL}} (compared to a \SI{14.22}{dB_{SPL}} input-referred noise), which is then amplified in the full bird emission frequency range (\SI{20}{Hz} -- \SI{20}{kHz}) by a low-noise and low-power analog front-end. This signal is further processed in an ultra-low-power chip embedding a microcontroller, alternating between run and sleep modes with a $1/3$ duty cycle, and a transceiver optimized for IoT applications with LoRaWAN networks. 
 
-The result of this development is a prototype measuring sounds up to 50m around, and classifying a bird song among the ten most common ones.
+The microcontroller detects sounds when birds are active (typically during the day for more than 12 hours) and ensures the radio-frequency communication at night depending on the supercapacitor voltage that is carefully monitored in real-time. It sends the information about the bird species encountered during the day, as well as their apparition frequency. In case of firmware update, this device receives the associated fragments when its energy is sufficient and automatically changes the firmware with energy-optimized software requiring only \SI{10.6}{J} for the whole update.
+
+By computing the weighted average frequency of the received sounds, the smart sensor is able to discriminate between four common birds in Belgium: the pigeon, blackbird, great tit and blue tit. For each species, several songs have been analyzed and used to train a $k$-nearest neighbors (KNN) classifier working in the real-time embedded system. Its precision, defined as the likelihood to find the correct species, reaches 94\% for songs coming from the previously learned database. For newly analyzed sounds, the detection algorithm performs likewise. More complex machine-learning algorithms could finally be further designed to discriminate between more species.
 \end{abstract}
 
 \renewcommand{\abstractname}{Acknowledgements}
 \begin{abstract}
-This thesis has been written throughout my last year at UCLouvain. It gave me the opportunity to have a first glimpse into an important work required for the obtention of a master's degree in engineering.  During this important work, I would like to thank the following people, starting with the most meaningful ones, for their important hints and source of motivation.
+This thesis has been written throughout my last year at UCLouvain. It gave me the opportunity to have a first glimpse into an important work required for the obtention of a master's degree in engineering.  During this substantial work, I would like to thank the following people, starting with the most meaningful ones, for their important hints and source of motivation.
 
 First of all, I would like to thank my main supervisor, Prof. D. Bol, for his precious information. In his works, I really appreciated his way to approach a problem, starting with a technological/ecological/social need and then solving it by considering all the factors in the process (systemic approach). His maturity, sensibility and motivation to handle such problems made one of the most important marks on me throughout my studies at UCLouvain. 
 
-Second, I would like to thank Tim Hess who wrote his thesis on the same topic and was focused on the programming/software part. We have had great collaborations to produce the final prototype for this work. He gave me important advice for the overall design of the PCB, more specifically on the handling of KiCad (a PCB design tool).
+Second, I would like to thank Tim Hess who wrote his thesis on a same topic but more focused on the wireless communication. We have had great collaborations to produce the final model for this work. He gave me important advice for the overall design and soldering of the PCB, more specifically on the handling of KiCad (a PCB design tool).
 
-Third, I would like to thank the members of the ECS group\footnote{Electrical Circuits and Systems group lead by D. Bol and D. Flandre at UCLouvain.} and more specifically Rémi Dekimpe for his constant supervision through the year. He proved his availability at any time and had precious hints.
+Third, I would like to thank the members of the ECS group\footnote{Electrical Circuits and Systems group lead by Professors D. Bol and D. Flandre at UCLouvain.} and more specifically Rémi Dekimpe for his constant supervision through the year. He proved his availability at any time and had precious hints.
 
 I would also like to thank my second supervisor, Prof. R. Sadre, for his availability. I want to thank Prof. D. Flandre in advance for the reading of this thesis, as well as for his interesting courses given during my curriculum. More generally, I need to thank all the people who contributed to this work, e.g. for the access to the electronics lab and the ordering of the required materials.
 \end{abstract}
@@ -126,54 +153,140 @@ I would also like to thank my second supervisor, Prof. R. Sadre, for his availab
 
 \chapter{Introduction}
 
+This thesis is dedicated to people interested in audio monitoring and its subsequent recent rise, as well as the technical details/constraints related to the design of such sensors. It is accessible for people from diverse domains, but a background in engineering is nonetheless advised.
+
 \section*{Context}
 
-!!! public implicitement visé, l'introduction au sujet et aux notations
+The Internet-of-Things (IoT) is a system of interrelated computing devices that are provided with unique identifiers and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction. It is predicted to lead to the deployment of a very large number (possibly trillions) of connected smart sensors for various applications. However, such a massive deployment of smart sensors is not environmentally sustainable if the smart sensors are replaced every 2 years because of the pressure they put on natural resources and the ecotoxicity of the e-waste they generate. Therefore, it is needed to fight obsolescence in the IoT domain by enabling a 10+ year lifetime for the smart sensors. 
+
+\paragraph{Audio monitoring}
+
+Forests are important sources for biodiversity and ecological balance. They provide many benefits and it is the main functions for water and soil conservation, genetic resources for plant and animal, and also source of wood supply and other forest goods. They also have important benefits on human physical and mental health~\cite{Meyer-Schulz}. However, recently the green forest environment has been interrupted by non ethical activities such as development activities that decrease the benefits of the forest contribution.
+Thus, in order to ensure long term forest autonomy, it is important to implement a monitoring system that is responsible in providing effective monitoring for forest environment. Forest monitoring is not limited to environmental issues only, but it also includes fire monitoring and detection in forests~\cite{OTHMAN20121204}. To set the problems, a policy-relevant infrastructure for monitoring of forest ecosystems has been recently proposed in the European Union~\cite{ICP_Forests}.
+
+Nowadays, some key variables, such as tree health and biodiversity, are only collected once a year because they must be assessed by a well trained human operator. This low observation frequency considerably limits the possibility of characterizing evolution trends relating them with explanatory causes. 
+
+To achieve this goal of an autonomous long-lasting sensor, energy needs to be harvested from the environment through miniaturized photovoltaic cells, using batteries whose chemistry does not wear out and having reconfiguration capabilities to keep up with application, security and communication protocol updates.
 
 \section*{Contributions}
 
-In this master thesis,
+In this master thesis, a operational device was build in order to monitor bird songs in forest. It will be attached to a tree, will record the sounds, analyze and send them over-the-air. Thanks to a supercapacitor and solar cells, it is fully autonomous, efficient and connected to the cloud. It is in operation for more than 15 years without any human assistance and can discriminate between bird songs which are rather distincts (based on their frequency spectrum).
 
-All the files used for the simulations as well as the source code of this thesis are fully open-source under the \textit{MIT} license\footnote{Provided that the reader gives appropriate credit, he is free to copy and redistribute the material in any medium or format under the same license as the original. He has the permission to remix, transform, and build upon the material for any purpose, even commercially.} at \url{https://github.com/MartinBraquet/master-thesis-UCLouvain}.
+The objectives of this thesis are multiple. It first aims at improving the audio monitoring quality in forest while reducing human interactions, especially in areas with difficult access. Via this text, it also includes providing useful information for diverse people interested in the domain, such as companies willing to improve ecosystem monitoring or students facing a related problem.
+
+For this purpose, all the files used for the simulations as well as the LaTeX source code of this thesis are fully open-source under the \textit{MIT} license\footnote{Provided that the reader gives appropriate credit, he is free to copy and redistribute the material in any medium or format under the same license as the original. He has the permission to remix, transform, and build upon the material for any purpose, even commercially.} at \url{https://github.com/MartinBraquet/master-thesis-UCLouvain}.
 
 \section*{Structure}
 
 The structure of this thesis has been carefully build to replicate the design process of this sensor. Indeed, the chapters totally mimic the real chronology throughout the year, in such a way that each chapter is only based on the design choices of the previous chapters. 
 
-Chapter 1 ...
+Chapter 2 describes the use case, by detailing the state-of-the-art of audio monitoring, the requirements for the system and its general architecture.
 
+Chapter 3 details the different types of energy storage, from the primary battery to the supercapacitor and the new developments. They are then compared and the most suited for this application is selected.  
+
+Chapter 4 is dedicated to the power management. The selection of the supply voltage as well as the operation of the power management unit are explained.
+
+Chapter 5 analyzes the sensing subsystem. After a brief review of the principles of wave propagation, different kinds of microphones are detailed and compared, leading to the selection of the most meaningful. Then, the analog front-end is detailed, associated to the design of each component. The best microphone is then chosen such that is optimize the noise / power consumption specifications.
+
+Chapter 6 gives a description of the data processing and transmission, with an emphasis on the microcontroller behaviour.
+
+Chapter 7 describes the power supply by first summarizing the whole power consumption. The best solar cells are then selected in accordance with the expected sun illuminance. The supercapacitor is characterized and its capacitance is designed according to the power management unit specifications.
+
+Chapter 8 details the final model, with its design and prototyping, and ends with a complete validation of the system.
+
+Chapter 9 provides the different inference algorithms used to process, inside the microcontroller, the received data from the microphone. Experimental results are provided and reviewed.
+
+Chapter 10 gives some perspectives of improvement for an application which is still new with great perspectives.
+
+Chapter 11 ends this work with a conclusion. The appendices give additional details on the transimpedance amplifier, the noise gain of the microphone amplifier and the PCB layout/schematic of the final model.
 
 
 \chapter{Use case}
 
-\section{State-of-the-art of audio monitoring}
+This chapter describes the state-of-the-art IoT smart sensors for forest monitoring and the process/systems required to accomplish the aforementioned goals.
 
-+ oiseaux foret
+\section{State-of-the-art of IoT sensors for forest monitoring}
 
-Noeuds de capteur + circuits (custom micro, AFE...)​
+Since 2000, \textit{wireless sensor networks} (WSNs) have received increasing attention in research on automatic natural environments~\cite{Akyildiz}. 
 
+For forest monitoring, research has already been achieved as attested by the following state-of-the-art. First, in \cite{Granados}, they worked on autonomous recording units which have been widely used in a large number of bird studies in recent years, but challenges remain in estimating abundance based on acoustic monitoring. They tested whether vocal activity rate index (VAR; the number of songs per unit time for a species), recorded using autonomous recording units, was related to population abundance in two terrestrial bird species. Second, in \cite{Huanqi}, they illustrate a forest monitoring system solution of wireless sensor networks based on ZigBee by using sensor nodes and coordinator nodes. Third, in \cite{Jiang}, a 20-day wireless sensor network of 18 nodes has been deployed in a mountain area. It has a good fidelity since they received 87\% of sent sample data. Their primary concern remains to enlarge the network scale and prolong the network lifetime.
 
-\section{Requirements analysis}
+However, these previous works show that the use of WSNs has been limited to simple tasks due to key technological issues. First, the high power consumption of the sensor nodes in operation leads to a trade-off between the density of the sensor deployment (limited by the frequency of battery replacement by an operator) and the complexity of the ecosystem parameters to monitor. Second, the limited range of low-power wireless communication prevented large-scale deployment. Third, the monitoring of complex, non-directly observable parameters (e.g. bird population, tree health) is impeded by the lack of low-power algorithms (typically machine learning) that would process the data on-chip. However, today, technological advances in ultra-low-power processors~\cite{8662293}, IoT communications and artificial intelligence open new possibilities. A brief insight of them will be described in this work.
 
-\begin{itemize}
- \item Range or 50 m for microphone
- \item storage element volume
- \item Life time: 20 years
- \item Toxicity
-\end{itemize}
+\paragraph{Communication}
 
+In regard with these topics, low power communication protocols also appeared. There is a trade-off between energy and range that such devices can sustain. The datarate, i.e. the amount of data transmitted per unit of time, can be tuned as a degree of freedom to adjust this trade-off. It is thus desirable to produce reconfigurable solutions.
 
+For long-range communications, a low-power wide-area network (LPWAN) such as LoRa is used. LoRa is a spread spectrum modulation technique derived from chirp spread spectrum (CSS) technology and is the first low-cost implementation of chirp spread spectrum for commercial usage. LoRa also has a lot of applications in urban areas, such as waste management in smart cities~\cite{Cerchecci}.
+
+For short-range communications, a wireless personal area network (WPAN) such as Bluetooth low energy (BLE) is used since they consume less energy per sent bit (\SI{30}{nJ/bit} compared to \SI{1}{\micro J/bit} for LoRa~\cite{Local_Sensor_Data_Processing}). For this, multiple challenges exist such as spectrum congestion (due to the limited datarate), data deluge, security flaws, natural resources, ecotoxicity, battery charging/replacement. Multi-hop transfer are communications between several sensors, they can help solve some of these issues by increasing the range but with a costly synchronization~\cite{bol2018}.
+
+\paragraph{Data processing}
+
+With the limited datarate of low-power communication protocols, local data storage and processing are required to extract and store meaningful information.
+
+In addition to on-chip data processing, edge computing has been proposed to further reduce the data flow and hence the power consumption, it refers to the enabling technologies allowing computation to be performed at the edge of the network, on downstream data on behalf of cloud services and upstream data on behalf of IoT services~\cite{Shi2016}. Here, edges are any computing and network resources along the path between data sources and cloud data center (e.g. for forest monitoring, a gateway between smart sensors and cloud data centers). 
+
+For sound analysis, some algorithms such as Blind Audio Source Separation (BASS) have been developed to discriminate the sound from several sources (e.g. birds) with the help of several sensors (that is, microphones). Methods exist to rank existing BASS algorithms according to their performance on the same test data~\cite{Vincent2006}.
 
 \section{General architecture}
 
+The general architecture of this type of sensor node is given in Figure~\ref{fig:general_architecture}. A sensor is a device which probes, processes and sends diverse physical subjects in an environment. For this work, the physical subject is the sound pressure.
 
-+ General architecture of this type of sensor
+\begin{figure}[H]
+\centering
+\scalebox{0.9}{
+\begin{tikzpicture}
+    \node (afe) [afes] {Sensor};
+    \path (afe.0)+(-6,0) node (mic) [sensor4] {Sound,\dots};
+    \path (afe.0)+(3,0) node (proc) [sensor] {Controller};
+    \path (afe.0)+(6.5,0) node (tx) [sensor3] {Transceiver};
+    \path (afe.0)+(3,2) node (pw) [sensor2] {Power management};
+    \path (afe.0)+(2.7,1) node (mysensor) [empty_block] {};
+    \path (afe.0)+(-6,1) node (envi) [empty_block2] {};
+    \node[anchor=north west,inner sep=10pt] at (mysensor.north west)
+    {\textbf{Sensor node}};
+    \draw (afe.0)+(-6,0.5) circle (50pt);
+    \node[anchor=north west,inner sep=10pt] at (envi.north west)
+    {\textbf{Environment}};
+    \path [draw, ->] (mic) -- node [above] {} (afe.west |- mic) ;
+    \path [draw, ->] (afe.east) -- node [above] {} (proc.west |- afe) ;
+    \path [draw, <->] (proc.east) -- node [above] {} (tx.west |- proc) ;
+    \draw (tx.0) -- (11,0) -- (11,1) ;
+    \node[] at (-4.8,1) {Physical subject};
+    \foreach \r in {.1,.2,.3}
+      \draw (11.1,1) ++ (60:\r) arc (60:-60:\r);
+\end{tikzpicture}}
+\caption{Block diagram of a general IoT sensor node}
+\label{fig:general_architecture}
+\end{figure}
 
-briefly explain each block/component.
+Inside the sensor node, there are typically four submodules:
+\begin{itemize}
+ \item \textit{Sensor}: The sensor captures data from its environment by producing a measurable response to a change in a physical condition like temperature or pressure. It has specific characteristics such as accuracy, sensitivity\dots The physical signal is typically filtered and amplified in an analog-front-end (AFE). The continual analog signal is then sent to a controller for further processing, either in continuous form or in digital form via an analog-to-digital converter (ADC).
+ \item \textit{Controller}: The data are processed in a controller, which is most often a microcontroller for its low cost, flexibility to connect to other devices, ease of programming, and low power consumption. The microcontroller performs tasks, processes data and controls the functionality of other components in the sensor node.
+ \item \textit{Transceiver}: The transmission (TX) and reception (RX) are combined in a transceiver which allows to exchange data, mostly wirelessly through radio frequency (RF) with an antenna. WSNs tend to use license-free communication frequencies\footnote{The ISM radio bands are portions of the radio spectrum reserved internationally for industrial, scientific and medical (ISM) purposes other than telecommunications.}, LoRa uses for example license-free sub-gigahertz radio frequency bands (like 433 MHz, 868 MHz (Europe)) enabling long-range transmissions with low power consumption.
+ \item \textit{Power management}: Since the wireless sensor node is often placed in a hard-to-reach location, changing the battery regularly can be costly and inconvenient. Hence, an important aspect in the development of a wireless sensor node is ensuring that there is always adequate energy available to power the system. The sensor node consumes power for sensing, data processing and communicating. Power is stored either in batteries or capacitors. They renew their energy from solar sources, radio frequency, temperature differences, or vibration.
+\end{itemize}
 
-It is expected that the parts with the most power consumption are the MCU and the microphone, the other parts are designed to be negligible compared to the formers.
+Because energy is the most important scarcity in such sensors (defining its lifetime), one has to keep in mind the power consumption of each block throughout the design. It is expected that the parts with the most power consumption are the microcontroller, the transceiver and the microphone. The other parts will be designed to be negligible compared to the formers.
 
-Schema de flow (déroulement du mémoire)
+\section{Requirements analysis}
+\label{section:requirements}
+
+The sensor that will be produced needs to fit the following requirements:
+
+\begin{itemize}
+ \item The microphone detects sounds up to \SI{50}{m} in order to produce a reasonable inventory of bird population. 
+ \item Based on the continuously received sound, the sensor has to discriminate the bird species among a small group of selected birds.
+ \item The life time is one of the most important demands for this application, the sensor has to work fully autonomously (days and night) for at least 15 years.
+ \item The materials used for the design, particularly the energy storage element, must have low toxicity.
+ \item The total volume must not exceed \SI{20 x 20 x 5}{cm} to respect the forest ecosystem and be easily placed on a tree. The main part of the volume will be due to the storage element and the solar cells.
+ \item For a massive deployment, the cost cannot exceed 80 euros.
+\end{itemize}
+
+%\textcolor{green}{Schema de flow (déroulement du mémoire)}
+
 
 \chapter{Energy storage}
 
@@ -181,7 +294,17 @@ Energy storage has an important role in sensor applications. First, this role ca
 
 Then, one has to characterize the main figures of merits such as the energy density, the maximum self-discharge and application conditions, as well as financial and environmental considerations.
 
+A Ragone plot is typically used for comparing the energy density of various energy-storing devices. On such a chart the values of specific energy density (in \si{Wh/kg}) are plotted versus specific power density (in \si{W/kg}). In Figure~\ref{fig:ragone_plot}, one can see the trade-off between energy density and power density. From fuel cells to supercapacitors by way of Li-ion batteries, energy density is decreasing in aid of power density.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{service2006.pdf}
+    \caption[Ragone plot showing specific energy versus specific power for various energy-storing devices]{Ragone plot showing specific energy versus specific power for various energy-storing devices~\cite{Service902}}
+    \label{fig:ragone_plot}
+\end{figure}
+
 In order to answer the previous requirements, common energy storage types are analyzed and the most suited type for this work is detailed.
+
 
 \section{Primary batteries}
 
@@ -191,7 +314,7 @@ Primary batteries are non-rechargeable, they thus have only one life cycle. Howe
 
 Zn-MnO${}_2$ batteries are composed of a combination of metallic zinc (oxidation) and a manganese dioxide electrode (reduction). They exist under the form of zinc-carbon cells and alkaline batteries and differ according to the electrolyte inside.
 
-The voltage window is between \SI{0.9}{V} and \SI{1.5}{V}. The energy density of a typical AA (approximately \SI{8}{cm^3}) zinc-carbon cell is \SI{100}{mWhcm^3}, whereas a commercial alkaline cell reaches at present up to \SI{400}{mWhcm^3}~\cite{doi:10.1002/er.2949}.
+The voltage window is between \SI{0.9}{V} and \SI{1.5}{V}. The energy density of a typical AA (approximately \SI{8}{cm^3}) zinc-carbon cell is \SI{100}{mWh/cm^3}, whereas a commercial alkaline cell reaches at present up to \SI{400}{mWh/cm^3}~\cite{doi:10.1002/er.2949}.
 
 These batteries are very well known and low cost, but present a high self-discharge rate.
 
@@ -199,16 +322,16 @@ These batteries are very well known and low cost, but present a high self-discha
 
 Lithium primary batteries have an anode made of metallic lithium and a cathode made of several materials such as MnO${}_2$ or FeS${}_2$.
 
-Batteries integrating MnO${}_2$ commonly deliver a total cell voltage of around \SI{3}{V}. These batteries work with the oxidation of lithium and reduction of manganese, with a typical energy density of \SI{650}{mWhcm^3}.
+Batteries integrating MnO${}_2$ commonly deliver a total cell voltage of around \SI{3}{V}. These batteries work with the oxidation of lithium and reduction of manganese, with a typical energy density of \SI{650}{mWh/cm^3}.
 
-The second type of lithium battery is based on FeS${}_2$. It has a practical voltage of \SI{1.5}{V} and is therefore compatible with alkaline and zinc-carbon cells. It has an energy density of approximately \SI{550}{mWhcm^3}.
+The second type of lithium battery is based on FeS${}_2$. It has a practical voltage of \SI{1.5}{V} and is therefore compatible with alkaline and zinc-carbon cells. It has an energy density of approximately \SI{550}{mWh/cm^3}.
 
 Overall, it is capable of delivering high currents and has a quite flat voltage profile upon discharging. Moreover, it performs well at low temperatures and has a significantly lighter weight than alkaline cells.
 
 \subsection*{Zn-air batteries}
 
 Zn-air batteries are a class of batteries that employ metallic zinc particles as its anode and an aqueous liquid electrolyte. With a voltage of \SI{1.4}{V}, this
-battery is commercially available as button cells with an energy density of around \SI{1500}{mWhcm^3}.
+battery is commercially available as button cells with an energy density of around \SI{1500}{mWh/cm^3}.
 
 Other disadvantages of this type of batteries are that the catalyst that is required for the reduction of oxygen usually consists of expensive noble metals and that the battery is unable to deliver high peak currents. This type of battery is therefore commonly used in applications where only low
 currents are required from a battery with a small volume~\cite{doi:10.1002/er.2949}.
@@ -224,13 +347,13 @@ Secondary batteries are rechargeable, they thus have a certain number of life cy
 
 Nickel metal hydride batteries (NiMH) combine nickel at the positive electrode and hydrogen (metal hybride) at the negative electrode.  During discharge, a proton, obtained from the electrolyte, occurs in reduction of nickel oxyhydroxide. The loss of protons in the electrolyte produces hydroxide anions which will recombine with a proton from the metal hybride.
 
-The cells typically work at around \SI{1.2}{V}, allowing interchangeability with alkaline batteries. However, they have a higher self-discharge rate and a narrow temperature window (0 to \SI{45}{\degree C}). The energy density is around 250 and \SI{380}{mWhcm^3}.
+The cells typically work at around \SI{1.2}{V}, allowing interchangeability with alkaline batteries. However, they have a higher self-discharge rate and a narrow temperature window (0 to \SI{45}{\degree C}). The energy density is around 250 and \SI{380}{mWh/cm^3}.
 
 \subsubsection*{Li-ion batteries}
 
 Lithium-ion batteries are composed of lithium metal oxyde at the positive electrode (LiCoO${}_2$) and a material storing lithium in a neutral form such as graphite at the negative electrode. The charge process is based on the motion of lithium ions from the metal oxyde to the electrolyte, where they are stored in graphite.
 
-Compared to NiMH batteries, hey have higher energy density (between 300 and \SI{500}{mWhcm^3}), lower self-discharge rate and larger temperature window (-20 to \SI{60}{\degree C}). They are however easily damaged in case of overdischarging or overcharging, thus requiring a special protective electric circuit for the power management.
+Compared to NiMH batteries, hey have higher energy density (between 300 and \SI{500}{mWh/cm^3}), lower self-discharge rate and larger temperature window (-20 to \SI{60}{\degree C}). They are however easily damaged in case of overdischarging or overcharging, thus requiring a special protective electric circuit for the power management.
 
 However, liquid electrolytes have high volatilility and have been the source of explosions in lithium batteries. Research has thus been done on the design of solid electrolytes.
 
@@ -245,7 +368,7 @@ Another problem is that none of the proposed solid electrolytes are truly chemic
 
 \section{Supercapacitors}
 
-Supercapacitor are high-capacity capacitors storing energy in an electric field, rather than in a chemical reaction, like batteries. This allows high power density for short-term energy storage\footnote{They can provide very high currents during a short time.}, almost instant recharging and very long lifetimes. Made of porous carbon (electrodes) and liquid salts (electrolyte), they are not composed of harmful\footnote{Failing in a nice way, they will never overrun or start a fire.} chemicals or toxic metals.
+Supercapacitor are high-capacity capacitors storing energy in an electric field, rather than in a chemical reaction, like batteries. This allows high power density for short-term energy storage\footnote{They can provide very high currents during a short time.}, almost instant recharging and very long lifetimes. Made of porous carbon (electrodes) and liquid salts (electrolyte)~\cite{BAPTISTA20191153}, they are not composed of harmful\footnote{Failing in a nice way, they will never overrun or start a fire.} chemicals or toxic metals.
 Since the supercapacitor is non-chemical, the voltage is free to rise until the dielectric fails (often in the form of a short circuit). It is thus needed to avoid going higher than the specified voltage, which is characterized by a lower voltage limit than batteries.
 
 Due to their behaviour in between electrolytic capacitors and batteries, they are particularly well suited for IoT applications. Indeed, they typically store 10 to 100 times more energy per unit volume or mass than electrolytic capacitors. They can also accept and deliver charge much faster than batteries, and tolerate many more charge and discharge cycles than rechargeable batteries. Nevertheless, care needs to be paid to their significant leakage current which is proportional to the value of the supercap.
@@ -292,12 +415,12 @@ Table~\ref{tab:comparison_energy_storage} presents the main figures of merit for
 
 \begin{table}[H]
 \centering
-\scalebox{0.66}{
+\scalebox{0.655}{
 \begin{tabular}{l|ccc|ccc}
-\hline
-                          & \multicolumn{3}{c}{Capacitors} & \multicolumn{3}{c}{Batteries} \\ \hline
+\toprule
+                          & \multicolumn{3}{c|}{Capacitors} & \multicolumn{3}{c}{Batteries} \\ \midrule
                           & Ceramic & Electrolytic & Supercap & Non-rechargeable & \multicolumn{2}{c}{Rechargeable} \\
-                          &  &  & EDLC & Alkaline & NiMH & Lithium ion \\ \hline
+                          &  &  & EDLC & Alkaline & NiMH & Lithium ion \\ \midrule
  Power density [W/g]      &  & > 100 & 2 -- 10 &  & 2.5 -- 10 & 1 -- 3  \\
  Energy density [mWh/g]   & 0.1~\cite{DEKIMPE20198} & 0.01 -- 0.3  & 5 &  & 60 -- 120  & 120 -- 240 \\
  Self-discharge rate [per month]     & 100\% & \SI{100}{h} & 50\% & < 0.3\% & 0.08 – 2.9\% & 5\% \\
@@ -310,7 +433,7 @@ Table~\ref{tab:comparison_energy_storage} presents the main figures of merit for
  Charge T° [\si{\degree C}] &  & -40 -- 70 & -40 -- 65 & & & 0 -- 45 \\
  Discharge T° [\si{\degree C}             &  & -40 -- 70 & -40 -- 65 & & & -20 -- 60 \\
  Discharge efficiency     &   & 99\% & 95\% &    & 66\% -- 92\% & 90\%     \\
- Toxicity                 &    &  & low &    &  & middle \\ \hline
+ Toxicity                 &    &  & low &    &  & middle \\ \bottomrule
 \end{tabular}
 }
 \caption{Comparison of various types of energy storage}
@@ -324,105 +447,147 @@ The overall efficiency is computed as
 \[
  \eta = \frac{E_\te{O}}{E_\te{I}}
 \]
-where $E_\te{O}$ is the energy delivered during the whole life of the energy storage element, and $E_\te{I}$ is the total energy fed to the energy storage, composed of both the fabrication energy and the recharge energy. It is difficult to compute this efficiency due to the lack of information about the fabrication energy (typically not given by manufacturers). However, Li-ion batteries (\SI{50.17}{kWh/kg} for electric vehicles~\cite{manufacturing_lithium}) require more manufacturing energy than supercapacitors (\SI{50.17}{kWh/kg} for electric vehicles~\cite{manufacturing_lithium}).
+where $E_\te{O}$ is the energy delivered during the whole life of the energy storage element, and $E_\te{I}$ is the total energy fed to the energy storage, composed of both the fabrication energy and the recharge energy. It is difficult to compute this efficiency due to the lack of information about the fabrication energy (typically not given by manufacturers). However, Li-ion batteries (\SI{50.17}{kWh/kg} for electric vehicles~\cite{manufacturing_lithium}) require more manufacturing energy than supercapacitors.
 
 
 \subsection*{Criticality}
-\iffalse
-Criticality (environmental and societal impact) + rarity
 
-Lithium-ion components [6]:
-    • Metal oxide compound: 
-        ◦ Lithium: extracted from brine or rock.
-        ◦ Nickel
-        ◦ Cobalt
-    • Graphite (= C) (could be replaced with silicon, in research, could multiply energy density by 4): container with high electrochemical potential (storage of e- and lithium ions when charged)
-    • Electrolyte
-    • Plates (copper + aluminium)
+To assess the criticality of energy storage elements, one needs to consider the environmental and societal impacts combined with their scarcity. The scarcity of an element is assessed by the variation of its availability on Earth between from a few decades ago to nowadays (not to be confused with rare-earth elements which are not critical). They include components overused for electronic devices such as copper, gold, silver, lithium and cobalt.
 
-NiMH components [7]:
-    • Nickel oxide hydroxide (NiOOH): positive electrode
-    • Hydrogen-absorbing alloy (Rare-earth or nickel alloys with many metals:V, Ti, Zr, Ni, Cr, Co, and (!) Fe ): negative electrode
-    • Alkaline potassium hydroxyde: electrolyte
-    • Plates (copper + aluminium)
+For Lithium-ion and NiMH batteries, the following compounds are used:
+\begin{itemize}
+ \item Positive electrode: metal oxide compounds such as lithium extracted from brine or rock, nickel, cobalt, hydrogen-absorbing alloy (nickel alloys with many metals: V, Ti, Zr, Ni, Cr, Co, Al and Fe)
+ \item Negative electrode: graphite (carbon-based)
+ \item Electrolyte
+\end{itemize}
 
-EDLC components:
-    • Porous carbon (film, activated carbon paste or carbon fabric) (Activated carbon (AC), carbon nanotubes (CNT) and carbon aerogels) (Only Carbon) (electrodes) [8]: build from graphite (not rare?)
-    • Liquid salts (water with ions) (electrolyte)
-    • Polymeric membrane forming a microporous layer (separator) (very small)
+One can thus see that many polluting compounds appear in the positive electrode.
 
-Rare earth elements:
-    • 
+For EDLCs, the following compounds are used:
 
-    \fi
+\begin{itemize}
+ \item Electrodes: porous carbon (activated carbon, carbon nanotubes and carbon aerogels) build from graphite \cite{Hastak}
+ \item Electrolyte: liquid salts (water with ions)
+ \item Polymeric membrane forming a microporous layer as separator
+\end{itemize}
+
+Supercapacitors are thus mainly build from carbon, one of the most abundant elements on Earth. They are thus far less toxic and resource intensive than metal-based batteries.
+
     
 \section{Selection}
 
-Based on the results, a supercapacitor is chosen for its sustainability... The sizing of this supercapacitor will be achieved in Chapter~\ref{supercap_sizing} when the whole power comsumption is fully determined. 
+Building upon these results, a supercapacitor is chosen because of its high life time, low toxicity and reasonable energy density. As detailed in the Ragone plot (Figure~\ref{fig:ragone_plot}), this energy storage element can deliver high currents but stores less energy per volume. Its substantial leakage current is also needed to be further taken care of. The sizing of this supercapacitor will be achieved in Chapter~\ref{supercap_sizing} when the whole power consumption is fully determined. 
 
-Approx energy available based on normal volume of supercap -> guideline through the design -> compared with this value and check that small parts draw less than 1 percent of this energy.
+%Approx energy available based on normal volume of supercap -> guideline through the design -> compared with this value and check that small parts draw less than 1 percent of this energy.
 
 \chapter{Power management}
 
-purpose
+The purpose of power management is to harvest energy from solar cells, store it in a supercapacitor, and deliver it to the circuit through a stable voltage supply. In this section, the best supply voltage is determined and the power management unit is explained.
 
 \section{Operating voltage design}
 \label{section:operating_voltage}
 
-mesures du MCU à différentes tensions et comparer. Check on web if already done or simulator.
+First, the supply voltage is used to power the sensing subsystem and the MCU/transceiver chip. For practical and energy efficiency reasons, the same supply voltage is selected for the whole system.
 
-rendement de conversion de l'AEM (LDO -> write equations, Vhv/Vbatt, same current) qui est différent en fonction de la tension de sortie (voir graphes)
+Since the microcontroller uses an LDO to regulate its internal voltage, the current consumption is independent from the supply voltage. In order to minimize the power consumption, one thus needs to use the lowest supply voltage. However, using a low supply voltage decreases the AFE amplification gain and therefore the precision (i.e. the signal-to-noise ratio) on the microphone signal that will be read at the input of the MCU. Indeed, while the noise at the sensing output is roughly independent from the amplification gain of the sensing subsystem (see the proof in Section~\ref{section:AFE}), the signal power is reduced with the gain. Hence, this trade-off leads to the selection of a \SI{2.5}{V} supply voltage which lies in the \SI{2.2}{V} -- \SI{3.6}{V} range of the CMWX1ZZABZ chip.
+
+%the resolution of an $N$-bit ADC is given by $V_\te{DD}/2^N$ where $V_\te{DD}$ is the supply voltage.
+
 
 \section{Power management unit}
+\label{section:PMU}
 
-required tasks
+A power management unit (PMU) is an integrated energy management circuit that extracts DC power from solar cells to simultaneously store energy in a rechargeable element and supply the system with independent regulated voltages. An AEM10941 chip from e-peas is selected because of its ultra-low power consumption and the close relations between the university and the company (see Figure~\ref{fig:AEM10941}).
 
-\subsection*{Battery configuration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{AEM10941.pdf}
+    \caption[AEM10941 simplified schematic view]{AEM10941 simplified schematic view~\cite{AEM10941}}
+    \label{fig:AEM10941}
+\end{figure}
 
-Set custom Vovdis, Vovch, Vchrdy, by R1 to R6
+Its characteristics are given in Table~\ref{tab:AEM10941}, by only considering the high voltage regulator. The very low quiescent current is nearly independent from the supercapacitor voltage.
 
-LED on status[0] to see when the battery is OK
-
-\subsection*{Linear-Dropout Regulator configuration}
-
-Vhv
-
-Vlv disabled
-
-
-\subsection*{Maximum Power Point Tracking}
-
- for solar panels
- 
- Open Circuit Voltage Based Maximum Power Point Tracking for Photovoltaic System
- 
- The open circuit Voltage algorithm is the simplest MPPT control method. This technique is also known as constant voltage method.
- 
- Choose first Vmppt/Voc = 0.76 ()
- and then experimental calibration with sensor (jumper on pins?)
- 
- The main disadvantage of this method is that there is
-momentary power loss due to the disconnection of the load
-from the PV array for the sampling of its open circuit voltage \cite{10.1109/ICSTE.2010.5608868}
- 
-+ power efficiency of AEM between solar panel and battery (Vboost)
-
-``Typical voltage to supply sensor and MCU is 3.3V (see Section 2.3 and 2.4), it is considered to be
-the supply voltage needed by the system. The AEM from E-peas is a power management unit
-(see section 2.2.4) which claims 0.3V of voltage drop between the supply voltage and the voltage
-over the storage element. So, the voltage on the supercapacitor should not go under 3.6V. The
-maximal voltage depends on the supercapacitor and on the power management unit limitation.
-The AEM from E-peas is limited to 4.5V.''
+\begin{table}[H]
+\centering
+\scalebox{1}{
+\begin{tabular}{lc}
+\toprule
+ Max input current                       & \SI{110}{mA}               \\
+ Max input voltage                       & \SI{5}{V}                  \\
+ Output voltage                          & \SI{1.8}{V} -- \SI{4.1}{V} \\
+ Max output current                      & \SI{80}{mA}                \\
+ Max supercap charge                     & \SI{4.5}{V}                \\ 
+ Min drop-out supercap -- output voltage & \SI{0.3}{V}                \\ 
+ Quiescent current                       & \SI{0.6}{\micro A}         \\ \bottomrule
+\end{tabular}
+}
+\caption{Characteristics of the AEM10941 PMU}
+\label{tab:AEM10941}
+\end{table}
 
 
+\subsection*{Storage element and LDO configuration}
+
+Configuration pins determine various operating modes by setting predefined conditions for the energy storage element (overcharge or overdischarge voltages) and by selecting the voltage of the high-voltage supply and the low-voltage supply.
+The low-voltage supply is not used and the high-voltage supply is set to \SI{2.5}{V}. These characteristics correspond to a preset state in the chip, which helps reduce internal losses by not using additional resistors to select a custom configuration. The three configuration pins CFG[2], CFG[1] and CFG[0] are thus set to 0, 1 and 1, corresponding to the charge of a dual-cell supercapacitor charged in the range \SI{2.8}{V} -- \SI{4.5}{V} in order to power the low-voltage and high-voltage supplies at \SI{1.8}{V} and \SI{2.5}{V}, respectively.
+
+Additionally, three status pins allow to monitor the PMU, whose one informs about supercapacitor overdischarge. For a first prototype, connecting this pin to a LED proves useful to deduce the supercapacitor state, but there are not used in the final prototype to further reduce power consumption (which is non negligible for typical LEDs, around \SI{1}{mA}).
+
+\subsection*{Maximum power point tracking}
+
+The efficiency of power transfer from the solar cell depends on both the amount of sunlight falling on the solar cells and the electrical characteristics of the load. As the amount of sunlight varies, the load characteristic that gives the highest power transfer efficiency changes, so that the efficiency of the system is optimized when the load characteristic changes to keep the power transfer at highest efficiency. 
+Maximum power point tracking (MPPT) is thus used by the PMU by means of a boost converter regulating its input voltage so that the electrical current that enters the boost converter yields the best power transfer from the harvester under any ambient conditions (see Section~\ref{section:solar_cells} for more details about the intrinsic principle of solar cells).
+
+This PMU uses the open circuit voltage algorithm, the simplest MPPT control method. It consists to set the voltage at a constant ratio of the open circuit voltage $V_\te{OC}$. By temporarily disconnecting the source from the PMU, the MPPT module maintains knowledge of $V_\te{OC}$. It then sets the MPPT voltage at $V_\te{MPPT}$ depending on $V_\te{OC}$ and the ratio (70\%, 75\%, 85\% or 90\%) selected in hardware via two headers connected to the configuration pins. A typical MPPT ratio leading to the maximum power is 76\%~\cite{10.1109/ICSTE.2010.5608868}, but it will be refined experimentally in the validation section. Still, the main disadvantage of this method is that there is momentary power loss due to the disconnection of the load from the solar cells for the sampling of its open circuit voltage.
 
 
+\subsection*{Boost conversion efficiency}
+
+The energy converted from the solar cells to the supercapacitor (called boost voltage) is not fully converted due to the internal boost converter efficiency. As depicted in Figure~\ref{fig:boost_efficiency} for a typical harvested current of \SI{10}{mA}, the efficiency is maximum when the input voltage $V_\te{SRC}$ is \SI{0.4}{V} below the output voltage $V_\te{BOOST}$ (see Table~\ref{tab:max_eff_PMU}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{boost_efficiency.pdf}
+    \caption{Boost conversion efficiency (solar cells -- supercap) of the AEM10941}
+    \label{fig:boost_efficiency}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+ $V_\te{SRC}$ & $V_\te{BOOST}$ & Efficiency \\ \midrule
+ \SI{2.2}{V}  & \SI{2.6}{V}    & 92\%      \\
+ \SI{3.2}{V}  & \SI{3.6}{V}    & 95\%      \\
+ \SI{3.7}{V}  & \SI{4.1}{V}    & 96\%      \\ \bottomrule
+\end{tabular}
+\caption{Values of maximum efficiency for the src -- boost conversion with a \SI{10}{mA} input current}
+\label{tab:max_eff_PMU}
+\end{table}
+
+Since the source voltage impacts both the boost conversion efficiency and the harvested power (see previous paragraph), the optimal source voltage needs to be determined. Based on Figure~\ref{fig:boost_efficiency}, the efficiency significantly falls when the source voltage exceeds its optimal voltage. The source voltage thus needs to stay below $V_\te{BOOST} - \SI{0.4}{V}$ at all times, corresponding to \SI{2.4}{V} for this work (supply voltage of \SI{2.5}{V} implying a supercap voltage of at least \SI{2.8}{V}). In this case, it is thus expected to reach a boost efficiency of 92\% whatever the supercap voltage. Finally, the maximum source voltage set to \SI{2.4}{V} might be slightly relaxed if the IV curve of the solar cells provide a significant power increase at a higher source voltage (see Section~\ref{section:solar_cells}).
 
 
-\section{Startup behaviour?}
+\subsection*{High-voltage LDO regulation}
 
-At cold start, the PMU needs to charge the supercapacitor up to Vchrdy (more or less 3.1V) in order to enable the LDOs (Low-Dropout Regulator). Considering an empty supercapacitor, one can theoretically compute the startup time corresponding to the time delay between the start of the sensor and the power supply of the different subsystems.
+As shown in Figure~\ref{fig:LDO_voltage}, the PMU supply voltage does depend on the load current drawn by the sensing and MCU/TX subsystems. It decreases from \SI{2.5}{V} without load to \SI{2.43}{V} at the maximum load (that is, \SI{80}{mA}). Although this voltage variation might impinge upon the signal reading at the ADC input of the microcontroller, no voltage regulation needs to be taken into account inside the MCU code. Indeed, both the signal voltage $V_\te{in,ADC}$ from the microphone and the ADC supply voltage $V_\te{DD}$ vary likewise, this leads to the same digitized number $\floor{V_\te{in,ADC}/V_\te{DD}}$.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{LDO_voltage.pdf}
+    \caption{High-voltage LDO regulation at \SI{2.5}{V} in function of the load current}
+    \label{fig:LDO_voltage}
+\end{figure}
+
+Finally, the LDO efficiency can be simply calculated as $V_\te{out}/V_\te{in}$ (same input -- output current) if the quiescent current (\SI{0.6}{\micro A}) can be neglected with regards to the output current, which is confirmed by the hyperbolic curve in Figure~\ref{fig:LDO_efficiency}. It is thus advised to work at the lowest supercap voltage (i.e. \SI{2.8}{V}) by selecting a supercapacitor with a similar operation voltage range.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{LDO_efficiency.pdf}
+    \caption{High-voltage LDO efficiency at \SI{2.5}{V} in function of the load current}
+    \label{fig:LDO_efficiency}
+\end{figure}
 
 
 \chapter{Sensing subsystem}
@@ -466,19 +631,19 @@ Additionally, the sound SPL amplitude changes over the distance (from $r_1$ to $
  L_{p_2} = L_{p_1} + 20\log_{10}\left(\frac{r_2}{r_1}\right) \quad [\si{dB_{SPL}}].
 \]
 
-Tabke~\ref{tab:sound_levels} gives typical sound pressure levels.
+Table~\ref{tab:sound_levels} gives typical sound pressure levels.
 
 \begin{table}[H]
 \centering
 \scalebox{1}{
 \begin{tabular}{lcc}
-\hline
-  Source of sound & Distance & Sound pressure [dB] \\ \hline
+\toprule
+  Source of sound & Distance & Sound pressure [dB] \\ \midrule
   Jet engine           & \SI{1}{m}   & 150 \\
   Trumpet              & \SI{0.5}{m} & 150 \\
   Traffic on busy road & \SI{10}{m}  & 90  \\
   Passenger car        & \SI{10}{m}  & 70  \\
-  Quiet room           & ambient     & 25  \\ \hline
+  Quiet room           & ambient     & 25  \\ \bottomrule
 \end{tabular}
 }
 \caption{Typical sound pressure levels}
@@ -503,9 +668,7 @@ The frequency range of human hearing is often reported to be between 20 and \SI{
     \label{fig:a_weighting}
 \end{figure}
 
-Many bird songs have frequency ranges between 1,000 Hz and 8,000 Hz, which places them in the sweet spot of human hearing. However, some birds can produce sounds at frequencies as low as \SI{23}{Hz}~\cite{10.2307/4090277} or as high as \SI{15}{kHz}~\cite{doi:10.1111/j.1474-919X.1962.tb08647.x}. Since the presented sensor aims to mainly analyze bird sounds, it has to match the frequency specifications ranging between \SI{20}{Hz} and \SI{20}{kHz}.
-
-\textcolor{green}{Doppler effect on speed ?}
+Many bird songs have frequency ranges between \SI{1000}{Hz} and \SI{8000}{Hz}, which places them in the spot of human hearing. However, some birds can produce sounds at frequencies\footnote{One might also want to assess the impact of moving birds on the frequency. For this purpose, the Doppler effect characterizes the frequency $f$ perceived at the sensor node compared to the emitted frequency $f_s$ of the bird when it moves at speed $v_s$. The relative variation of frequency is given by $ f/f_0 = \frac{v}{v \pm v_\text{s}}$ where $v$ is the sound velocity (\SI{343}{m/s} in ambient conditions). For a typical bird velocity (\SI{12}{m/s}), the equation provides a relative variation of $\pm \SI{4}{\%}$, which corresponds to a small (but non negligible) impact on the perceived frequency} as low as \SI{23}{Hz}~\cite{10.2307/4090277} or as high as \SI{15}{kHz}~\cite{doi:10.1111/j.1474-919X.1962.tb08647.x}. Since the presented sensor aims to mainly analyze bird sounds, it has to match the frequency specifications ranging between \SI{20}{Hz} and \SI{20}{kHz}.
 
 In the end, the characteristics of the sound wave at the sensor are summed up in Table~\ref{tab:wave_charact_sensor}.
 
@@ -513,9 +676,9 @@ In the end, the characteristics of the sound wave at the sensor are summed up in
 \centering
 \scalebox{1}{
 \begin{tabular}{lcc}
-\hline
+\toprule
   Pressure range & 16 -- 61 & \si{dB_{SPL}} \\
-  Frequency range  & 20 -- 20000 &  Hz      \\ \hline
+  Frequency range  & 20 -- 20000 &  Hz      \\ \bottomrule
 \end{tabular}
 }
 \caption{Sound wave characteristics at the sensor}
@@ -633,12 +796,12 @@ IoT devices are limited by their size, cost and energy requirements. Table~\ref{
 \begin{table}[H]
 \centering
 \scalebox{0.98}{
-\begin{tabular}{lcccc}
-\hline
-  Type                 & Reference      & Noise [\si{dB_{SPL}}] & Power cons. [\si{\micro W}]             \\ \hline
+\begin{tabular}{lccc}
+\toprule
+  Type                 & Reference      & Noise [\si{dB_{SPL}}] & Power cons. [\si{\micro W}]             \\ \midrule
   Condenser (MEMS)     & ICS-40720  & 24 & 570     \\
   Condenser (Electret) & AOM-5024L-HD-R & 14 & 420     \\
-  Piezoelectric        & PMM-3738-WP-R  & 33 & 300     \\ \hline
+  Piezoelectric        & PMM-3738-WP-R  & 33 & 300     \\ \bottomrule
 \end{tabular}
 }
 \caption{Comparison of several types of microphone}
@@ -656,15 +819,15 @@ Considering the main figures of merit stated above, Table~\ref{tab:mic_compariso
 \centering
 \scalebox{0.95}{
 \begin{tabular}{lccc}
-\hline
-                              & ABM-707-RC  & CMC-6027-24L100 & AOM-5024L-HD-R \\ \hline
+\toprule
+                              & ABM-707-RC  & CMC-6027-24L100 & AOM-5024L-HD-R \\ \midrule
  Current [\si{\micro}A]       & 500         & 500             & 500            \\
  Voltage [V]                  & 1.5         & 2               & 2              \\
  Sensitivity [dB]             & -41         & -24             & -24            \\
  SNR [dB]                     & 60          & 70              & 80             \\
  Output impedance [\si{\ohm}] & 2.2         & 2.2             & 2.2            \\
  Frequency range [Hz]         & 50 -- 16000 & 100 -- 20000    & 20 -- 20000    \\
- Temperature [\textdegree C]  & -20 -- 60   & -20 -- 70       & -30 -- 70      \\ \hline
+ Temperature [\textdegree C]  & -20 -- 60   & -20 -- 70       & -30 -- 70      \\ \bottomrule
 \end{tabular}
 }
 \caption{Comparison of several electret condenser microphones}
@@ -682,26 +845,27 @@ However, one has to characterize more precisely the current and voltage characte
     \label{fig:IV_mic}
 \end{figure}
 
-\textcolor{green}{Retest SMU with less noise (adapt correct range of measurement) -> K2400}
+%\textcolor{green}{Retest SMU with less noise (adapt correct range of measurement) -> K2400}
 
-\textcolor{green}{For AOM-5024L: test variation of audio sensitivity with the operating voltage (relative compared to 2 V) with a fixed sound source: possible to bias below 2 V ? -> mydaq}
+%\textcolor{green}{For AOM-5024L: test variation of audio sensitivity with the operating voltage (relative compared to 2 V) with a fixed sound source: possible to bias below 2 V ? -> mydaq}
 
 In order to select the best operating voltage, one has to find a trade-off between keeping a low voltage (and thus a low power consumption) and having a sufficient sensitivity by retaining the microphone transistor in saturation. Finally, the operating point given in Table~\ref{tab:op_point_mic} for the AOM-5024L-HD-R will be considered in the following. One can sadly notice a power consumption slightly higher than the reference microphone, this model remains the best suited because of his high precision (the self-noise of the reference microphone is too high to be considered in this work).
 
 \begin{table}[H]
 \centering
 \begin{tabular}{lcc}
-\hline
+\toprule
  Current & $I_{\te{mic}}$   & \SI{358}{\micro A} \\
- Voltage & $V_{\te{mic}}$   & \SI{2}{V}          \\ \hline
+ Voltage & $V_{\te{mic}}$   & \SI{2}{V}          \\ \bottomrule
 \end{tabular}
 \caption{Operating point of the AOM-5024L-HD-R microphone}
 \label{tab:op_point_mic}
 \end{table}
 
-\section{Analog Front-End}
+\section{Analog front-End}
+\label{section:AFE}
 
-Once the microphone type is selected, one can analyse in more detail the working principle of electret microphones.
+Once the microphone type is selected, one can analyze in more detail the working principle of electret microphones.
 The voltage variation across the electret capacitor varies with the capacitance, acting as an ac-coupled voltage source. Because the charge on the microphone capacitor must be fixed, the amplifier circuitry directly in contact with it must have extremely high input impedance, such that no charge can flow through the amplifier circuit. 
 
 For this reason, most electret microphones have an internal junction field effect transistor (JFET) which buffers the microphone capacitor. The voltage signal produced by sound modulates the gate voltage of the JFET ($V_\te{G}$), causing a change in the current flowing between the drain and source of the JFET ($I_{\te{mic}}$). An extremely high resistance may be included to bias the gate of the JFET, but parasitic resistances in the microphone PCB will be sufficient in this work.
@@ -791,15 +955,16 @@ The parameters of the AOM-5024L-HD-R microphone selected for this design are sum
 \begin{table}[H]
 \centering
 \scalebox{0.95}{
-\begin{tabular}{lccc}
-\hline
- Op. current      & $I_{\te{mic}}$  & 210  &  \si{\micro}A \\
- Op. voltage      & $V_{\te{mic}}$  & 2 &  V  \\
- Sensitivity      & $S_{\te{mic,dB}}$  & -24  & dB  \\
- SNR              & $\te{SNR}_{\te{mic}}$        & 80    & dB      \\
- Output impedance & $R_{\te{L,mic}}$ & 2.2 & \si{k\ohm}    \\
- Frequency range  &      & 50 -- 16000 & Hz  \\
- Temperature      &  & -20 -- 60  & \si{\degree C} \\ \hline
+\begin{tabular}{lcc}
+\toprule
+ Op. current      & $I_{\te{mic}}$        & \SI{210}{\micro A}                        \\
+ Op. voltage      & $V_{\te{mic}}$        & \SI{2}{V}                                 \\
+ Sensitivity      & $S_{\te{mic,dB}}$     & \SI{-24}{dB}                              \\
+ SNR              & $\te{SNR}_{\te{mic}}$ & \SI{80}{dB}                               \\
+ Output impedance & $R_{\te{L,mic}}$      & \SI{2.2}{k\ohm}                           \\
+ Frequency range  &                       & \SI{50}{Hz} -- \SI{16}{kHz}               \\
+ Temperature      &                       & \SI{-20}{\degree C} -- \SI{60}{\degree C} \\
+ \bottomrule
 \end{tabular}
 }
 \caption{Characteristics of the selected microphone: AOM-5024L-HD-R}
@@ -972,6 +1137,7 @@ Resistor $R_1$ and capacitor $C_1$ form a high-pass filter. The corner frequency
 \[
  C_1 = \frac{1}{2 \pi \, f_\te{L} \, R_1} = \SI{3.34}{\micro F}.
 \]
+One can see that reducing $R_1$ (for a higher and thus better microphone operating voltage) requires a larger capacitance (implying more place and cost).
 
 \subsubsection*{Operational amplifier}
 
@@ -1016,7 +1182,7 @@ This noise contribution is then brought back in the input pressure domain, the \
   p_\te{IRN,AFE} &= \frac{V_\te{N,ADC}}{R_2\,S_{\te{I,mic}}}\\
    &= \frac{\sqrt{B_\te{A}}}{R_2\,S_{\te{I,mic}}} \left(1 + \frac{R_2}{R_1}\right) \sqrt{4 \, k_\te{B} \, T \, (R_1 \parallelsum R_2) + I_\te{N}^2 \, (R_1 \parallelsum R_2)^2 + E_\te{NV}^2} \quad \si{[Pa]}.
 \end{align*}
-One can directly see that this noise is roughly independent from $R_2$ since $(1+R_2/R_1)/R_2\simeq 1/R_1$ in our design and the contribution from $I_\te{N}$ is typically negligible compared to $E_\te{NV}^2$.
+One can directly see that this noise is roughly independent from the gain $R_2$ since $(1+R_2/R_1)/R_2\simeq 1/R_1$ in our design and the contribution from $I_\te{N}$ is typically negligible compared to $E_\te{NV}^2$.
 
 \iffalse
 As for the microphone noise, this output noise voltage is compared to the ADC voltage resolution, expressed as peak values:
@@ -1025,12 +1191,12 @@ As for the microphone noise, this output noise voltage is compared to the ADC vo
 \]
 \fi
 
-Since the total input-referred noise is composed of non-correlated sources (from the microphone $p_{\te{SN}}$ and the AFE $ p_\te{IRN,AFE}$, their noise power add up to give
+Since the total input-referred noise is composed of non-correlated sources (from the microphone $p_{\te{SN}}$ and the AFE $ p_\te{IRN,AFE}$), their noise powers add up to give
 \[
  p_\te{IRN} = \sqrt{p_{\te{SN}}^2 + p_\te{IRN,AFE}^2} \quad \si{[Pa]}.
 \]
 
-Figure~\ref{fig:output_noise_op_amp} presents this input-referred noise with respect to the current consumption for several operational amplifiers.
+Figure~\ref{fig:output_noise_op_amp} presents this input-referred noise with respect to the current consumption for several operational amplifiers. Clearly, the input-referred noise must not exceed the minimum signal sound pressure of \SI{16}{dB_{SPL}}.
 
 \begin{figure}[H]
     \centering
@@ -1069,18 +1235,22 @@ In the end, the OPA2834 op amp characteristics are given in Table~\ref{tab:selec
 \centering
 \scalebox{0.95}{
 \begin{tabular}{lccc}
-\hline
- Criteria            & Required    & OPA2834  & Units             \\ \hline
+\toprule
+ Criteria            & Required    & OPA2834  & Units             \\ \midrule
  Supply voltage      & 2.7 -- 5.4  & 2.5      & V                 \\
  Quiescent current   & < 200       & 170      & \si{\micro A}     \\
  Input voltage noise & < 27        & 12       & \si{nV/\sqrt{Hz}} \\
  Input current noise & N/A         & 0.2      & \si{pA/\sqrt{Hz}} \\
- Slew rate           & > 1.88      & 26       & \si{V/\micro s}   \\ \hline
+ Slew rate           & > 1.88      & 26       & \si{V/\micro s}   \\
+ \bottomrule
 \end{tabular}
 }
 \caption{Characteristics of the selected operational amplifier: OPA2834}
 \label{tab:selected_op_amp}
 \end{table}
+
+
+\subsubsection*{AFE noise voltage}
 
 The noise voltage from the AFE can be theoretically computed over an A-weighting curve of bandwidth $B_\te{A} = \SI{13.5}{kHz}$ as
 \[
@@ -1099,14 +1269,20 @@ As expected, the result is very similar to the theoretical one, hence not imping
 
 %This small contribution compared to the microphone noise makes the total voltage noise in the order of the ADC resolution (104\%), which still allows a low-noise digitization.
 
-\textcolor{green}{Add input op amp noise on graph?}
-
 \begin{figure}[H]
     \centering
     \input{img/output_noise_freq.tex}
     \caption{Noise voltage spectral density from AFE at the amplification output (from \textsc{LTspice})}
     \label{fig:output_noise_op_amp_freq}
 \end{figure}
+
+\subsubsection*{Total noise voltage}
+
+One can then compute the total noise voltage $V_\te{N,tot,theor}$ at the amplification output, resulting from the microphone noise and the AFE noise:
+\[
+ V_\te{N,tot,theor} = p_\te{IRN} \, R_2\,S_{\te{I,mic}} = \SI{11.2}{mV}.
+\]
+
 
 \subsubsection*{Op amp bias network}
 
@@ -1131,32 +1307,28 @@ Capacitor $C_3$ is included to filter thermal noise created by the resistors and
 
 \subsubsection*{Summary}
 
-Table~\ref{tab:selected_values_microphone} summarizes the selected values for the amplification circuit.
+Table~\ref{tab:selected_values_microphone} summarizes the theoretical values for the amplification circuit as well as the values actually put on the experimental device depending of the available components.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{lcc}
-\hline
-                   & \multicolumn{2}{c}{Value} \\
-                   & Theoretical         & Real \\ \hline
- $R_1$             & \SI{4.76}{k\ohm}    & \SI{4.76}{k\ohm} \\
- $R_2$             & \SI{71.4}{k\ohm}    & \SI{71.4}{k\ohm} \\
- $R_3$             & \SI{200}{k\ohm}     & \SI{200}{k\ohm} \\
- $R_4$             & \SI{200}{k\ohm}     & \SI{200}{k\ohm} \\
- $C_1$             & \SI{1.67}{\micro F} & \SI{1.67}{\micro F} \\
- $C_2$             & \SI{111}{pF}        & \SI{111}{pF} \\
- $C_3$             & \SI{64}{nF}         & \SI{64}{nF} \\
- $V_\te{CC}$       & \SI{3}{V}           & \SI{3}{V} \\
- Power consumption & \SI{}{\micro W}     & \SI{}{\micro W} \\
- Output noise      & \SI{329}{\micro V}  & \SI{}{\micro V} \\ \hline
+\toprule
+             & \multicolumn{2}{c}{Value}                \\
+             & Theoretical         & Real               \\ \midrule
+ $R_1$       & \SI{2.38}{k\ohm}    & \SI{2.37}{k\ohm}   \\
+ $R_2$       & \SI{3.81}{M\ohm}    & \SI{3.83}{M\ohm}   \\
+ $R_3$       & \SI{150}{k\ohm}     & \SI{150}{k\ohm}    \\
+ $R_4$       & \SI{150}{k\ohm}     & \SI{150}{k\ohm}    \\
+ $C_1$       & \SI{3.34}{\micro F} & \SI{3.3}{\micro F} \\
+ $C_2$       & \SI{2.09}{pF}       & \SI{2}{pF}         \\
+ $C_3$       & \SI{424}{nF}        & \SI{470}{nF}       \\
+ $V_\te{CC}$ & \SI{2.5}{V}         & \SI{2.5}{V}        \\ \bottomrule
 \end{tabular}
 \caption{Final values for the amplification circuit}
 \label{tab:selected_values_microphone}
 \end{table}
 
-Figure~\ref{fig:microphone_AC} presents the AC transfer function of the amplification circuit, which confirms a bandwidth ranging from \SI{20}{Hz} to \SI{20}{kHz}.
-
-\textcolor{green}{Check bandwidth opamp (cause of additional poles ?)​}
+Figure~\ref{fig:microphone_AC} presents the AC transfer function of the amplification circuit, which confirms a bandwidth ranging from \SI{20}{Hz} to \SI{20}{kHz}. The important phase variations (with additional poles) are due to the intrinsic behaviour of the electret microphone.
 
 \begin{figure}[H]
     \centering
@@ -1165,63 +1337,182 @@ Figure~\ref{fig:microphone_AC} presents the AC transfer function of the amplific
     \label{fig:microphone_AC}
 \end{figure}
 
-\textcolor{green}{For this pre-amplifier design, it is beneficial to have the largest value for R1 possible for two reasons. First,
-the noise gain of op amp U1 is.
-But the signal gain is directly determined by R2. Therefore, increasing the value of R1 decreases the noise
-gain of the op amp. Second, capacitor C3 must be large enough that its impedance is much less than
-resistor R1 at audio frequencies. Increasing the value of R1 allows for smaller capacitances to be used for
-C3.}
-
 As stated before, the classical trade-off between noise and power consumption was not worth considering in the microphone selection since the other microphones suffer from a too high noise. However, if the constraint on the minimum detectable sound wave were relaxed, the choice of the microphone and operational amplifier would have to be optimized conjointly by computing the input-referred noise and power consumption of the whole sensing subsystem.
 
-\chapter{Data processing and transmission}
+
+\chapter{Data processing and transceiver}
+
+Data are processed in a microcontroller and received/transmitted in a transceiver. For this work, a CMWX1ZZABZ chip from Murata is used, which combines an STM32L072 microcontroller and an SX1276 transceiver. Its operation voltage range is \SI{2.2}{V} -- \SI{3.6}{V}.
+
+\section{Microcontroller}
+
+The STM32L072 is an ultra-low-power microcontroller incorporating an Arm Cortex-M0+ 32-bit RISC core operating at a 32 MHz frequency, embedded memories (192 Kbytes of Flash program memory, 6 Kbytes of data EEPROM and 20 Kbytes of RAM), a 12-bit ADC with hardware oversampling,\dots It operates from a \SI{1.8}{V} to \SI{3.6}{V} power supply~\cite{STM32L072xx}.
+
+\subsection*{ADC characteristics}
+
+A 12-bit analog-to-digital converter (ADC) has been used to digitize two signals: the analog microphone voltage and supercap voltage. The resolution of an $N$-bit ADC is given by $V_\te{DD}/2^N$ where $V_\te{DD}$ is the supply voltage. One might be interested to improve the ADC resolution up to 14 bits via diverse techniques (such as SAR, etc). This would allow the reading of a smaller input sound pressure (\SI{12}{dB} below) and make possible to process a sound pressure of \SI{4}{dB_{SPL}} (increasing the distance between the sensor and the source). However, the signal quality would not benefit from this increased ADC resolution because the microphone self-noise is still \SI{14}{dB_{SPL}}.
+
+A typical code would alternate between an energy-intensive run mode (to sample sound) and a low-power sleep mode. The duty cycle between these modes will be determined in the section characterizing the power consumption (Section~\ref{section:power_consumption}).
+
+\subsection*{Status of supercapacitor charge}
+
+In order to know the status of the supercapacitor charge and adapt the MCU code to a possible overdischarge, the ADC reads the supercap voltage. Since this voltage is higher than than the ADC supply voltage, a voltage divider is required. The supercap voltage is thus divided by two with two resistors $R_\te{SC}$ of same value, which has to be determined according to the impedance recommendations at the ADC input. Provided in the datasheet, the maximum input impedance for an error below 1/4 of LSB is given by (derived from the charge equation of the sample and hold capacitor)
+\[
+ R_\te{AIN,max} = \frac{T_\te{S}}{f_\te{ADC}\,C_\te{ADC}\,\ln(2^{N+2})} - R_\te{ADC} = \SI{257}{k\ohm}
+\]
+where $T_\te{S} = 160.5$ is the number of cycles per sample, $f_\te{ADC} = \SI{8}{MHz}$ is the ADC clock frequency, $C_\te{ADC} = \SI{8}{pF}$ is the internal sample and hold capacitor, $N=12$ is the number of resolution bits and $R_\te{ADC} = \SI{1}{k\ohm}$ is the sampling switch resistance. To increase $R_\te{AIN,max}$ and thus reduce the power consumption, parameters such as $T_\te{S}$ and $f_\te{ADC}$ are pushed towards a low sampling frequency (the delay being not important since the supercapacitor undergoes small variations).
+
+Because $R_\te{AIN,max}$ corresponds to $R_\te{SC}/2$, one selects a resistance of $R_\te{SC} = \SI{475}{k\ohm}$. This value produces a negligible current consumption of
+\[
+ I_\te{SC,ADC} = \frac{V_\te{SC}}{2R_\te{SC}} = \SI{4.7}{\micro A}
+\]
+when the supercapacitor is fully charged at \SI{4.5}{V}.
+
+Finally, the ADC input leakage current provided in the datasheet is maximum $I_\te{in,ADC} = \SI{50}{nA}$. The ADC voltage due to the non zero input current is thus $(V_\te{SC} - R_\te{SC}\,I_\te{in,ADC})/2$ instead of $V_\te{SC}/2$, leading to a maximum relative error of
+\[
+ E_\te{rel} = \frac{R_\te{SC}\,I_\te{in,ADC}}{V_\te{SC}} = \SI{0.85}{\%}
+\]
+when the supercapacitor is fully discharged (\SI{2.8}{V}). This error is negligible.
 
 
+\section{Transceiver}
 
-The 12-bit ADC has been used to convert the analog microphone voltage to a digital signal. One might be interested to improve the ADC resolution up to 14 bits via diverse techniques (such as SAR, etc). This would allow the reading of a smaller input sound pressure (\SI{12}{dB} below) and make possible to process a sound pressure of \SI{4}{dB_{SPL}} (increasing the distance between the sensor and the source). However, the signal quality would not benefit from this increased ADC resolution because the microphone self-noise is \SI{14}{dB_{SPL}}.
- 
+The SX1276 transceiver features the LoRa long range modem that provides ultra-long range spread spectrum communication~\cite{SX1276}. LoRa has been increasingly used in the IoT domain thanks to their compromise between range, interference immunity and energy consumption~\cite{SINHA201714}. The transceiver chip is connected to an external ISM (industrial, scientific and medical purposes) antenna in the range \SI{790}{MHz} -- \SI{960}{MHz}.
+
+The receiver is used for over-the-air (OTA) updates and thus implies that the MCU has reconfiguration capabilities to keep up with application, security and communication protocol updates. During such updates, the challenge is the instantaneous power consumption when the wireless radio is in receive mode combined and the microcontroller is reprogramming its internal Flash memory (recall that the maximum current consumption at the PMU output is \SI{80}{mA} and that the energy storage is very limited). To lower this peak power, a smart decomposition of the firmware packets will be required.
+
+The transmitter is used to send data to a gateway, mainly information about the analyzed input sound pressure and hence bird species. All data are handled in the RAM memory of the MCU, but important data that need to be transmitted are stored in the FLASH memory in order to prevent them from being erased after an unexpected shutdown.
+
+The radio-frequency communication for this smart sensor, including power consumption and security in LoRaWAN networks, has been carefully discussed and optimized in a concurrent master thesis~\cite{Hess2020}.
+
 
 \chapter{Power supply}
 
+In this chapter, the total current consumption is evaluated. The solar cells and supercapacitor are then sized accordingly.
+
 \section{Power consumption}
+\label{section:power_consumption}
 
-\subsection*{Data processing and transmission}
+The power consumption will be computed separately for each block. Since the voltage regulator inside the PMU is an LDO, the current drawn in the circuit is the same as the current drawn in the supercapacitor. For each subsystem, it thus makes sense to provide the current consumption $I$ instead of the power consumption since the latter is higher from the supercap point of view ($V_\te{SC}\,I$) than from the subsystem point of view ($V_\te{DD}\,I$).
 
-The power supply $VDD_{STM32}$ required for the STM32 being between \SI{1.8}{V} and \SI{3.6}{V}, one has to choose a trade-off between a small power consumption (small voltage) and a high signal resolution from the microphone (high voltage). A voltage of $VDD_{STM32} = \SI{3}{V}$ has finally been selected.
-
-Graph of first approx consumption wisebatt.
-
-In this Master thesis, we will study the implementation of over-the-air firmware update through wireless communications. The challenge is the instantaneous power consumption when the wireless radio is in receive mode combined and the microcontroller is reprogramming its internal Flash memory. This high power is natively not compatible with the solid-state battery and the energy-harvesting operation. Smart decomposition of the firmware packets will thus be required.
 
 \subsection*{Sensing}
 
+As seen in Figure~\ref{fig:circuit_AFE}, the current consumption from the sensing subsystem is composed of
+\begin{itemize}
+ \item the current through the microphone branch (with $R_1$): $I_{\te{mic}} = \SI{358}{\micro A}$ (see Table~\ref{tab:op_point_mic}),
+ \item the op amp quiescent current: $I_\te{Q} = \SI{170}{\micro A}$,
+ \item and the current through the voltage divider with $R_3$ and $R_4$ to bias the op amp: $I_\te{B} = \SI{8.33}{\micro A}$.
+\end{itemize}
 
+This leads to a current consumption of $I_\te{sensing} = \SI{536}{\micro A}$.
 
 \subsection*{Power Management}
 
-loss in voltage divider: 2 * 1 Mohm resistor ? Problem: load in parallel with R1-> decrease output voltage -> need to compute Rain = 500k (50nA, measure somewhere?): (precision of ...\%) -> current consumption of 4.5/1M = 4.5µA
+The current consumption from the power management subsystem is composed of
+\begin{itemize}
+ \item the leakage current of the supercapacitor: typically $I_\te{Q,SC} = \SI{500}{\micro A}$ (will be refined in Section~\ref{supercap_sizing}),
+ \item the voltage divider to read the supercap voltage at the ADC input $I_\te{SC,ADC} = \SI{4.7}{\micro A}$,
+ \item and the PMU quiescent current: $I_\te{Q,PMU} = \SI{0.6}{\micro A}$.
+\end{itemize}
 
-Compute Rain with formula in ADC datasheet
+This leads to a current consumption of $I_\te{power} = \SI{505}{\micro A}$.
 
-max error on battery percent: 3\% -> max output variation: ...V
 
-Delay: not important here since the input voltage (Batt) is not varying a lot.
+\subsection*{Data processing and transceiver}
 
-Maybe op amp but with low power or duty-cycler ce diviseur en mettant un MOS à sa base piloté par un GPOUT du MCU
+%The power supply $VDD_{STM32}$ required for the STM32 being between \SI{1.8}{V} and \SI{3.6}{V}, one has to choose a trade-off between a small power consumption (small voltage) and a high signal resolution from the microphone (high voltage). A voltage of $VDD_{STM32} = \SI{3}{V}$ has finally been selected.
 
-+ PMU
+For this part, it is possible to adapt the code in the microcontroller to match the best capabilities of the system.
+In view of the power consumption from the previous parts and the typical harvested power from solar cells, one will aim to keep the MCU/TX/RX consumption below \SI{2}{mA}. 
 
-Additionally, the leakage current of the supercapacitor detailed in Section~\ref{supercap_sizing} is \SI{500}{\micro F} at its maximum value.
+\subsubsection*{First case without transceiver}
+
+As a first approximation, a run mode that only processes data is considered (that is, without transmission or reception). A typical scheme for this application is to alternate a run mode and standby mode.
+
+Addressing a simple scheme allows to use a simulation tool (Wisebatt) in order to estimate the power consumption. As seen in Figure~\ref{fig:wisebatt1}, Wisebatt estimates the run mode at \SI{2.74}{mA} and the standby mode at \SI{3.64}{\micro A}. With a duty cycle of $1/3$, one obtains an average current consumption of
+\[
+ i_\te{avg} = \frac{1}{3} \, \SI{2.74}{mA} + \frac{2}{3} \, \SI{3.64}{\micro A} = \SI{0.913}{mA}.
+\]
+
+By assuming that it takes \SI{50}{ms} to sample and process the data, it leads to a cycle duration of \SI{150}{ms}. However, the simulation tool misses the FFT operation that is achieved inside the microcontroller, which significantly reduces the current consumption. To refine this poor model, experimental measurements of the current consumption have been achieved (see Figure~\ref{fig:consumption_fft}). With a duty cycle of $1/3$, they show an average current consumption of \SI{3.88}{mA} since the run mode consumes \SI{10.1}{mA}. An MCU current consumption of \SI{3.88}{mA} will be kept as reference for designing further components, it allows the keep a precise track of the input sound wave (one third of the time at high run/sleep cycle frequency) with sufficiently low power consumption. The increase of current consumption before each sleep mode is due to the microcontroller which saves the data by writing in its registers.
+
+\begin{figure}[H]
+\begin{subfigure}{.49\textwidth}
+  \centering
+    \input{img/wisebatt1.tex}
+    \caption{Wisebatt simulation}
+    \label{fig:wisebatt1}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/current_consumption_FFT.tex}
+  \caption{Experimental results}
+  \label{fig:consumption_fft}
+\end{subfigure}
+\caption{Current consumption of the CMWX1ZZABZ without TX/RX}
+\end{figure}
+
+
+\subsubsection*{Second case with transceiver}
+
+Now one first considers the power consumption related to the transceiver part. Figure~\ref{fig:current_consumption_MCU_RF_lorawan_TX} shows the current consumption for sending one packet of 51 bytes, with a peak current of \SI{49.5}{mA} for \SI{130}{ms}. One verifies that this peak current never exceeds the maximum output current of \SI{80}{mA} from the PMU (see Table~\ref{tab:AEM10941}).
+
+\begin{figure}[H]
+    \centering
+    \input{img/current_consumption_MCU_RF_lorawan_TX.tex}
+    \caption{Current consumption for sending one packet of 51 bytes}
+    \label{fig:current_consumption_MCU_RF_lorawan_TX}
+\end{figure}
+
+Second, data reception is characterized through an over-the-air firmware update (FUOTA). Figures~\ref{fig:current_consumption_MCU_RF_FUOTA} show the current consumption for a typical FUOTA. The first figure corresponds to the packets reception (in Class-C\footnote{Class-C endpoints use the most power but have the shortest latency.}) with a constant current of \SI{12}{mA}. Only a part of the consumption is shown, it is a periodic profile during \SI{259}{s}.
+
+The second figure is related to the packets processing of the FUOTA, composed of three steps: hash computation of the received fragment to ensure its validity (i.e. no data corruption during the transmission), computation of the reverse delta (i.e. the firmware that has changed), and computation of the new firmware image based on the previous image and the delta. Receiving and processing the packets consume \SI{14.1}{mA} in average for \SI{301}{s}, that is an energy of \SI{10.6}{J}. Since these updates appear sporadically, they are achieved when the device does not process audio data (i.e. during the night) and are thus not taken into account in the power budget hereafter.
+
+\begin{figure}[H]
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/current_consumption_MCU_RF_FUOTA.tex}
+  \caption{Packets reception}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/current_consumption_MCU_RF_FUOTA_processing.tex} 
+  \caption{Packets processing}
+\end{subfigure}
+\caption{Current consumption for a FUOTA}
+\label{fig:current_consumption_MCU_RF_FUOTA}
+\end{figure}
+
 
 \subsection*{Total power consumption}
 
-Table with Power buget
+Table~\ref{tab:power_consumption_theor} summarizes the power budget for the whole system. As expected, the most energy-intensive part is the microcontroller and radio-frequency subsystem.
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+                     & Current [\si{mA}] \\ \midrule
+ Data processing     & 3.88              \\
+ Power management    & 0.50              \\
+ Sensing             & 0.54              \\ \midrule
+ Total               & 4.92              \\ \bottomrule
+\end{tabular}
+\caption{Description of the theoretical power consumption in the system}
+\label{tab:power_consumption_theor}
+\end{table}
+
+Depending on the supercapacitor voltage, the total power consumption finally varies linearly between \SI{13.8}{mW} (at \SI{2.8}{V}) and \SI{22.1}{mW} (at \SI{4.5}{V}) according to $P_\te{tot} = V_\te{SC} \, I_\te{tot}$.
+
 
 \section{Solar cells}
-
-principle, !efficiency!
+\label{section:solar_cells}
 
 Solar cells are electrical devices that convert the energy of light into electricity by the photovoltaic effect. The current generated by such cells is decreasing with the voltage. It leads to a maximum for the harvested power (see Figure~\ref{fig:solar_IV}), which is called the MPP (for Maximum Power Point).
+
+The main figures of merit for solar cells are thus the current and voltage at the maximum power point, as well as the surface area since the goal is to maximize the harvested power per unit area and thus minimize the area on the PCB. It is worth noting that the current and power are provided at one sun (\SI{1}{mW/mm^2}), and the power is the electric power generated by the solar cells.
 
 \begin{figure}[H]
     \centering
@@ -1230,23 +1521,21 @@ Solar cells are electrical devices that convert the energy of light into electri
     \label{fig:solar_IV}
 \end{figure}
 
-\textcolor{green}{Add measurement of this IV curve in lab + lux on cell? experimental validation of given power} 
+%\textcolor{green}{Add measurement of this IV curve in lab + lux on cell? experimental validation of given power} 
 
-The main figures of merit for solar cells are thus the current and voltage at the maximum power point, as well as the surface area since the goal is to maximize the harvested power per unit area and thus minimize the area on the PCB. It is worth noting that the current and power are provided at one sun (\SI{1}{mW/mm^2}), and the power is the electric power generated by the solar cells.
-
-A great advantage of solar cells is their ability to combine them easily in series (doubling the voltage) or in parallel (doubling the current), provided that the total voltage does not exceed the voltage limit of \SI{5}{V} for the Power Management Unit. Based on the comparison depicted in Table~\ref{tab:solar_comparison} between three cells of different sizes, the SM141K06L model is selected for its high power per unit area of \SI{0.1905}{mW/mm^2}. Alternatively, this electric power per unit area can be validated by computing the product between the sun intensity and the efficiency of the solar cells (approximated to 25\% in the datasheet compared to 19.06\% computed here).
+A great advantage of solar cells is their ability to combine them easily in series (doubling the voltage) or in parallel (doubling the current), provided that the total voltage does not exceed the voltage limit of \SI{5}{V} for the Power Management Unit. Based on the comparison depicted in Table~\ref{tab:solar_comparison} between three cells of different sizes, the SM141K06L model is selected for its high power per unit area of \SI{0.1905}{mW/mm^2}. Alternatively, this electric power per unit area can be validated by computing the product between the sun intensity and the efficiency of the solar cells (approximated to 25\% in the datasheet compared to 19.05\% computed here).
 
 \begin{table}[H]
 \centering
 \scalebox{0.9}{
 \begin{tabular}{lccc}
-\hline
-                                   & KXOB25-14X1F & SM141K06L    & SLMD481H08L  \\ \hline
+\toprule
+                                   & KXOB25-14X1F & SM141K06L    & SLMD481H08L  \\ \midrule
 Current [mA]                       & 55           & 55.1          & 178          \\
 MPP Voltage [V]                        & 0.56         & 3.35         & 4            \\
 Power [mW]                         & 30.7         & 184          & 714          \\
 Surface [mm x mm]               & \SI{23x8}{}  & \SI{42x23}{} & \SI{89x55}{} \\
-Power per unit area [\si{mW/mm^2}] & 0.1668       & 0.1905       & 0.1459       \\ \hline
+Power per unit area [\si{mW/mm^2}] & 0.1668       & 0.1905       & 0.1459       \\ \bottomrule
 \end{tabular}
 }
 \caption{Comparison of several solar cells}
@@ -1287,8 +1576,8 @@ More rigorously, one should also shrink the graph vertically since the sunlight 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/sunlight.png}
-    \caption{Sunlight towards Earth at the equinox~\cite{ackerman2007meteorology}}
+    \includegraphics[width=0.6\textwidth]{sunlight.png}
+    \caption[Sunlight towards Earth at the equinox]{Sunlight towards Earth at the equinox~\cite{ackerman2007meteorology}}
     \label{fig:sunlight_png}
 \end{figure}
 
@@ -1301,12 +1590,6 @@ From this solar energy, solar cells generate a current which is proportional to 
 \]
 where $L(t)$ and $L_{\te{sun}}(t)$ are the instantaneous illuminance (resp. expressed in lux and sun) and $I_{1\te{sun}}$ is the current generated at the MPP under \SI{1}{sun} (provided in the datasheet).
 
-For the selected solar cells, Figure~\ref{fig:P_cell} gives the harvested power throughout the day\footnote{As mentioned previously, notice that the graph is shrunk such that the day benefits from sunlight for only 8 hours.}: 
-\[
- P_\te{cell}(t) = I_\te{cell}(t)\,V_\te{cell} = \SI{0.0079e-3}{}\,I_{1\te{sun}}\,V_\te{cell}\,L(t) \quad \si{[W]}
-\]
-with $V_\te{cell} = \SI{3.35}{V}$ and $I_{1\te{sun}} = \SI{55.1}{mA}$.
-
 \begin{figure}[H]
     \centering
     \input{img/P_cell.tex}
@@ -1314,22 +1597,26 @@ with $V_\te{cell} = \SI{3.35}{V}$ and $I_{1\te{sun}} = \SI{55.1}{mA}$.
     \label{fig:P_cell}
 \end{figure}
 
+For the selected solar cells, Figure~\ref{fig:P_cell} gives the harvested power throughout the day\footnote{As mentioned previously, notice that the graph is shrunk such that the day benefits from sunlight for only 8 hours.}: 
+\[
+ P_\te{cell}(t) = I_\te{cell}(t)\,V_\te{cell} = \SI{0.0079e-3}{}\,I_{1\te{sun}}\,V_\te{cell}\,L(t) \quad \si{[W]}
+\]
+with $V_\te{cell} = \SI{3.35}{V}$ and $I_{1\te{sun}} = \SI{55.1}{mA}$.
+
 \subsection*{Charge of the supercapacitor}
 
 The next paragraphs will discuss how the power management unit transforms the input and output powers with two different voltage regulators.
 
-The input power from the solar cells is independent from the supercapacitor voltage. Indeed, the voltage at the maximum power point is converted to the current battery voltage through a buck-boost converter. The input power is thus constant according to
+The input power from the solar cells is independent from the supercapacitor voltage. Indeed, the voltage at the maximum power point is converted to the current battery voltage through a boost converter with efficiency $\eta_\te{boost,PMU}=\SI{92}{\%}$ derived in Section~\ref{section:PMU}. The input power is thus constant according to
 \[
- P_\te{in}(t) = n_\te{¢ell} \, I_\te{cell}(t)\,V_\te{cell} = I_\te{in,SC}(t) \, V_\te{SC}(t) \quad [\si{W}]
+ P_\te{in,solar}(t) = n_\te{¢ell} \, I_\te{cell}(t)\,V_\te{cell} = \frac{1}{\eta_\te{boost,PMU}} I_\te{in,SC}(t) \, V_\te{SC}(t) \quad [\si{W}]
 \]
 where $n_\te{¢ell}$ is the number of solar cells required for the device, $I_\te{in,SC}(t)$ is the input current through the supercapacitor and $V_\te{SC}(t)$ is the voltage across the supercapacitor.
 
-Regarding the ernergy consumption, the PMU converts the supercapacitor voltage to a constant voltage $V_\te{CC}= \SI{2.5}{V}$ via a linear dropout regulator (LDO). Neglecting the quescient current, LDOs keep the same current while the voltage is reduced. The output power is thus reduced, this is why it is important to maintain a small dropout (difference of voltage between the input and output). Hence, the output current is independent from the supercapacitor voltage and not the output power since the ratio of output power feeded to the circuit over the output power actually retrieved from the supercapacitor is given by
+Regarding the energy consumption, the PMU converts the supercapacitor voltage to a constant voltage $V_\te{CC}= \SI{2.5}{V}$ via a linear dropout regulator (LDO). Neglecting the quiescent current, LDOs keep the same current while the voltage is reduced. The output power is thus reduced, this is why it is important to maintain a small dropout (difference of voltage between the input and output). Hence, the output current is independent from the supercapacitor voltage and not the output power since the ratio of output power fed to the circuit over the output power actually retrieved from the supercapacitor is given by
 \[
  \frac{P_\te{out,circuit}}{P_\te{out,SC}} = \frac{I_\te{out} \, V_\te{CC}}{I_\te{out} \, V_\te{SC}} = \frac{V_\te{CC}}{V_\te{SC}} \quad [\si{W}].
 \]
-
-In the end, Figure~\ref{fig:P_in_I_out} depicts the input and output variables which are independent from the supercapacitor voltage. These are thus the only quantities which can be plotted without measuring the supercapacitor voltage. The input is power given with 6 solar cells. The input current has a cyclic profile which is typical for the application. It has a run mode of \SI{9}{mA} and a sleep mode of \SI{0.3}{mA} with a duty cycle of $1/7$.
 
 \begin{figure}[H]
     \centering
@@ -1338,26 +1625,30 @@ In the end, Figure~\ref{fig:P_in_I_out} depicts the input and output variables w
     \label{fig:P_in_I_out}
 \end{figure}
 
+In the end, Figure~\ref{fig:P_in_I_out} depicts the input and output variables which are independent from the supercapacitor voltage. These are thus the only quantities which can be plotted without measuring the supercapacitor voltage. The input power is given with 6 solar cells. The output current has the cyclic profile from the MCU analyzed in Figure~\ref{fig:consumption_fft} on which a current consumption of \SI{1.04}{mA} has been added for the remaining of the system (as computed in Table~\ref{tab:power_consumption_theor}). Since the following components are designed for the worst case scenario, the input power is not sufficient to maintain the microcontroller in operation at night. It is thus limited to a typical time window of bird activity (from \SI{7}{h} to \SI{17}{h}). When days have longer sunlight time, the device will receive more energy and thus either support longer processing periods (up to \SI{24}{h} per day) or allow more frequent radio-frequency communication (for both data transmission and firmware update).
+
+\subsubsection*{First-order non-linear differential equation for the supercapacitor voltage}
+
 Having two different quantities (the power and the current) conserved when the supercapacitor voltage changes leads to slightly more complicated computations of the supercapacitor voltage over one day\footnote{Having the input and output currents independent from the supercapacitor voltage would lead to the simple equation: $$V_\te{SC}(t) = V_\te{SC}(t_0) + \frac{1}{C} \int_{t_0}^t (I_\te{in,SC}(t) - I_\te{out,SC}(t))\, \te{d}t.$$
 
 Likewise, having the input and output powers independent from the supercapacitor voltage would lead to the equation: $$E_\te{SC}(t) = E_\te{SC}(t_0) + \int_{t_0}^t \big(P_\te{in,SC}(t) - P_\te{out,SC}(t)\big)\, \te{d}t$$ where $E_\te{SC} = C\, V_\te{SC}^2 / 2$ to obtain the voltage.}. The rigorous approach consists to write the equation for the charge of a capacitor:
 \begin{align*}
  \frac{\te{d}V_\te{SC}}{\te{d}t} &= \frac{1}{C} \left( I_\te{in,SC}(t) - I_\te{out,SC}(t) \right) \\
- &= \frac{1}{C} \left( \frac{P_\te{in}(t)}{V_\te{SC}(t)} - I_\te{out,SC}(t) \right) \\
- &= \frac{1}{C} \left( n_\te{¢ell} \, I_\te{cell}(t) \frac{V_\te{cell}}{V_\te{SC}(t)} - I_\te{out,SC}(t) \right)
+ &= \frac{1}{C} \left( \eta_\te{boost,PMU} \, \frac{P_\te{in,solar}(t)}{V_\te{SC}(t)} - I_\te{out,SC}(t) \right) \\
+ &= \frac{1}{C} \left( \eta_\te{boost,PMU} \, n_\te{¢ell} \, I_\te{cell}(t) \frac{V_\te{cell}}{V_\te{SC}(t)} - I_\te{out,SC}(t) \right)
 \end{align*}
-which is a non-linear first-order differential equation for the variable $V_\te{SC}(t)$. Nonetheless, one can notice that that the equation is written as
+which is a non-linear first-order differential equation for the variable $V_\te{SC}(t)$. Nonetheless, one can notice that the equation is written as
 \[
  \frac{\te{d}V_\te{SC}}{\te{d}t} = f(V_\te{SC}, t)
 \]
 where $f(V_\te{SC}, t)$ is a function of $V_\te{SC}$ and $t$. It can thus be easily solved numerically for example via the forward Euler method: 
 \begin{align*}
  V_\te{SC}(t + \te{d}t) &= V_\te{SC}(t) + \te{d}t \, f(V_\te{SC}(t), t) \\
- &= V_\te{SC}(t) + \frac{\te{d}t}{C} \left( n_\te{¢ell} \, I_\te{cell}(t) \frac{V_\te{cell}}{V_\te{SC}(t)} - I_\te{out,SC}(t) \right).
+ &= V_\te{SC}(t) + \frac{\te{d}t}{C} \left( \eta_\te{boost,PMU} \, n_\te{¢ell} \, I_\te{cell}(t) \frac{V_\te{cell}}{V_\te{SC}(t)} - I_\te{out,SC}(t) \right).
 \end{align*}
-starting with $V_\te{SC}(t_0) = V_\te{CC} + 0.3 = \SI{2.8}{V}$ which is the minimum voltage across the supercapacitor due to a minimum dropout of \SI{0.3}{V}. The value $t_0$ is thus the time for which the supercapacitor begins to charge, in other words when the input power starts to overtake the output power: $n_\te{¢ell} \, I_\te{cell}(t_0)\,V_\te{cell} = I_\te{out}(t_0) \, V_\te{SC}(t_0)$.
+starting with $V_\te{SC}(t_0) = V_\te{CC} + 0.3 = \SI{2.8}{V}$ which is the minimum voltage across the supercapacitor due to a minimum dropout of \SI{0.3}{V}. The value $t_0$ is thus the time for which the supercapacitor begins to charge, in other words when the input power starts to exceed the output power: $\eta_\te{boost,PMU} \, n_\te{¢ell} \, I_\te{cell}(t_0)\,V_\te{cell} = I_\te{out}(t_0) \, V_\te{SC}(t_0)$.
 
-Finally, Figure~\ref{fig:Supercap_voltage} depicts the numerical solution of the supercapacitor voltage throughout the day for three different numbers of cells. One can see the small ripple due to the sharp transitions of the consumed current. During the night, the input current is null, the net current through the supercapacitor is thus only due to the varying output current implying a wavy discharge at a constant rate.
+Finally, Figure~\ref{fig:Supercap_voltage} depicts the numerical solution of the supercapacitor voltage throughout the day for three different numbers of cells. At night, the voltage is linearly decreasing due to the stable current consumption of the sensing and power subsystems. When the microcontroller is activated in the morning, a wavy and amplified diminution appears untill the sun provides enough energy to recharge the supercap voltage at the middle of the day. One can see the small ripple due to the sharp transitions of the consumed current when the microcontroller alternates between run and sleep mode.
 
 The number of cells is chosen to come back to the minimum voltage after one day (close the loop). If there are not enough cells, the voltage will fall below this minimal voltage and the circuit will be shut down during a few hours. If there are too many cells, the voltage will be higher day after day. The optimal number of cells is thus 6, as the curve in red (Figure~\ref{fig:Supercap_voltage}) is perfectly suited for the current consumption.
 
@@ -1378,7 +1669,7 @@ Figure~\ref{fig:Supercap_voltage_C} provides the simulation results for three di
 \begin{figure}[H]
     \centering
     \input{img/Supercap_voltage_C.tex}
-    \caption{Voltage across the supercapacitor for three differents capacitances}
+    \caption{Voltage across the supercapacitor for three different capacitances}
     \label{fig:Supercap_voltage_C}
 \end{figure}
 
@@ -1393,13 +1684,13 @@ A common (and possibly the only one in Europe) manufacturer for such high capaci
 \begin{table}[H]
 \centering
 \begin{tabular}{lcc}
-\hline
-                                 & MAL219690101E3     & MAL219691213E3 ($\times 4$)  \\ \hline
+\toprule
+                                 & MAL219690101E3     & MAL219691213E3 ($\times 4$)  \\ \midrule
  Capacitance [F]                 & 90                 & $15 \times 4 = 60$           \\
  Rated voltage [V]               & 4.2                & 4.2                          \\ 
  Leakage current [\si{\micro A}] & 500                & $120 \times 4 = 480$         \\ 
  Volume [mm x mm x mm]           & \SI{35x26.5x15}{}  & $(\SI{14x10x12}{}) \times 4$ \\
- Cost [\$]                       & 19.16              & $8.93 \times 4 = 35.72$      \\ \hline
+ Cost [\$]                       & 19.16              & $8.93 \times 4 = 35.72$      \\ \bottomrule
 \end{tabular}
 \caption{Comparison of several supercapacitors}
 \label{tab:SC_comparison}
@@ -1409,8 +1700,8 @@ As shown in Figure~\ref{fig:hvc}, these typical supercapacitors present a linear
 
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=1cm 18.5cm 11cm 3cm, scale=1]{196hvc-12.pdf}
-    \caption{Constant current charge and discharge: \SI{90}{F} / \SI{5.6}{V}~\cite{Vishay}}
+    \includegraphics[width=0.6\textwidth]{196hvc-12.pdf}
+    \caption[Constant current charge and discharge: \SI{90}{F} / \SI{5.6}{V}]{Constant current charge and discharge: \SI{90}{F} / \SI{5.6}{V}~\cite{Vishay}}
     \label{fig:hvc}
 \end{figure}
 
@@ -1420,7 +1711,7 @@ Figure~\ref{fig:Supercap_voltage_voltage_split} gives the voltage split for a \S
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[scale=2]
+\begin{tikzpicture}[scale=1.5]
 % Axes:
 \draw[->](0,2)--(0,5);
 \draw[](-0.1,4.5)--(0,4.5)node[left,font=\small]{\SI{4.5}{V} \, };
@@ -1444,21 +1735,30 @@ Figure~\ref{fig:Supercap_voltage_voltage_split} gives the voltage split for a \S
 
 \section{Description}
 
+Figure~\ref{fig:electronics_diagram} presents the electronics diagram of the final model.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{electronics_diagram.pdf}
+    \caption{Electronics diagram of the final model}
+    \label{fig:electronics_diagram}
+\end{figure}
+
 The final model is a stack of 2 boards: a board for data processing and transmission on top of a board for sensing and power management.
 
 \section{Design}
 
-The design of the final model is given in Figure~\ref{fig:final_model_picture}. One can see the 6 solars cells, the supercapacitor in blue, the microphone in light grey, as well as five headers for current/voltage measurements. The components are place such that the solar panels receive the maximum of sunlight.
+The design of the final model is given in Figure~\ref{fig:final_model_picture}. One can see the 6 solars cells, the supercapacitor in blue, the microphone in light grey, as well as five headers for current/voltage measurements. The components are place such that the solar cells receive the maximum of sunlight.
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.52\linewidth,angle=90]{img/real_PCB.jpg}  
+  \includegraphics[width=.9\linewidth]{real_PCB.png}  
   \caption{Without MCU/TX board}
 \end{subfigure}
 \begin{subfigure}{.48\textwidth}
   \centering
-  \includegraphics[width=.82\linewidth]{img/real_PCB_with_MCU.jpg}  
+  \includegraphics[width=.9\linewidth]{real_PCB_with_MCU.png}  
   \caption{With MCU/TX board}
 \end{subfigure}
 \caption{Pictures of the final model}
@@ -1467,7 +1767,7 @@ The design of the final model is given in Figure~\ref{fig:final_model_picture}. 
 
 \subsection*{Prototyping}
 
-The PCB schematics and layout are available in Appendix~\ref{appendix:schematic}.
+The PCB schematic and layout are available in Appendix~\ref{appendix:schematic}.
 
 \section{Validation}
 
@@ -1475,18 +1775,18 @@ This section describes the experimental results obtained with the real device.
 
 \subsection*{Power consumption}
 
-The current consumption measured in the different parts is given in Table~\ref{tab:val_current_cons}. These measurements have been made with a Source Measure Unit: Keithley 2400.
+The current consumption measured in the different parts is given in Table~\ref{tab:val_current_cons}. These measurements have been made with a Source Measure Unit: Keithley 2400~\cite{Keithley}.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{lc}
-\hline
-                     & Current [\si{\micro A}]  \\ \hline
+\toprule
+                     & Current [\si{\micro A}]  \\ \midrule
  Supercap leakage    & 95                       \\
- AFE                 & 1030                     \\
+ Sensing             & 904                     \\
  PMU                 & 50                       \\
- MCU                 & 470                      \\ \hline
- Total               & 1645                     \\ \hline
+ MCU                 & 470                      \\ \midrule
+ Total               & 1645                     \\ \bottomrule
 \end{tabular}
 \caption{Description of the current consumption in the system}
 \label{tab:val_current_cons}
@@ -1494,25 +1794,25 @@ The current consumption measured in the different parts is given in Table~\ref{t
 
 When the supercapacitor is fully disconnected, a leakage current of \SI{95}{\micro A} is noticed, which is indeed below the maximum value of \SI{500}{\micro A} in the datasheet.
 
-In the AFE, the microphone consumes \SI{380}{\micro A}. The op amp consumes \SI{650}{\micro A}, which is more than expected since it has two channels.
+In the AFE, the microphone consumes \SI{380}{\micro A}. The op amp consumes \SI{524}{\micro A}, which is more than expected since it has two channels. One should have chosen an op amp with only one channel.
 
-As given in the datasheet, the PMU quiscient current is \SI{50}{\micro A}.
+As given in the datasheet, the PMU quiescent current is \SI{50}{\micro A}.
 
-The current consumption for a basic code in the MCU (duty cycle run/deepsleep mode of 10\%) is \SI{470}{\micro A}.
+The current consumption for a basic code in the MCU (FFT operations without RF and  duty cycle run/deepsleep mode of 10\%) is \SI{470}{\micro A}, corresponding to a run mode with \SI{4.7}{mA}.
 
 \subsection*{Solar cells}
 
-Table~\ref{tab:val_current_solar_sel} compares the harvested power from the solar cells in function of the MMP ratio under a fixed interior lighting. The voltage is fixed by the SMU while it measures the current. The highest power is achieved at 70\% of the open circuit voltage (\SI{4.15}{V}), which is selected in hardware via a header connected to the PMU.
+Table~\ref{tab:val_current_solar_sel} compares the harvested power from the solar cells in function of the MMP ratio under a fixed interior lighting. The voltage is fixed by the SMU while it measures the current. The highest power is achieved at 70\% of the open circuit voltage (\SI{4.15}{V}), which is selected in hardware via a header connected to the PMU. For low supercap voltage (below \SI{3.3}{V}), this \SI{2.9}{V} MPPT voltage will not lead to the best PMU efficiency since it exceeds the \SI{2.4}{V} derived in Section~\ref{section:PMU}, but the gain in solar power at this MPP compensates the loss of efficiency.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{lccc}
-\hline
-  MPPT ratio & Voltage [V] & Current [mA] & Power [mW]  \\ \hline
+\toprule
+  MPPT ratio & Voltage [V] & Current [mA] & Power [mW]  \\ \midrule
  70\%        & 2.9         & 20.2         & 58.6        \\
  75\%        & 3.11        & 17.9         & 55.7        \\
  85\%        & 3.53        & 11.1         & 39.1        \\
- 90\%        & 3.73        & 3.5          & 13.1        \\ \hline
+ 90\%        & 3.73        & 3.5          & 13.1        \\ \bottomrule
 \end{tabular}
 \caption{Harvested power from the solar cells in function of the MMP ratio}
 \label{tab:val_current_solar_sel}
@@ -1524,11 +1824,11 @@ Table~\ref{tab:val_current_harvested} gives the harvested current under differen
 \begin{table}[H]
 \centering
 \begin{tabular}{lc}
-\hline
-                     & Current [\si{mA}]  \\ \hline
- In the shade        & 30                       \\
- Cloudy              & 50                       \\
- Sunny               & 150                      \\ \hline
+\toprule
+                     & Current [\si{mA}]  \\ \midrule
+ In the shade        & 30                 \\
+ Cloudy              & 50                 \\
+ Sunny               & 150                \\ \bottomrule
 \end{tabular}
 \caption{Harvested current under different lighting from the solar cells at the MMP voltage}
 \label{tab:val_current_harvested}
@@ -1536,7 +1836,7 @@ Table~\ref{tab:val_current_harvested} gives the harvested current under differen
 
 \subsection*{Supercapacitor}
 
-Figure~\ref{fig:discharge_supercap_exp} provides the supercapacitor discharge under a constant current of \SI{500}{mA} (to compare with Figure~\ref{fig:hvc}) after being charged to its maximum voltage (\SI{4.2}{V}) and kept at this voltage for 30 minutes (as recommended in the datasheet). It can be noted that the voltage is around \SI{3.1}{V} for the most important part of the operation, which is beneficial since the LDO in the PMU has a low-dropout in this case (and thus a good efficiency). Additionally, the supercapacitor is not in operation under \SI{2.5}{V}, which proves that the best type of DC-DC converter for this application is an LDO (and not a Buck-Boost converter which would allow to step up the voltage). The total energy stored in this \SI{90}{F}/\SI{4.2}{V} supercapacitor is computed as
+Figure~\ref{fig:discharge_supercap_exp} provides the supercapacitor discharge under a constant current of \SI{500}{mA} (to compare with Figure~\ref{fig:hvc}) after being charged to its maximum voltage (\SI{4.2}{V}) and kept at this voltage for 30 minutes (as recommended in the datasheet). It can be noted that the voltage is around \SI{3.1}{V} for the most important part of the operation, which is beneficial since the LDO in the PMU has a low-dropout in this case (and thus a good efficiency). Additionally, the supercapacitor is not in operation under \SI{2.5}{V}, which proves that the best type of DC-DC converter for this application is an LDO (and not a Buck-Boost converter which would allow to step up the voltage as well). The total energy stored in this \SI{90}{F}/\SI{4.2}{V} supercapacitor is computed as
 \[
  E_\te{SC} = \int_0^\infty P_\te{SC}(t) \, \te{d} t = I_\te{discharge} \int_0^\infty V_\te{SC}(t) \, \te{d} t = \SI{851.6}{J}.
 \]
@@ -1549,38 +1849,315 @@ Figure~\ref{fig:discharge_supercap_exp} provides the supercapacitor discharge un
 \end{figure}
 
 
+\subsection*{Sound analysis}
 
-\subsection*{...}
+\subsubsection*{Pure sine wave}
 
-Test noise in ADC input (refine ADC to more than 12 bits if needed), measure number of errors in the digitized data). LSB=0.6mV and expected noise=2.5mV
+To validate the sensing subsystem, a first test is achieved with a pure sine wave at \SI{1}{kHz} generated from a laptop speaker. Figure~\ref{fig:sine_sound} presents the results in the time and frequency domains, this sound is fully detected by the microcontroller. The voltage decrease is probably due to the ADC discharging the node by drawing some current when it samples the signal.
 
-    Current consumption over a whole period with/without Tim's board (material: SMU for 2-3 days)​
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \input{img/sine_temp.tex}
+  \caption{In the temporal domain}
+\end{subfigure}
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \input{img/sine_freq.tex}
+  \caption{In the frequency domain}
+\end{subfigure}
+\caption{Analysis of a pure sine wave at \SI{1}{kHz}}
+\label{fig:sine_sound}
+\end{figure}
+
+
+\subsection*{Noise}
+
+Figure~\ref{fig:noise_sound} shows the digitized signal under a quiet environment in order to determine the intrinsic noise of the sensing system. The RMS noise value, in terms of LSBs, is given by
+\[
+ E_\te{RMS} = \sqrt{\frac{1}{N}\sum_n{\left(x[n]-\te{E}[x]\right)^2}} = \SI{23.6}{LSBs}
+\]
+where $N$ is the number of samples, $x[n]$ is the $n$-th ADC digitized value and $\te{E}[x]$ is the mean of $x$. This value can be compared to the theoretical value, $E_\te{RMS} = \SI{18.7}{LSBs}$ since $V_\te{N,tot,theor} = \SI{11.2}{mV}$ and one LSB is $V_\te{CC} / 2^{12} = \SI{0.6}{mV}$. The excess noise is due to the environmental noise that remains at the microphone input, which is always present except in an anechoic chamber.
+
+\begin{figure}[H]
+    \centering
+    \input{img/ADC_noise_temp.tex}
+    \caption{Noise at the ADC input}
+    \label{fig:noise_sound}
+\end{figure}
+
+
+%\subsection*{...}
+
+%\textcolor{green}{ Current consumption over a whole period with/without Tim's board (material: SMU for 2-3 days)​}
 
     
+\subsection*{Requirements review}
 
-    Noise measurement at the ADC input?
+Finally, one will review the requirements stated at the beginning of this work (see Section~\ref{section:requirements}). Requirments related to bird classification will be discussed in the next chapter.
+
+\subsubsection*{Life time}
+
+The life time is limited by the supercapacitor, which is expected to work during about \SI{11200}{h} at \SI{60}{\degree C}~\cite{Vishay}.   The 10-degrees-rule for electrolytic capacitors can be used the estimate supercapacitors life times. This rule employs the Arrhenius equation, and states that for every \SI{10}{\degree C} reduction in operating temperature, the estimated life doubles. The expected lifetime $L$ at \SI{20}{\degree C} is thus given by
+\[
+ L = L_0 \, 2^{\frac{T_0-T}{\SI{10}{\degree C}}} = \SI{179200}{h}
+\]
+which corresponds to 20.5 years. It can even be increased above 20 years with additional equalization methods~\cite{4494753}. As required, the sensor is working fully autonomously (days and night) for more than 15 years.
+
+\subsubsection*{Volume and cost}
+
+The total volume is inside the \SI{143 x 82 x 25}{mm} constraint: \SI{200 x 200 x 50}{cm}.
+
+The overall cost, including the PCB, is below the limit of 80 euros: 74.28 euros. The most important costs are the solar cells (30.4 euros), the supercapacitor (17.5 euros) and the PCB (20 euros).
+
+
+\subsubsection*{Sound detection}
+
+Determining the detection distance is probably the most difficult requirement to precisely characterize. It can be based on real-time songs but birds are singing intermittently and with different sound amplitude. It can also be characterized with a speaker emitting bird songs, but the sound pressure cannot either be known without a sound level meter. Still, the device has been able to detect pure sine waves with speakers at reasonable distance.
 
     
 \chapter{Inference algorithm}
 
-    Classify the type of bird (among the ~10 most common ones) based on frequency spikes (FFT + threshold of bins: scale par rapport intensité moyenne de bruit (soft threshold)): sortir des performances grossières​
+This chapter will present different algorithms aiming to discriminate bird types based on the microphone signal. This temporal signal is often transformed into its dual domain: the spectral (or frequency) domain. Representing a signal in spectral domain is done through the Fourier transform, which is in fact a fast Fourier transform (FFT) for sampled data (such as data stored in a microcontroller).
 
-    First tests of the code with laptop mic and open-source database of bird songs​
+The requirements in Section~\ref{section:requirements} state that the sensor has to discriminate among four very common birds in Belgian forests. These species are the pigeon, blackbird, great tit, and blue tit. The remaining of the section will demonstrate the ability of the sensor node to find the correct species with sufficient precision.
 
-    Matlab: (log scale, sensitivity: detect ratio of birds, + false positives) + compatibility power management / application​
+\section{Peak frequency extraction}
 
-    If not working: count the number of songs
-    
-    time-frequency representation provides a good do-
-main for audio classification for several reasons
+The first algorithm will process bird songs based on the frequency at which the signal has the more power. Because the FFT size is limited by computation time, it is not possible to record and process sound over an entire bird song duration (typically \SI{2}{s}). On the other, one cannot decrease the sampling frequency below \SI{20}{kHz} in order to detect useful frequencies below \SI{10}{kHz}\footnote{The Nyquist–Shannon sampling theorem then states that, to avoid loss of information during a sampling process, a sampling frequency larger than twice the maximum frequency contained in the signal is required.}, which would give \SI{40000}{} samples during a typical song duration. It is thus required to spread the sampling duration over multiple time windows. For example, Figure~\ref{fig:peak_frequency} shows the peak frequency for each time window (\SI{32}{ms} whose \SI{6.4}{ms} to retrieve 128 samples at \SI{20}{kHz}) of a great tit song. One can roughly see to sounds spaced by \SI{4}{ms} and oscillating between \SI{3}{kHz} and \SI{4.5}{kHz}. Based on the graph, it is thus possible to discriminate visually between species with substantially different frequency profiles, but formalizing further embedded processing to extract meaningful information from this peak frequency graph is less trivial. It is also worth noting that there is only one point (i.e. frequency) associated to each time sample.
+
+\begin{figure}[H]
+    \centering
+    \input{img/peak_frequency.tex}
+    \caption{Peak frequencies associated to a great tit song}
+    \label{fig:peak_frequency}
+\end{figure}
+
+Although this algorithm shows good visual results, this kind of algorithm misses important information for different reasons.
+
+First, most birds songs present several high frequency at the same time, these weaker frequencies are never detected. This means that several bird songs with the same peak frequency but different secondary frequencies are never discriminated.
+
+Second, several birds present different frequency profiles during their song, that is to say the FFT is varying with time (e.g. \SI{3}{kHz} and \SI{4.5}{kHz} for the song presented in Figure~\ref{fig:peak_frequency}). Thereby, characterizing birds based on one FFT over a short period of time misses non harmonious (or non periodic) bird songs and cannot discriminate two bird with the same frequency peak in the beginning of their song for example.
+
+
+\section{Spectogram decomposition}
+
+From the previous remarks, it is more convenient to represent the signal with a spectrogram: the visual representation of the spectrum of frequencies of a signal as it varies with time. Creating a spectrogram using the FFT is a digital process. Digitally sampled data, in the time domain, is broken up into chunks, which usually overlap, and Fourier transformed to calculate the magnitude of the frequency spectrum for each chunk. Each chunk then corresponds to a vertical line in the image, which provides the magnitude versus frequency for a specific moment in time.
+
+A smaller (shorter) window will produce more accurate results in timing, at the expense of precision of frequency representation.
+This leads to the consideration of trade-offs between time
+and frequency resolution in audition: the bandwidth can only be narrowed (i.e. the frequency resolution increased) if the temporal resolution is decreased, because narrower filters have longer time constants.
+In the design of linear filters, the uncertainty principle fixes a
+limit on the resolution that can be attained (the Gabor limit\footnote{It is nothing else than the Heisenberg's uncertainty principle applied in the context of signal processing to time and frequency (2 dual physical quantities).}),
+giving a lower bound for the product of the variance in time
+and the variance in frequency for a single linear filter~\cite{Stowell}.
+
+Some birds have several typical songs. For example, Figure~\ref{fig:blue_tit} presents the spectrogram for two common songs of the blue tit. As human perception of sound intensity is logarithmic~\cite{Psychoacoustics}, the graphs are based on log-spectrogram.
+
+\begin{figure}[H]
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \input{img/blue_tit1.tex}
+  \caption{Bird chirp}
+\end{subfigure}
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \input{img/blue_tit2.tex}
+  \caption{Bird song}
+\end{subfigure}
+\caption{Spectrograms of two sounds from the blue tit computed with this sensor node}
+\label{fig:blue_tit}
+\end{figure}
+
+Due to the limited memory, the signal has to be processed at each time window. This considerably increases the delay between adjacent time windows, given by \SI{26.5}{ms} for an FFT size of $N = 128$ (see Table~\ref{tab:spec_data_proc}).
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+                     & Time [\si{ms}] \\ \midrule
+ Data sampling       & 1.28           \\
+ FFT                 & 25             \\
+ Data storage        & 0.2            \\ \midrule
+ Total               & 26.5           \\ \bottomrule
+\end{tabular}
+\caption{Processing time for one spectrogram data chunk with 128 samples}
+\label{tab:spec_data_proc}
+\end{table}
+
+In this case, the sampling period is set to \SI{10}{\micro s}, corresponding to a sampling frequency $f_\te{s} = \SI{100}{kHz}$. Hence, the frequency resolution in the spectrogram is given by
+\[
+ \Delta f = \frac{f_\te{s}}{N} = \SI{781}{Hz}
+\]
+with a maximum analyzed frequency of $f_\te{s}/2 = \SI{50}{kHz}$. One can finally see the trade-off appearing on the frequency resolution, which cannot be improved (that is, decreased) without 
+\begin{itemize}
+ \item increasing $N$, which would require more memory storage and processing time (the FFT time evolving according to $\mathcal{O}(N^2)$, or $\mathcal{O}(N \log N)$ with optimized algorithms~\cite{QIU1999159}),
+ \item or decreasing $f_\te{s}$, which would increase the sampling time (impinging on the time window length).
+\end{itemize}
+
+Figure~\ref{fig:4birds} provides the time--frequency comparison of four different bird songs. As discussed, the frequency resolution is also \SI{781}{Hz}. This makes the discrimination among the birds very difficult since some peak frequencies are identical for several birds.
+
+\begin{figure}[H]
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/Pigeon.tex}
+  \caption{Pigeon}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/Blackbird.tex}
+  \caption{Blackbird}
+\end{subfigure}
+\newline
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/Great_tit.tex}
+  \caption{Great tit}
+  \label{fig:great_tit}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \input{img/blue_tit2.tex}
+  \caption{Blue tit}
+\end{subfigure}
+\caption{Spectrograms of 4 different bird songs computed with this sensor node}
+\label{fig:4birds}
+\end{figure}
+
+To illustrate the difference, Figure~\ref{fig:greattit_full} shows the spectrogram of the great tit when the signal does not significantly suffer from the time-frequency trade-off (that is, the graph has been computed from an audio file at \SI{44.1}{kHz}). One can clearly see four songs oscillating between \SI{3}{kHz} and \SI{6}{kHz}, which is not detected by the embedded low-resource microcontroller (see Figure~\ref{fig:great_tit}). It will thus be needed to work on specific characteristics of the signal instead of the whole spectrogram pattern.
+
+\begin{figure}[H]
+    \centering
+    \input{img/greattit_full.tex}
+    \caption{Precise spectrogram of the great tit song (from a bird song database)}
+    \label{fig:greattit_full}
+\end{figure}
+
+\subsubsection*{Feature extraction}
+
+Now that the signal has been converted into meaningful information via its spectrogram form, some features need to be extracted from it. Typical features for bird recognition are specific frequencies for each time window, the median as well as the 5 and 95 percentiles which are robust measures of minimum and maximum frequency~\cite{Stowell}. The bandwidth can also be extracted, defined as the difference between the 5 and 95 percentile. 
+
+For this work, the average frequency weighted by the intensity is analyzed because of its simplicity. In a spectrogram, let $f[i]$ be the vector of discrete frequencies ($y$-axis) with size $N/2$, $t[j]$ be the vector of discrete time samples ($x$-axis) with size $M$ (depending on the audio recording time and the window overlap) and $s[i,j]$ be the intensity of the $i$-th frequency component during the $j$-th time period, then the average intensity for the $i$-th frequency component throughout the time period is
+\[
+ s_\te{avg}[i] = \frac{1}{M} \sum_{j=1}^{M} s[i,j] \quad [\si{dB/Hz}]
+\]
+and the weighted average frequency is given by
+\[
+ f_\te{avg} = \frac{\sum_{j=1}^{L} s_\te{avg}[i] \, f[i]}{\sum_{j=1}^{L} s_\te{avg}[i]} \quad [\si{Hz}]
+\]
+where $L$ is the index corresponding to a frequency of \SI{10}{kHz} in order to remove high-frequency noise. The spectrogram has frequencies above this range if $f_\te{max} > \SI{10}{kHz}$, that is $f_\te{s} > \SI{20}{kHz}$. It it always the case for this work, with $f_\te{s} = \SI{100}{kHz}$ for the node sensor and $f_\te{s} = \SI{44.1}{kHz}$ for the MP3 audio files analyzed offline.
+
+During calibration, the mean background noise (expressed as power spectral density) is characterized for each frequency, resulting in a combination of $1/f$ noise and flat noise. It is then removed from the intensity $s[i,j]$ when a real signal is analyzed. The algorithm is also tuned by an intensity treshold to output a bird species only when the signal sufficiently exceeds the background noise, meaning that a sound has been produced.
+
+\subsubsection*{Feature selection}
+
+Additionally, feature selection is used to evaluate the predictive power that a feature has with respect to some attribute.
+In information gain feature selection, each feature is evaluated by measuring the information gain with respect to the species label, which is the amount by which the feature reduces the uncertainty in the label. To reduce the problem complexity, the weighted average frequency is kept in this work. The problem thus becomes a 1D classification.
+
+\subsubsection*{Inference}
+
+The final step consists to infer the species based on the selected feature. A simple machine-learning model for this purpose is the support vector machine (SVM), but it requires lots of offline preprocessing beforehand. Since only one feature is analyzed, a machine-learning algorithm has little interest. The classifier used for this work is based on a $k$-nearest neighbors algorithm (KNN) with $k=5$, meaning that the class (i.e. the species) associated to a new sample is classified by a plurality vote among the $k$ neaotherrest data according to the feature (i.e. the weighted average frequency).
+
+A learning phase now consists to analyze several songs from the six species previously mentioned, and extract the weighted average frequency for all these learning samples. Figure~\ref{fig:weighted_average_frequency} shows the repartition of the weighted average frequency among the species learning samples, based on the spectrogram of 6 different audio samples for each species\footnote{The audio files come from a collaborative and open-source database of bird songs (\textit{xeno-canto}~\cite{xeno}).}.
+
+\begin{figure}[H]
+    \centering
+    \input{img/weight_mean_freq.tex}
+    \caption{Repartition of the weighted average frequency among the species learning samples}
+    \label{fig:weighted_average_frequency}
+\end{figure}
+
+One can deduce that the weighted average frequency is actually a pertinent feature with useful information since it discriminates quite well between the different species.
+
+Then, these frequencies are stored inside the sensor node in order to infer the species of a newly recorded song. The microcontroller launches a KNN classifier by selecting the species which is the most similar to the new sample (that is, which has the nearest weighted average frequency).
+
+\subsubsection*{Experimental results}
+
+To validate the theoretical work, bird songs are generated from a laptop speaker in the area around the sensor node.
+Based on the KNN algorithm and these thresholds encoded in the microcontroller, Table~\ref{tab:predictions_birds} provides the number of right predictions on the learning samples with the very-low-precision algorithm inside the microcontroller. Surprisingly, it manages to retrieve the correct species with more than 94\% of precision in average.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+ Species   & Number of correct predictions \\ \midrule
+ Pigeon    & 6/6                           \\
+ Blackbird & 6/6                           \\
+ Great tit & 6/6                           \\
+ Blue tit  & 4/6                           \\ \bottomrule
+\end{tabular}
+\caption{Number of right predictions on the learning samples with the sensor node}
+\label{tab:predictions_birds}
+\end{table}
+
+It is now possible to test the algorithm on new samples, which can either be additional audio files in a database or real-time songs from birds in the vicinity. One will focus on the former since real-time songs are too sporadic to be precisely characterized. For each species, positions of three testing samples are given in Figure~\ref{fig:test_freq_detection}. One can see that the KNN algorithm is able to find the correct for all new samples.
+
+\begin{figure}[H]
+    \centering
+    \input{img/test_freq_detection.tex}
+    \caption{Predictions on new samples with the sensor node}
+    \label{fig:test_freq_detection}
+\end{figure}
+
 
 \chapter{Improvement perspectives}
+\label{chapter:improvements}
 
-Waterproof case and potting
+\section{Refinement of inference algorithms}
 
-SWOT analysis ?
+The majority of discrimination algorithms are done thanks to machine-learning algorithms applied on the time--frequency texture. Typical models use convolutional neural networks (CNNs) and/or recurrent neural networks (RNNs).
+With deep learning, bird detection can achieve very high retrieval rates in remote monitoring data, with no manual recalibration, and no pretraining of the detector for the target species or the acoustic conditions in the target environment~\cite{Stowell2018}.
+
+Other less resource-intensive models use feature extraction performed by matching the time-frequency plane with a number of time-frequency blocks previously learned. The minimum matching energy of the blocks makes a feature vector of the audio signal and is sent to a classifier for song discrimination~\cite{4959924}.
+However, these models require a substantial amount of memory and speed, which is unpractical for embedded applications. Still, one could optimize these memory/time/energy-intensive algorithms based on the microcontroller capabilities in order to extract meaningful information.
+
+Additionally, the present algorithm is not able to find other species. It will thus output one of the four species even for other species and external sounds (such as traffic noise), creating so called false positive detections. The algorithms previously mentioned would greatly help solve this issue.
+
+\section{Robustness under difficult conditions}
+
+The device can be further designed to integrate a robust protection against difficult environmental conditions. One can for example cite a waterproof case which supports high temperature variations. Potting the entire PCB would also help reduce oxidation and support shocks/vibration which are paramount for an expected lifetime exceeding 15 years.
+
 
 \chapter{Conclusion}
+\label{chapter:conclusion}
+
+The Internet-of-Things (IoT) is predicted to lead to the deployment of a very large number of connected smart sensors for various applications, which is not environmentally sustainable if the devices are replaced frequently.
+Additionally, rising climate change due to ecosystem destruction demands to automatically monitor forests in order to analyze and preserve the ecosystem.
+
+In this master thesis, the focus is on the development of an autonomous and efficient audio smart sensor continuously analyzing the forest ecosystem. To fulfil the energy constraints implied by its total autonomy, this sensor harvests energy from the environment through miniaturized photovoltaic cells sized according to the sun illuminance throughout days and seasons, using an environmentally-friendly and non-toxic supercapacitor as energy storage.
+With a 15+ year life time, this fully autonomous device operates at an optimized \SI{2.5}{V} supply voltage reaching \SI{22.1}{mW} of average power harvesting/consumption. An electret condenser microphone collects a signal as low as \SI{16}{dB_{SPL}} (compared to a \SI{14.22}{dB_{SPL}} input-referred noise), which is then amplified in the full bird emission frequency range (\SI{20}{Hz} -- \SI{20}{kHz}) by a low-noise and low-power analog front-end. This signal is further processed in an ultra-low-power chip embedding a microcontroller, alternating between run and sleep modes with a $1/3$ duty cycle, and a transceiver optimized for IoT applications with LoRaWAN networks. 
+
+The microcontroller detects sounds when birds are active (typically during the day for more than 12 hours) and ensures the radio-frequency communication at night depending on the supercapacitor voltage that is carefully monitored in real-time. It sends the information about the bird species encountered during the day, as well as their apparition frequency. In case of firmware update, this device receives the associated fragments when its energy is sufficient and automatically changes the firmware with energy-optimized software requiring only \SI{10.6}{J} for the whole update.
+
+By computing the weighted average frequency of the received sounds, the smart sensor is able to discriminate between four common birds in Belgium: the pigeon, blackbird, great tit and blue tit. For each species, several songs have been analyzed and used to train a $k$-nearest neighbors (KNN) classifier working in the real-time embedded system. Its precision, defined as the likelihood to find the correct species, reaches 94\% for songs coming from the previously learned database. For newly analyzed sounds, the detection algorithm performs likewise. More complex machine-learning algorithms could finally be further designed to discriminate between more species.
+
+
+\subsection*{SWOT analysis}
+
+A SWOT analysis is a strategic technique used to help  identify strengths, weaknesses, opportunities, and threats related to a concept~\cite{HILL199746}. Depicted in Table~\ref{tab:SWOT}, it concludes this work by summarizing the principal characteristics of this smart sensor which have all been well detailed in Chapters~\ref{chapter:improvements} and \ref{chapter:conclusion}.
+
+\begin{table}[H]
+\centering
+ \begin{tabular}{p{0.02\textwidth}|p{0.45\textwidth}|p{0.45\textwidth}}
+ & \multicolumn{1}{c|}{\textit{Positive}} & \multicolumn{1}{c}{\textit{Negative}} \\ \midrule
+ \parbox[t]{3mm}{\multirow{5}{*}{\rotatebox[origin=c]{90}{\textit{Internal}}}} 
+ & \textbf{Strengths}: & \textbf{Weaknesses}:\\
+ & \tabitem Fully autonomous and low power & \tabitem Resource-limited inference algorithm\\
+ & \tabitem Long life time (15+ years) & \tabitem Size of the sensor node\\
+ & \tabitem Eco-friendly & \tabitem Production cost\\
+ & \tabitem Bird classification & \\
+ \midrule
+\parbox[t]{3mm}{\multirow{5}{*}{\rotatebox[origin=c]{90}{\textit{External}}}}
+ & \textbf{Opportunities}: & \textbf{Threats}:\\
+ & \tabitem High demand for sustainable sensors & \tabitem Harsh environmental conditions\\
+ & \hspace{4mm} and forest monitoring & \\
+ & \tabitem Rising of low-power & \\
+ & \hspace{4mm} machine-learning algorithms & \\
+ \end{tabular}
+\caption{SWOT analysis of this smart sensor}
+\label{tab:SWOT}
+\end{table}
+
 
 \appendix
 
@@ -1681,7 +2258,7 @@ Since the positive and negative terminals of an op amp are identical (ideally), 
 which is the noise gain of the circuit.
 
 
-\chapter{Schematic of the final model}
+\chapter{PCB layout and schematic}
 \label{appendix:schematic}
 
 The PCB layout (see Figure~\ref{fig:PCB_lay}) and schematic (see Figure~\ref{fig:PCB_sch}) were designed with KiCad. The PCB is composed of 4 layers, of which two are for GND and VDD.
