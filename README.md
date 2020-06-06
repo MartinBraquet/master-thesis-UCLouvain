@@ -1,6 +1,6 @@
 # Master's thesis at UCLouvain
 
-This is the source code of my Master's thesis at UCLouvain (June 2020).
+Here are the source files of my Master's thesis at UCLouvain (June 2020).
 
 It includes all the simulations required for this work:
 * **Audio processing**: C code for the microcontroller and Matlab code to process the data (plot the graphs) received from the board
