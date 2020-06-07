@@ -2,67 +2,14 @@ close all;
 
 %% Daily luminosity (March 1, cloudy weather) 
 
-data = [17.5 200,
-        8.75 855,
-        9.5  1550,
-        10   1940,
-        10.5 1300,
-        11.7 3500,
-        12   4000,
-        14.5 3040,
-        14.6 3680,
-        14.7 3230,
-        14.8 4500,
-        14.9 4400,
-        15   3500,
-        15.2 2800,
-        15.5 1700,
-        15.8 3050,
-        16   2500,
-        16.3 2200,
-        16.6 1880,
-        17   1650,
-        17.3 640,
-        17.6 1150,
-        18   340,
-        18.2 150,
-        18.3 70,
-        18.5 30,
-        10   1030,
-        10.5 925,
-        11   2350,
-        11.5 1800,
-        12   2000,
-        12.5 1600,
-        13   2300,
-        13.5 2740,
-        14   2000,
-        9    800,
-        9.5  1000,
-        10.5 1650,
-        10.8 4000,
-        11.6 1600,
-        12   3000,
-        12.5 4700,
-        12.8 1900,
-        13   950,
-        13.5 1400,
-        14   680,
-        14.5 1500,
-        16   1900,
-        16.5 2200,
-        17   1100,
-        8.2  400,
-        18.6 0,
-        8    0];
-    
-data(:,2) = 1.85 * data(:,2);
+%save('daily_luminosity_tab', 'daily_luminosity_tab');
+load('daily_luminosity_tab');
 
-data = sortrows(data,1);
+daily_luminosity_tab = sortrows(daily_luminosity_tab,1);
     
 n = 2000;
 t = linspace(0, 24, n);
-L = polyval(polyfit(data(:,1), data(:,2),2), t);
+L = polyval(polyfit(daily_luminosity_tab(:,1), daily_luminosity_tab(:,2),2), t);
 L(L<0) = 0;
 
 F = griddedInterpolant(t,L);
@@ -70,7 +17,7 @@ fun = @(x) F(x);
 L_mean = integral(fun, t(1), t(end)) / 24;
 
 figure; hold on;
-plot(data(:,1), data(:,2), '.r', 'MarkerSize', 10);
+plot(daily_luminosity_tab(:,1), daily_luminosity_tab(:,2), '.r', 'MarkerSize', 10);
 plot(t, L, '--', 'LineWidth', 2);
 %plot([min(data(:,1)), max(data(:,1))], L_mean * ones(1,2), 'c--', 'LineWidth', 2);
 
