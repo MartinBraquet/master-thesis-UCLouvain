@@ -4,6 +4,8 @@
 %  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
 %where you can also make suggestions and rate matlab2tikz.
 %
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+
 \begin{tikzpicture}[scale=0.8]
 
 \begin{axis}[%
@@ -23,7 +25,7 @@ axis background/.style={fill=white},
 xmajorgrids,
 ymajorgrids
 ]
-\addplot [color=blue, dashed, line width=2.0pt, mark size=4.0pt, mark=asterisk, mark options={solid, blue}, forget plot]
+\addplot [color=mycolor1, dashed, line width=2.0pt, mark size=4.0pt, mark=asterisk, mark options={solid, mycolor1}, forget plot]
   table[row sep=crcr]{%
 10	3.55\\
 20	3.47\\

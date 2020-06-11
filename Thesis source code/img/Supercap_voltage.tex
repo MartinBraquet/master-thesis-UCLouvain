@@ -16,7 +16,7 @@ height=3.566in,
 at={(0.758in,0.481in)},
 scale only axis,
 xmin=0,
-xmax=25,
+xmax=24,
 xlabel style={font=\color{white!15!black}},
 xlabel={Time [hours]},
 ymin=2,
@@ -24,11 +24,11 @@ ymax=4.5,
 ylabel style={font=\color{white!15!black}},
 ylabel={Supercap voltage [V]},
 axis background/.style={fill=white},
-axis x line*=bottom,
-axis y line*=left,
+%axis x line*=bottom,
+%axis y line*=left,
 xmajorgrids,
 ymajorgrids,
-legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left, draw=white!15!black}
+legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left, draw=none}
 ]
 \addplot [color=mycolor1, draw=none, mark size=0.8pt, mark=*, mark options={solid, mycolor1}]
   table[row sep=crcr]{%

@@ -23,11 +23,13 @@ ymax=500,
 ylabel style={font=\color{white!15!black}},
 ylabel={Current [\si{\micro A}]},
 axis background/.style={fill=white},
-axis x line*=bottom,
-axis y line*=left,
+%axis x line*=bottom,
+%axis y line*=left,
+xmajorgrids,
+ymajorgrids,
 legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left, draw=none}
 ]
-\addplot [color=mycolor1]
+\addplot [color=mycolor1, line width=2.0pt]
   table[row sep=crcr]{%
 4.746436649716e-06	-0.003657844249716\\
 0.005278706270456	4.720416200144\\
@@ -533,7 +535,7 @@ legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align
 };
 \addlegendentry{ABM-707-RC}
 
-\addplot [color=mycolor2]
+\addplot [color=mycolor2, line width=2.0pt]
   table[row sep=crcr]{%
 -8.871104791533e-05	0.01056219911533\\
 0.005295781611519	6.322737590381\\
