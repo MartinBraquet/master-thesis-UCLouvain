@@ -1,0 +1,3 @@
+arm_rfft_q31.c:74:6:arm_rfft_q31	56	static
+arm_rfft_q31.c:125:6:arm_split_rfft_q31	376	static
+arm_rfft_q31.c:217:6:arm_split_rifft_q31	368	static

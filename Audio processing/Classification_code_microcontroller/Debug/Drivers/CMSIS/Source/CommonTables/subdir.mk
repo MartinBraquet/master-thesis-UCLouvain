@@ -1,0 +1,24 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../Drivers/CMSIS/Source/CommonTables/arm_common_tables.c \
+../Drivers/CMSIS/Source/CommonTables/arm_const_structs.c 
+
+OBJS += \
+./Drivers/CMSIS/Source/CommonTables/arm_common_tables.o \
+./Drivers/CMSIS/Source/CommonTables/arm_const_structs.o 
+
+C_DEPS += \
+./Drivers/CMSIS/Source/CommonTables/arm_common_tables.d \
+./Drivers/CMSIS/Source/CommonTables/arm_const_structs.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+Drivers/CMSIS/Source/CommonTables/arm_common_tables.o: ../Drivers/CMSIS/Source/CommonTables/arm_common_tables.c
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m0plus -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L072xx -DDEBUG -c -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/CMSIS/Source/CommonTables/arm_common_tables.d" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+Drivers/CMSIS/Source/CommonTables/arm_const_structs.o: ../Drivers/CMSIS/Source/CommonTables/arm_const_structs.c
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m0plus -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L072xx -DDEBUG -c -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/CMSIS/Source/CommonTables/arm_const_structs.d" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+
