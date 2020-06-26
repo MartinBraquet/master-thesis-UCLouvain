@@ -115,9 +115,9 @@
 
 \begin{abstract}
 
-On one hand, the Internet of Things (IoT) is predicted to lead to the deployment of a very large number (possibly trillions) of connected smart sensors for various applications. Such a massive deployment of smart sensors is not environmentally sustainable if the smart sensors are replaced every two years because of the pressure they put on natural resources and the ecotoxicity of the e-waste they generate.
+The Internet of Things (IoT) is predicted to lead to the deployment of a very large number (possibly trillions) of connected smart sensors for various applications. Such a massive deployment of smart sensors is not environmentally sustainable if the smart sensors are replaced every two years because of the pressure they put on natural resources and the ecotoxicity of the e-waste they generate.
 
-On the other hand, the rising climate change due to ecosystem destruction involves monitoring forests in order to analyze and preserve the ecosystem. Such monitoring is typically achieved manually via a person who samples data less than once a day, which fails to provide strong results and asks for human presence during data acquisition.
+Furthermore, the rising climate change due to ecosystem destruction involves monitoring forests in order to analyze and preserve the ecosystem. Such monitoring is typically achieved manually via a person who samples data less than once a day, which fails to provide strong results and asks for human presence during data acquisition.
 
 To solve these issues, the focus of this master thesis is on the development of an autonomous and efficient audio smart sensor continuously analyzing the forest ecosystem. To fulfill the energy constraints implied by its total autonomy, this sensor harvests energy from the environment through miniaturized photovoltaic cells sized according to the sun illuminance throughout days and seasons, using an environmentally-friendly and non-toxic supercapacitor to store energy.
 With a 15+ year lifetime, this fully autonomous device operates at an optimized \SI{2.5}{V} supply voltage reaching \SI{22.1}{mW} of average power harvesting/consumption. An electret condenser microphone collects a signal as low as \SI{16}{dB_{SPL}} (compared to a \SI{14.22}{dB_{SPL}} input-referred noise), which is then amplified in the full frequency range of bird emission (\SI{20}{Hz} -- \SI{20}{kHz}) by a low-noise and low-power analog front-end. This signal is further processed in an ultra-low-power chip embedding a microcontroller, alternating between run and sleep modes with a $1/3$ duty cycle, and a transceiver optimized for IoT applications with LoRaWAN networks. 
@@ -125,10 +125,12 @@ With a 15+ year lifetime, this fully autonomous device operates at an optimized 
 The microcontroller detects sounds when birds are active (typically during the day for more than 12 hours) and ensures the radio-frequency communication at night depending on the supercapacitor voltage that is carefully monitored in real time. It sends information about the bird species encountered during the day, as well as their apparition frequency. In case of firmware update, this device receives the associated fragments when its energy is sufficient and it automatically changes the firmware with energy-optimized software requiring only \SI{10.6}{J} for the whole update.
 
 By computing the weighted average frequency of the received sounds, the smart sensor is able to discriminate between four common birds in Belgium: the pigeon, blackbird, great tit and blue tit. For each species, several songs have been analyzed and used to train a $k$-nearest neighbors (KNN) classifier working in the real-time embedded system. Its precision, defined as the likelihood to find the correct species, reaches 94\% for songs coming from the previously learned database. For newly analyzed sounds, the detection algorithm performs likewise. More complex machine-learning algorithms could finally be further designed to discriminate between more species.
+
 \end{abstract}
 
 \renewcommand{\abstractname}{Acknowledgements}
 \begin{abstract}
+
 This thesis has been written throughout my last year at UCLouvain. It gave me the opportunity to have a first glimpse into an important work required for the procurement of a master's degree in engineering.  During this substantial work, I would like to thank the following people, starting with the most meaningful ones, for their important hints and source of motivation.
 
 First of all, I would like to thank my main supervisor, Prof. D. Bol, for his precious advice. In his works, I deeply appreciated his way to approach a problem, starting with a technological/ecological/social need and then solving it by considering all the factors in the process (systemic approach). His maturity, sensibility and motivation to handle such problems made one of the most important marks on me throughout my studies at UCLouvain. 
@@ -138,6 +140,7 @@ Second, I would like to thank Tim Hess who wrote his thesis on a same topic but 
 Third, I would like to thank the members of the ECS group\footnote{Electrical Circuits and Systems group led by Professors D. Bol and D. Flandre at UCLouvain.} and more specifically Rémi Dekimpe for his constant supervision through the year. He proved his availability at any time and had precious hints.
 
 I would also like to thank my second supervisor, Prof. R. Sadre, for his availability. Likewise, I want to thank Prof. D. Flandre in advance for the reading of this thesis, as well as for his engaging courses given during my curriculum. More generally, I need to thank all the people who contributed to this work, e.g. for accessing the electronics lab and the ordering of the required materials.
+
 \end{abstract}
 
 \tableofcontents
@@ -472,7 +475,7 @@ For EDLCs, the following compounds are used:
  \item Polymeric membrane forming a microporous layer as separator
 \end{itemize}
 
-Supercapacitors are thus mainly built from carbon, one of the most abundant elements on Earth. They are far less toxic and resource intensive than metal-based batteries.
+Supercapacitors are thus mainly built from carbon, one of the most abundant elements on Earth. They are far less toxic and resource-intensive than metal-based batteries.
 
     
 \section{Selection}
@@ -775,7 +778,6 @@ The output impedance is a measurement of the AC resistance (at \SI{1}{kHz}) look
 
 Directionality describes the pattern in which the microphone sensitivity changes when the sound source changes position in space. Most of the analyzed microphones are omnidirectional.
 
-ranges
 Finally, the main figures of merit associated with a microphone are summarized below:
 
 \begin{itemize}
