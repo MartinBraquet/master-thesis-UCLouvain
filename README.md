@@ -1,5 +1,7 @@
 # Master's thesis at UCLouvain
 
+### Design of an ultra-low-power energy-harvesting audio sensor for ecosystem monitoring
+
 Here are the source files of my Master's thesis at UCLouvain (June 2020).
 
 It includes all the simulations required for this work:
