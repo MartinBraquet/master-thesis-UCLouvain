@@ -13,3 +13,9 @@ It includes all the simulations required for this work:
 * **PCB**: KiCad and Eagle files for the PCB design (schematic and PCB layout)
 * **Power management**: Matlab and Excel files for measurements about the supercapacitor, solar cells, PMU and luminosity
 * **Thesis source code**: LaTeX source code of the Master's thesis
+
+![alt text](https://github.com/MartinBraquet/master-thesis-UCLouvain/blob/master/Thesis%20source%20code/img/real_PCB_with_MCU.png)
+
+![alt text](https://github.com/MartinBraquet/master-thesis-UCLouvain/blob/master/Thesis%20source%20code/img/Spectrogram.png)
+
+![alt text](https://github.com/MartinBraquet/master-thesis-UCLouvain/blob/master/Thesis%20source%20code/img/Noise_Current.png)
