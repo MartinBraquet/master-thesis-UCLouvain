@@ -14,8 +14,11 @@ It includes all the simulations required for this work:
 * **Power management**: Matlab and Excel files for measurements about the supercapacitor, solar cells, PMU and luminosity
 * **Thesis source code**: LaTeX source code of the Master's thesis
 
+Picture of the final model (with MCU/RF board)
 ![alt text](https://github.com/MartinBraquet/master-thesis-UCLouvain/blob/master/Thesis%20source%20code/img/real_PCB_with_MCU.png)
 
+Precise spectrogram of the great tit song (from a bird song database)
 ![alt text](https://github.com/MartinBraquet/master-thesis-UCLouvain/blob/master/Thesis%20source%20code/img/Spectrogram.png)
 
+Comparison of input-referred noise and current consumption for several operational amplifiers
 ![alt text](https://github.com/MartinBraquet/master-thesis-UCLouvain/blob/master/Thesis%20source%20code/img/Noise_Current.png)
